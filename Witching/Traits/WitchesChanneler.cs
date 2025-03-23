@@ -12,7 +12,7 @@ namespace Witching.Traits
 
         public override string getDesc()
         {
-            return "Doubles the Power obtained by completing the elligable rituals.";
+            return "Doubles the Power obtained by completing the eligible rituals.";
         }
 
         public override void onAcquire(Person person)

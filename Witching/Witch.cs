@@ -3,12 +3,16 @@ using Assets.Code;
 using UnityEngine;
 using Witching.Traits;
 using Witching.Rituals;
+using System;
+using System.Linq;
 
 namespace Witching
 {
     public class Witch : UAE
     {
-        private readonly List<ICanUpdateRituals> updaters =
+        public Empower.RitualUpdater empowerUpdater;
+
+        public List<ICanUpdateRituals> updaters =
             new List<ICanUpdateRituals>();
 
         public Witch(Location location, Society society)
@@ -22,7 +26,7 @@ namespace Witching
             person.age = 42;
             person.hasSoul = true;
             person.receiveTrait(new WitchesPower(this));
-            AddWitchesRitual(new Empower.RitualUpdater(this));
+            empowerUpdater = new Empower.RitualUpdater(this);
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
         }
 
@@ -33,7 +37,7 @@ namespace Witching
 
         public override string getName()
         {
-            return "A Witch";
+            return "Witch " + base.person.firstName;
         }
 
         public override bool isCommandable()
@@ -65,7 +69,13 @@ namespace Witching
 
         public void UpdateRituals(WitchesPower witchesPower, Location newLocation)
         {
+            empowerUpdater.UpdateRituals(this, witchesPower, newLocation);
             updaters.ForEach(a => a.UpdateRituals(this, witchesPower, newLocation));
+        }
+
+        public WitchesPower GetPower()
+        {
+            return person.traits.FirstOrDefault(a => a is WitchesPower) as WitchesPower;
         }
     }
 }

@@ -1,12 +1,13 @@
 using Assets.Code;
+using Witching.Rituals;
 
 namespace Witching.Traits
 {
     public class WitchesPower : Trait
     {
-        private readonly Witch witch;
+        public Witch witch;
 
-        public int Charges = 0;
+        public int Charges = 10;
 
         public int ChargesReceivedMultiplier = 1;
 
@@ -20,7 +21,7 @@ namespace Witching.Traits
 
         public override string getDesc()
         {
-            return "The Witch can obtain power by completing either a Blasmephous Rituals for three charges, Dark Worship for 2 charges or Holy: Dark Worship for one charge.";
+            return "The Witch can obtain power by completing either a Blasmephous Rituals for three charges, Dark Worship for two charges or Holy: Dark Worship for one charge.";
         }
 
         public override void onAcquire(Person person)
@@ -55,6 +56,9 @@ namespace Witching.Traits
         {
             base.onMove(current, destination);
             witch.UpdateRituals(this, destination);
+            foreach (var unit in destination.units)
+                if (unit is Witch otherWitch)
+                    otherWitch.rituals.Add(new Empower(destination, witch.GetPower(), witch.person));
         }
     }
 }

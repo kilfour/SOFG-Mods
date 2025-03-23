@@ -2,6 +2,7 @@ using System.Linq;
 using Assets.Code;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
+using UnityEngine;
 
 namespace Witching.Rituals
 {
@@ -9,7 +10,7 @@ namespace Witching.Rituals
     {
         public class RitualUpdater : KnownRitual<Empower>
         {
-            private readonly Witch witch;
+            public Witch witch;
 
             public RitualUpdater(Witch witch)
             {
@@ -28,9 +29,9 @@ namespace Witching.Rituals
 
             protected override bool CanBeCastOnRulers => false;
 
-            protected override Ritual GetRitual(Location newLocation, WitchesPower witchesPower, Person prey)
+            protected override Ritual GetRitual(Location location, WitchesPower witchesPower, Person prey)
             {
-                return new Empower(newLocation, witchesPower, prey);
+                return new Empower(location, witchesPower, prey);
             }
         }
 
@@ -38,6 +39,11 @@ namespace Witching.Rituals
 
         public Empower(Location location, WitchesPower witchesPowerTrait, Person prey)
             : base(location, witchesPowerTrait, prey) { }
+
+        public override Sprite getSprite()
+        {
+            return EventManager.getImg("witching.witch.png");
+        }
 
         public override string getName()
         {

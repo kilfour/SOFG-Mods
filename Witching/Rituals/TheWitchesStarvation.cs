@@ -19,9 +19,9 @@ namespace Witching.Rituals
                 return person.traits.Any(a => a is T_TheHunger);
             }
 
-            protected override Ritual GetRitual(Location newLocation, WitchesPower witchesPower, Person prey)
+            protected override Ritual GetRitual(Location location, WitchesPower witchesPower, Person prey)
             {
-                return new TheWitchesStarvation(newLocation, witchesPower, prey);
+                return new TheWitchesStarvation(location, witchesPower, prey);
             }
         }
 

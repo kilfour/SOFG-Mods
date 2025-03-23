@@ -8,9 +8,9 @@ namespace Witching.Rituals.Bolts
 {
     public abstract class WitchesRitual : Ritual
     {
-        protected readonly WitchesPower witchesPower;
+        public WitchesPower witchesPower;
 
-        protected readonly Person prey;
+        public Person prey;
 
         protected abstract int RequiredCharges { get; }
 

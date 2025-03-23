@@ -19,12 +19,12 @@ namespace Witching.Rituals.Bolts
 
         public void UpdateRituals(UAE caster, WitchesPower witchesPower, Location newLocation)
         {
-            RemoveRituals(caster, GetRitualsToRemove(caster));
+            RemoveRituals(caster, GetRitualsToRemove(caster).ToList());
             MaybeAddRitualToUnits(caster, witchesPower, newLocation);
             MaybeAddRitualToRuler(caster, witchesPower, newLocation);
         }
 
-        private static void RemoveRituals(UAE caster, IEnumerable<Challenge> toRemove)
+        private static void RemoveRituals(UAE caster, List<Challenge> toRemove)
         {
             foreach (var item in toRemove) caster.rituals.Remove(item);
         }

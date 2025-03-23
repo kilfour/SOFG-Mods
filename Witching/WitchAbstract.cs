@@ -46,10 +46,10 @@ namespace Witching
             target.map.overmind.availableEnthrallments--;
         }
 
-        public override Sprite getBackground()
-        {
-            return map.world.iconStore.standardBack;
-        }
+        // public override Sprite getBackground()
+        // {
+        //     return map.world.iconStore.standardBack;
+        // }
 
         public override Sprite getForeground()
         {
@@ -83,7 +83,7 @@ namespace Witching
 
         public override int getStatLore()
         {
-            return 4;
+            return 3;
         }
 
         public override int getStatIntrigue()

@@ -18,7 +18,8 @@ namespace Witching.Traits
         {
             if (person.society is HolyOrder holyOrder)
             {
-                holyOrder.tenet_alignment.status = -1;
+                if (holyOrder.tenet_alignment.status > -1)
+                    holyOrder.tenet_alignment.status = -1;
                 holyOrder.prophet = person.unit as UAE;
             }
         }
