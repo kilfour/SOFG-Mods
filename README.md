@@ -60,7 +60,7 @@ Any newly hired Soothsayer immediately becomes the prophet of their coven and ga
 
 ## Idea for this mod 
 The high priestess is clearly the most powerfull witch, with the ability to inflict the hunger. However charging up the power burns through covens and desecrated temple due to the fact that rulers will send out armies to destroy these locations.  
-The other witches allows th player to circumvent this problem.
+The other witches allows the player to circumvent this problem.
 * The Channeler doubles the power output, so that two dark worship rituals and then empowering your priestess can allready give you access to The Witches Hunger ritual.
 - The Soothsayer can, if enough money is available, quite quickly, erect temples accross the map, which in turn gives you access to more power. Other witches can do this too ofcourse, but their command stat of one makes this quite slow.
 
