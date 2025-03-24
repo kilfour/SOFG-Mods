@@ -28,6 +28,8 @@ namespace Witching
             empowerUpdater = new Empower.RitualUpdater(this);
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
             person.receiveTrait(new WitchesPower(this));
+            person.receiveTrait(new TruthSpeaker());
+            minions[0] = new M_Crow(map);
         }
 
         public void AddWitchesRitual(ICanUpdateRituals updater)
