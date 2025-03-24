@@ -46,7 +46,7 @@ namespace Witching.Rituals
 
         public override string getRestriction()
         {
-            return "Requires one Witches Power.";
+            return "Requires one Witches Power, and ruler is not allready funding you.";
         }
 
         public override string getCastFlavour()
