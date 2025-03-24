@@ -21,7 +21,7 @@ namespace Witching
             person.stat_might = 1;
             person.stat_lore = 4;
             person.stat_intrigue = 1;
-            person.stat_command = 1;
+            person.stat_command = 2;
             person.isMale = false;
             person.age = 42;
             person.hasSoul = true;
