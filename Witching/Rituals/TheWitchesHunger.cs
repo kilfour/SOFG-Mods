@@ -42,11 +42,7 @@ namespace Witching.Rituals
 
         public override string getRestriction()
         {
-            if (prey.rulerOf > -1)
-            {
-                return prey.getName() + "The location must be fully infiltrated. Can not be allready infected.";
-            }
-            return "Can not target the Chosen One or someone allready infected.";
+            return "Requires five Witches Power.";
         }
 
         public override string getCastFlavour()

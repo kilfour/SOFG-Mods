@@ -42,7 +42,7 @@ namespace Witching.Rituals
 
         public override string getRestriction()
         {
-            return "Must target someone plagued by The Hunger.";
+            return "Requires one Witches Power.";
         }
 
         public override string getCastFlavour()

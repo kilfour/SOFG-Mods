@@ -57,7 +57,7 @@ namespace Witching.Rituals
 
         public override string getRestriction()
         {
-            return "Must be a fellow member witch of your coven.";
+            return "Must have atleast one Witches Power.";
         }
 
         public override string getCastFlavour()
