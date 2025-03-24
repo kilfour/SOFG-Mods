@@ -3,21 +3,20 @@ using Witching.Rituals;
 
 namespace Witching.Traits
 {
-    public class Fundraiser : Trait
+    public class TruthSpeaker : Trait
     {
         public override string getName()
         {
-            return "Fundraiser";
+            return "Truth Speaker";
         }
 
         public override string getDesc()
         {
-            return "Gain an extra fifty gold. Whenever the fundraiser enters a human settlement she can spend a Witches Power to try and persuade the ruler to fund her.";
+            return "Allows the witch to move to a rulers town and maybe convince him to hire her as a Truth Speaker.";
         }
 
         public override void onAcquire(Person person)
         {
-            person.gold += 50;
             var witch = person.unit as Witch;
             witch.AddWitchesRitual(new RaiseFunds.RitualUpdater(witch));
         }

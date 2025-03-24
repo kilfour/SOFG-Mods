@@ -36,12 +36,12 @@ namespace Witching.Rituals
 
         public override string getName()
         {
-            return "Embezzle from " + prey.getName() + ".";
+            return "Spek Truth to " + prey.getName() + ".";
         }
 
         public override string getDesc()
         {
-            return "Spend a Witches Power in order to motivate " + prey.getName() + " to fund you.";
+            return "Spend a Witches Power in order to motivate " + prey.getName() + " to hire you as a Truth Speaker.";
         }
 
         public override string getRestriction()
@@ -71,6 +71,12 @@ namespace Witching.Rituals
 
         public override void complete(UA witch)
         {
+            var oldLocation = map.locations[witch.homeLocation];
+            if (oldLocation.settlement is SettlementHuman humanSettlement)
+            {
+                humanSettlement.fundingActions.RemoveAll(a => a.heroIndex == witch.person.index);
+            }
+            witch.homeLocation = witch.location.index;
             var settlement = witch.location.settlement as SettlementHuman;
             settlement.fundingActions.Add(new Act_FundHero(witch.location, witch.person));
             RitualComplete();
