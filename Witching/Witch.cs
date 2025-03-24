@@ -24,7 +24,7 @@ namespace Witching
             person.isMale = false;
             person.age = 42;
             person.hasSoul = true;
-            person.gold = 20;
+            person.gold = 40;
 
             AddWitchesRitual(new Empower.RitualUpdater(this));
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
