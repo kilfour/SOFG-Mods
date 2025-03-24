@@ -34,7 +34,7 @@ Whenever two or more witches share the same location, the get access to this rit
 ### Truth Speaker ###
 This trait gives access to a ritual which shows up when in a human settlement, and allows the witch to change it's home location (but not it's society) to the current one, and adds a funding action to the list of local settlement action.  
 It also improves the relation with the settlement's ruler.  
-Can not be performed if a funding action for this witch allready exists and if done a second time in another location, the first funding action will dissapear.  
+Can not be performed if a funding action for this witch already  exists and if done a second time in another location, the first funding action will dissapear.  
 
 Costs one charge.
 
@@ -48,7 +48,7 @@ Costs one charge.
 
 ### The High Priestess ###
 The High Priestess gets access to the Witches Hunger, a ritual which allows her to inflict the Hunger on Heroes and Rulers.
-In contrast to the similar blood magic ritual it can not be cast on a person allready infected with the hunger.  
+In contrast to the similar blood magic ritual it can not be cast on a person already  infected with the hunger.  
 
 Costs five charges.
 
