@@ -5,7 +5,7 @@ using Witching.Rituals.Bolts;
 
 namespace Witching.Rituals
 {
-    public class TheWitchesStarvation : WitchesRitual
+    public class TheWitchesStarvation : WitchesMobileRitual
     {
         public class RitualUpdater : KnownRitual<TheWitchesStarvation>
         {
@@ -37,7 +37,7 @@ namespace Witching.Rituals
 
         public override string getDesc()
         {
-            return "Spend a Hunger Power charge in order to increase 'The Hunger' on " + prey.getName() + ", which encourages them to feed.";
+            return "Spend a Witches Power in order to increase 'The Hunger' on " + prey.getName() + ", which encourages them to feed.";
         }
 
         public override string getRestriction()

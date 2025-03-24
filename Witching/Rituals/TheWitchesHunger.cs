@@ -5,7 +5,7 @@ using Witching.Rituals.Bolts;
 
 namespace Witching.Rituals
 {
-    public class TheWitchesHunger : WitchesRitual
+    public class TheWitchesHunger : WitchesMobileRitual
     {
         public class RitualUpdater : KnownRitual<TheWitchesHunger>
         {
@@ -25,7 +25,7 @@ namespace Witching.Rituals
             }
         }
 
-        protected override int RequiredCharges => 3;
+        protected override int RequiredCharges => 5;
 
         public TheWitchesHunger(Location location, WitchesPower witchesPowerTrait, Person prey)
             : base(location, witchesPowerTrait, prey) { }
@@ -37,7 +37,7 @@ namespace Witching.Rituals
 
         public override string getDesc()
         {
-            return "Spend three Hunger Power charges in order to inflict 'The Hunger' on " + prey.getName() + ", which causes them to periodically be compelled to feed on the civilians of the location they are in, increasing shadow there by " + (int)(100.0 * map.param.mg_theHungerLocationShadowGain) + "%, their own shadow by " + (int)(100.0 * map.param.mg_theHungerPersonalShadowGain) + " and their menace by " + map.param.mg_theHungerMenace + " (if they are a hero) or increases unrest (if they are a rule). The feeding's motivation is affected by their personal shadow and their preferences for cruelty and shadow.";
+            return "Spend five Witches Power in order to inflict 'The Hunger' on " + prey.getName() + ", which causes them to periodically be compelled to feed on the civilians of the location they are in, increasing shadow there by " + (int)(100.0 * map.param.mg_theHungerLocationShadowGain) + "%, their own shadow by " + (int)(100.0 * map.param.mg_theHungerPersonalShadowGain) + " and their menace by " + map.param.mg_theHungerMenace + " (if they are a hero) or increases unrest (if they are a rule). The feeding's motivation is affected by their personal shadow and their preferences for cruelty and shadow.";
         }
 
         public override string getRestriction()

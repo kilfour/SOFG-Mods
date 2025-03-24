@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Witching.Rituals
 {
-    public class Empower : WitchesRitual
+    public class Empower : WitchesMobileRitual
     {
         public class RitualUpdater : KnownRitual<Empower>
         {

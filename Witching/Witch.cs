@@ -19,15 +19,15 @@ namespace Witching
             : base(location, society)
         {
             person.stat_might = 1;
-            person.stat_lore = 3;
-            person.stat_intrigue = 2;
-            person.stat_command = 3;
+            person.stat_lore = 4;
+            person.stat_intrigue = 1;
+            person.stat_command = 1;
             person.isMale = false;
             person.age = 42;
             person.hasSoul = true;
-            person.receiveTrait(new WitchesPower(this));
             empowerUpdater = new Empower.RitualUpdater(this);
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
+            person.receiveTrait(new WitchesPower(this));
         }
 
         public void AddWitchesRitual(ICanUpdateRituals updater)
@@ -57,7 +57,8 @@ namespace Witching
                 {
                     new HungerWorship(),
                     new WitchesChanneler(),
-                    new Prophet()
+                    new Prophet(),
+                    new Fundraiser()
                 };
             return list;
         }

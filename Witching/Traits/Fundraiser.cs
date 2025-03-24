@@ -3,22 +3,22 @@ using Witching.Rituals;
 
 namespace Witching.Traits
 {
-    public class HungerWorship : Trait
+    public class Fundraiser : Trait
     {
         public override string getName()
         {
-            return "The Witches Hunger";
+            return "Fundraiser";
         }
 
         public override string getDesc()
         {
-            return "The Witch gets access to the Witches Hunger, a ritual which allows for expending Power charges in order to inflict the Hunger on Heroes and Rulers.";
+            return "Whenever the fundraiser enters a human settlement she can spend a Witches Power to try and persuade the ruler to fund her.";
         }
 
         public override void onAcquire(Person person)
         {
             var witch = person.unit as Witch;
-            witch.AddWitchesRitual(new TheWitchesHunger.RitualUpdater());
+            witch.AddWitchesRitual(new RaiseFunds.RitualUpdater(witch));
         }
     }
 }

@@ -29,6 +29,8 @@ namespace Witching
                     .Select(a => a as Sub_Temple)
                     .First(a => a != null).order;
             var uA = new Witch(target, society);
+            uA.maxHp = 3;
+            uA.hp = 3;
             uA.person.stat_might = getStatMight();
             uA.person.stat_lore = getStatLore();
             uA.person.stat_intrigue = getStatIntrigue();
@@ -63,12 +65,12 @@ namespace Witching
 
         public override string getDesc()
         {
-            return "The Witch starts as a Coven's acolyte.";
+            return "Gathering at their Coven the witches seek to bring chaos into this world. They have developed a fascination for, and ways to, manipulate the hunger. They perform blaspmephous rituals and worship at their covens in order to obtain their power, with which they can encourage people infected by the hunger to feed. There are even those that can inflict the hunger on unsuspectiong bystanders, and some deal with the more mondain task of raising funds from nearby rulers. ";
         }
 
         public override string getFlavour()
         {
-            return "Manipulates the powers of darkness.";
+            return "Witches have decent lore, but not much else. Don't take them into combat. When in the same location, one witch can gift all her power to another.";
         }
 
         public override string getRestrictions()
@@ -83,17 +85,17 @@ namespace Witching
 
         public override int getStatLore()
         {
-            return 3;
+            return 4;
         }
 
         public override int getStatIntrigue()
         {
-            return 2;
+            return 1;
         }
 
         public override int getStatCommand()
         {
-            return 3;
+            return 1;
         }
     }
 

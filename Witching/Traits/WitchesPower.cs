@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Code;
 using Witching.Rituals;
 
@@ -7,7 +9,7 @@ namespace Witching.Traits
     {
         public Witch witch;
 
-        public int Charges = 10;
+        public int Charges = 0;
 
         public int ChargesReceivedMultiplier = 1;
 
@@ -56,9 +58,24 @@ namespace Witching.Traits
         {
             base.onMove(current, destination);
             witch.UpdateRituals(this, destination);
-            foreach (var unit in destination.units)
-                if (unit is Witch otherWitch)
-                    otherWitch.rituals.Add(new Empower(destination, witch.GetPower(), witch.person));
+            UpdateEmpowerForOtherWitches(current, destination);
+        }
+
+        private void UpdateEmpowerForOtherWitches(Location current, Location destination)
+        {
+            foreach (var otherWitch in GetOtherWitchesAt(current))
+                otherWitch.rituals.RemoveAll(a => a.getName() == "Empower " + witch.getName() + ".");
+
+            foreach (var otherWitch in GetOtherWitchesAt(destination))
+                otherWitch.rituals.Add(new Empower(destination, witch.GetPower(), witch.person));
+        }
+
+        private IEnumerable<Witch> GetOtherWitchesAt(Location location)
+        {
+            return
+                from unit in location.units
+                where unit is Witch otherWitch && otherWitch != witch
+                select unit as Witch;
         }
     }
 }
