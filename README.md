@@ -58,3 +58,21 @@ A regular witch except for the fact that she gets doubles the charges obtained b
 ### The Soothsayer ###
 Any newly hired Soothsayer immediately becomes the prophet of their coven and gains three progress per turn when performing challenges relating to Religion.
 
+## Idea for this mod 
+The high priestess is clearly the most powerfull witch, with the ability to inflict the hunger. However charging up the power burns through covens and desecrated temple due to the fact that rulers will send out armies to destroy these location.  
+The other witches allows one to circumvent this problem.
+* The Channeler doubles the power output, so that three dark rituals and then empowering your priestess can allready give you access to The Witches Hunger ritual.
+- The Soothsayer can, if enough money is available, quite quickly, erect temples accross the map, which in turn gives you access to more power. Other witches can do this too ofcourse, but their command stat of one makes this quite slow.
+
+## Closing thoughts
+
+The mod is currently reasonably tested. I think I've caught all obvious bugs, but haven't tested interaction with other mods.  
+Also it is likely terribly unbalanced and exploit strategies undoubtedly exist. I can think of one or two myself, but haven't tried it out yet.  
+And yeah, I'm not a great artist, so I was a bit limited in what I can do without having to produce art and it also means the witch's portrait isn't the best looking one in town.
+
+### Future balance ideas ###
+* Make the hunger rituals more expensive.
+* Dissallow infecting a ruler.
+* ...
+
+
