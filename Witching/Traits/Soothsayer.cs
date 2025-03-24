@@ -13,7 +13,7 @@ namespace Witching.Traits
 
         public override string getDesc()
         {
-            return "Any newly hired Soothsayer immediately becomes the prophet of their coven and gains 3 progress per turn when performing challenges relating to Religion.";
+            return "Any newly hired Soothsayer immediately becomes the prophet of their coven and gains three progress per turn when performing challenges relating to Religion.";
         }
 
         public override int[] getTags()
