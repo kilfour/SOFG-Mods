@@ -37,7 +37,11 @@ namespace Witching
 
         public override string getName()
         {
-            return "Witch " + base.person.firstName;
+            if (person.overrideName != null && person.overrideName.Length != 0)
+            {
+                return person.overrideName;
+            }
+            return "Witch " + person.firstName;
         }
 
         public override bool isCommandable()
