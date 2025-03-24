@@ -2,18 +2,13 @@ using Assets.Code;
 
 namespace Witching.Traits
 {
-    public class Evangelist : T_ChallengeBooster
+    public class Soothsayer : T_ChallengeBooster
     {
-        public Evangelist() : base(Tags.RELIGION) { }
-
-        public override string getTitle(Person p)
-        {
-            return "Preacher";
-        }
+        public Soothsayer() : base(Tags.RELIGION) { }
 
         public override string getName()
         {
-            return "Evangelist";
+            return "Soothsayer";
         }
 
         public override string getDesc()

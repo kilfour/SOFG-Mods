@@ -64,7 +64,7 @@ namespace Witching
                     new HungerWorship(),
                     new WitchesChanneler(),
                     new Prophet(),
-                    new Evangelist()
+                    new Soothsayer()
                 };
             return list;
         }
