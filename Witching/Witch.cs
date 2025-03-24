@@ -27,8 +27,8 @@ namespace Witching
             person.gold = 40;
             empowerUpdater = new Empower.RitualUpdater(this);
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
-            person.receiveTrait(new WitchesPower(this));
             person.receiveTrait(new TruthSpeaker());
+            person.receiveTrait(new WitchesPower(this));
             minions[0] = new M_Crow(map);
         }
 

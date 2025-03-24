@@ -36,7 +36,7 @@ namespace Witching.Rituals
 
         public override string getName()
         {
-            return "Spek Truth to " + prey.getName() + ".";
+            return "Speak to " + prey.getName() + ".";
         }
 
         public override string getDesc()
@@ -79,6 +79,7 @@ namespace Witching.Rituals
             witch.homeLocation = witch.location.index;
             var settlement = witch.location.settlement as SettlementHuman;
             settlement.fundingActions.Add(new Act_FundHero(witch.location, witch.person));
+            settlement.ruler.increasePreference(witch.person.index + 10000);
             RitualComplete();
         }
     }
