@@ -29,7 +29,7 @@ All witches have this trait, which starts with 0 power and can be charged by com
 All witches rituals need to be powered by these charges.
 
 ### The Empower Ritual ###
-Whenever two or more witches share the same location, the get access to this ritual which allows one witch to transfer all of it's power to another one.
+Whenever two or more witches share the same location, they get access to this ritual which allows one witch to transfer all of it's power to another one.
 
 ### Truth Speaker ###
 This trait gives access to a ritual which shows up when in a human settlement, and allows the witch to change it's home location (but not it's society) to the current one, and adds a funding action to the list of local settlement action.  
