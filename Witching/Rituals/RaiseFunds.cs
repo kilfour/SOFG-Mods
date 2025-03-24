@@ -80,6 +80,7 @@ namespace Witching.Rituals
             var settlement = witch.location.settlement as SettlementHuman;
             settlement.fundingActions.Add(new Act_FundHero(witch.location, witch.person));
             settlement.ruler.increasePreference(witch.person.index + 10000);
+            settlement.populateLocalActions();
             RitualComplete();
         }
     }
