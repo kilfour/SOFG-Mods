@@ -95,7 +95,7 @@ namespace Witching
 
         public override int getStatCommand()
         {
-            return 2;
+            return 1;
         }
     }
 
