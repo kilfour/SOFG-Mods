@@ -63,7 +63,7 @@ namespace Witching
                     new HungerWorship(),
                     new WitchesChanneler(),
                     new Prophet(),
-                    new Fundraiser(),
+                    // new Fundraiser(),
                     new Evangelist()
                 };
             return list;

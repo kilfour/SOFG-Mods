@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Assets.Code;
 using System.Linq;
 using Witching.Traits;
+using System.Runtime.InteropServices;
 
 namespace Witching.Rituals.Bolts
 {
@@ -13,7 +14,7 @@ namespace Witching.Rituals.Bolts
 
         protected virtual bool CanBeCastOnHero(Person person) { return false; }
 
-        protected virtual bool CanBeCastOnRuler(Person person) { return false; }
+        protected virtual bool CanBeCastOnRuler(SettlementHuman humanSettlement) { return false; }
 
         protected abstract Ritual GetRitual(Location newLocation, WitchesPower witchesPower, Person prey);
 
@@ -71,20 +72,14 @@ namespace Witching.Rituals.Bolts
             return unit.isCommandable() && (unit is UAE);
         }
 
-        protected void MaybeAddRitualToRuler(UAE caster, WitchesPower witchesPower, Location newLocation)
+        protected void MaybeAddRitualToRuler(UAE caster, WitchesPower witchesPower, Location location)
         {
             if (!CanBeCastOnRulers) return;
-            var ruler = GetRulerOrNull(newLocation);
-            if (ruler == null) return;
-            if (!CanBeCastOnRuler(ruler)) return;
-            caster.rituals.Add(GetRitual(newLocation, witchesPower, ruler));
-        }
-
-        protected static Person GetRulerOrNull(Location location)
-        {
-            if (location.settlement is SettlementHuman humanSettlement)
-                return humanSettlement.ruler;
-            return null;
+            var humanSettlement = location.settlement as SettlementHuman;
+            if (humanSettlement == null) return;
+            if (humanSettlement.ruler == null) return;
+            if (!CanBeCastOnRuler(humanSettlement)) return;
+            caster.rituals.Add(GetRitual(location, witchesPower, humanSettlement.ruler));
         }
     }
 }

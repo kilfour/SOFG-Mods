@@ -2,7 +2,6 @@ using System.Linq;
 using Assets.Code;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
-using UnityEngine;
 
 namespace Witching.Rituals
 {
@@ -19,10 +18,9 @@ namespace Witching.Rituals
 
             protected override bool CanBeCastOnHeroes => false;
 
-            protected override bool CanBeCastOnRuler(Person person)
+            protected override bool CanBeCastOnRuler(SettlementHuman humanSettlement)
             {
-                var settlement = person.unit.location.settlement as SettlementHuman;
-                return !settlement.fundingActions.Any(a => a.heroIndex == witch.person.index);
+                return !humanSettlement.fundingActions.Any(a => a.heroIndex == witch.person.index);
             }
 
             protected override Ritual GetRitual(Location location, WitchesPower witchesPower, Person prey)
@@ -73,8 +71,8 @@ namespace Witching.Rituals
 
         public override void complete(UA witch)
         {
-            var settlement = prey.unit.location.settlement as SettlementHuman;
-            settlement.fundingActions.Add(new Act_FundHero(prey.unit.location, witch.person));
+            var settlement = witch.location.settlement as SettlementHuman;
+            settlement.fundingActions.Add(new Act_FundHero(witch.location, witch.person));
             RitualComplete();
         }
     }

@@ -14,9 +14,9 @@ namespace Witching.Rituals
                 return person.traits.Any(a => a is T_TheHunger);
             }
 
-            protected override bool CanBeCastOnRuler(Person person)
+            protected override bool CanBeCastOnRuler(SettlementHuman humanSettlement)
             {
-                return person.traits.Any(a => a is T_TheHunger);
+                return humanSettlement.ruler.traits.Any(a => a is T_TheHunger);
             }
 
             protected override Ritual GetRitual(Location location, WitchesPower witchesPower, Person prey)
