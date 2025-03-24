@@ -18,6 +18,7 @@ namespace Witching.Traits
         public override void onAcquire(Person person)
         {
             var witch = person.unit as Witch;
+            witch.WitchesTitle = "Priestess";
             witch.AddWitchesRitual(new TheWitchesHunger.RitualUpdater());
         }
     }

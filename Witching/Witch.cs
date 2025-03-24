@@ -12,6 +12,8 @@ namespace Witching
         public List<ICanUpdateRituals> updaters =
             new List<ICanUpdateRituals>();
 
+        public string WitchesTitle = "Witch";
+
         public Witch(Location location, Society society)
             : base(location, society)
         {
@@ -44,7 +46,7 @@ namespace Witching
             {
                 return person.overrideName;
             }
-            return "Witch " + person.firstName;
+            return WitchesTitle + " " + person.firstName;
         }
 
         public override bool isCommandable()

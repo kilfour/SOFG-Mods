@@ -24,6 +24,8 @@ namespace Witching.Traits
         public override void onAcquire(Person person)
         {
             base.onAcquire(person);
+            var witch = person.unit as Witch;
+            witch.WitchesTitle = "Soothsayer";
             if (person.society is HolyOrder holyOrder)
             {
                 holyOrder.prophet = person.unit as UAE;
