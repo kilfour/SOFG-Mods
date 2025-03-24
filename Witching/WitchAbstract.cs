@@ -65,7 +65,7 @@ namespace Witching
 
         public override string getDesc()
         {
-            return "Gathering at their Coven the witches seek to bring chaos into this world. They have developed a fascination for, and ways to, manipulate the hunger. They perform blaspmephous rituals and worship at their covens in order to obtain their power, with which they can encourage people infected by the hunger to feed. Their High Priestesses can even inflict the hunger on unsuspectiong bystanders. Their Truth Speaking ability allows them to extract funds from nearby rulers";
+            return "Gathering at their Coven the witches seek to bring chaos into this world. They have developed a fascination for, and ways to, manipulate the hunger. They perform blaspmephous rituals and worship at their covens in order to obtain their power, with which they can encourage people infected by the hunger to feed. Their High Priestesses can even inflict the hunger on unsuspectiong bystanders. Their Truth Speaking ability allows them to extract funds from nearby rulers. Their prophets, the soothsayers do not have access to the normal Witches Rituals, instead focusing on preaching and temple building. ";
         }
 
         public override string getFlavour()
