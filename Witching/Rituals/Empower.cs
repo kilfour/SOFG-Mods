@@ -8,7 +8,7 @@ namespace Witching.Rituals
 {
     public class Empower : WitchesMobileRitual
     {
-        public class RitualUpdater : KnownRitual<Empower>
+        public class RitualUpdater : RitualUpdater<Empower>
         {
             public Witch witch;
 

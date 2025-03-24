@@ -7,7 +7,7 @@ namespace Witching.Rituals
 {
     public class TheWitchesStarvation : WitchesMobileRitual
     {
-        public class RitualUpdater : KnownRitual<TheWitchesStarvation>
+        public class RitualUpdater : RitualUpdater<TheWitchesStarvation>
         {
             protected override bool CanBeCastOnHero(Person person)
             {

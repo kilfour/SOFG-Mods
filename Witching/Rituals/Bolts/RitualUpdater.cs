@@ -5,7 +5,7 @@ using Witching.Traits;
 
 namespace Witching.Rituals.Bolts
 {
-    public abstract class KnownRitual<TRitual> : ICanUpdateRituals where TRitual : Ritual
+    public abstract class RitualUpdater<TRitual> : ICanUpdateRituals where TRitual : Ritual
     {
         protected virtual bool CanBeCastOnHeroes => true;
 

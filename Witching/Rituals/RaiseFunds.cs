@@ -8,7 +8,7 @@ namespace Witching.Rituals
 {
     public class RaiseFunds : WitchesRitual
     {
-        public class RitualUpdater : KnownRitual<RaiseFunds>
+        public class RitualUpdater : RitualUpdater<RaiseFunds>
         {
             public Witch witch;
 
