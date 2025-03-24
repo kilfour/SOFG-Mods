@@ -9,8 +9,6 @@ namespace Witching
 {
     public class Witch : UAE
     {
-        public Empower.RitualUpdater empowerUpdater;
-
         public List<ICanUpdateRituals> updaters =
             new List<ICanUpdateRituals>();
 
@@ -24,11 +22,14 @@ namespace Witching
             person.isMale = false;
             person.age = 42;
             person.hasSoul = true;
-            person.gold = 40;
-            empowerUpdater = new Empower.RitualUpdater(this);
+            person.gold = 20;
+
+            AddWitchesRitual(new Empower.RitualUpdater(this));
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
+
             person.receiveTrait(new TruthSpeaker());
             person.receiveTrait(new WitchesPower(this));
+
             minions[0] = new M_Crow(map);
         }
 
@@ -75,7 +76,6 @@ namespace Witching
 
         public void UpdateRituals(WitchesPower witchesPower, Location newLocation)
         {
-            empowerUpdater.UpdateRituals(this, witchesPower, newLocation);
             updaters.ForEach(a => a.UpdateRituals(this, witchesPower, newLocation));
         }
 
