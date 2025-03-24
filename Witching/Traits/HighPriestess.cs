@@ -3,16 +3,16 @@ using Witching.Rituals;
 
 namespace Witching.Traits
 {
-    public class HungerWorship : Trait
+    public class HighPriestess : Trait
     {
         public override string getName()
         {
-            return "The Witches Hunger";
+            return "High Priestess";
         }
 
         public override string getDesc()
         {
-            return "The Witch gets access to the Witches Hunger, a ritual which allows for expending Power charges in order to inflict the Hunger on Heroes and Rulers.";
+            return "The High Priestess gets access to the Witches Hunger, a ritual which allows her to inflict the Hunger on Heroes and Rulers.";
         }
 
         public override void onAcquire(Person person)

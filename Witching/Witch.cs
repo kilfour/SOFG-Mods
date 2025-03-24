@@ -61,9 +61,8 @@ namespace Witching
             List<Trait> list =
                 new List<Trait>
                 {
-                    new HungerWorship(),
+                    new HighPriestess(),
                     new WitchesChanneler(),
-                    new Prophet(),
                     new Soothsayer()
                 };
             return list;
