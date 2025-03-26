@@ -1,4 +1,5 @@
 using Assets.Code;
+using Witching.Rituals;
 
 namespace Witching.Traits
 {
@@ -27,9 +28,8 @@ namespace Witching.Traits
             var witch = person.unit as Witch;
             witch.WitchesTitle = "Soothsayer";
             if (person.society is HolyOrder holyOrder)
-            {
                 holyOrder.prophet = person.unit as UAE;
-            }
+            witch.rituals.Add(new Gathering(witch.location));
         }
     }
 }

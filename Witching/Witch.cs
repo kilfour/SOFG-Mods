@@ -32,7 +32,7 @@ namespace Witching
             person.receiveTrait(new TruthSpeaker());
             person.receiveTrait(new WitchesPower(this));
 
-            minions[0] = new M_Crow(map);
+            // minions[0] = new M_Crow(map);
         }
 
         public void AddWitchesRitual(ICanUpdateRituals updater)
