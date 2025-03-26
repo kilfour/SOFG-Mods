@@ -25,7 +25,7 @@ namespace Witching.Rituals
             }
         }
 
-        protected override int RequiredCharges => 1;
+        protected override int RequiredCharges => 5;
 
         public TheWitchesStarvation(Location location, WitchesPower witchesPower, Person prey)
             : base(location, witchesPower, prey) { }

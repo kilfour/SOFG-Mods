@@ -48,22 +48,55 @@ namespace Witching.Rituals
             return true;
         }
 
+        public override void onImmediateBegin(UA witchUnit)
+        {
+            var witch = witchUnit as Witch;
+            foreach (var unit in witch.location.units)
+            {
+
+                if (unit is Witch otherWitch
+                    && witch != otherWitch
+                    && otherWitch.task is Task_PerformChallenge task
+                    && task.challenge is Gathering)
+                {
+                    witch.task = new GeneratePower(witch.location);
+                    return;
+                }
+            }
+            base.onImmediateBegin(witch);
+        }
+
         public override void turnTick(UA witchUnit)
         {
             base.turnTick(witchUnit);
+            witchUnit.midchallengeTimer = 0;
             var witch = witchUnit as Witch;
             foreach (Unit unit in map.units)
             {
-                if ((unit is UAA acolyte) && acolyte.order == witch.society && !(unit.task is Task_GoToLocation))
+                if ((unit is UAA acolyte) && acolyte.order == witch.society)
                 {
-                    if (unit.task is GeneratePower)
-                        witch.GetPower().Charges++;
+                    if (unit.task != null && unit.task is GeneratePower)
+                    {
+                        witch.GetPower().Charges += 1;
+                    }
                     else if (unit.location == location)
                         unit.task = new GeneratePower(witch.location);
-                    else
+                    else if (!(unit.task is Task_GoToLocation))
                         unit.task = new Task_GoToLocation(witch.location);
                 }
+                if (unit is Witch otherWitch && witch.location == otherWitch.location)
+                {
+                    if (unit.task != null && unit.task is GeneratePower)
+                    {
+                        witch.GetPower().Charges += 1;
+                    }
+                }
             }
+        }
+
+        public override bool ignoreInterruptionWarning()
+        {
+            return true;
         }
     }
 
@@ -91,7 +124,7 @@ namespace Witching.Rituals
             foreach (var unit in target.units)
             {
                 if (unit is Witch witch && witch.task is Task_PerformChallenge task && task.challenge is Gathering)
-                    continue;
+                    return;
                 unit.task = null;
             }
         }

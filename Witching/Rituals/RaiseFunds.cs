@@ -69,8 +69,9 @@ namespace Witching.Rituals
             return 5;
         }
 
-        public override void complete(UA witch)
+        public override void complete(UA witchUnit)
         {
+            var witch = witchUnit as Witch;
             var oldLocation = map.locations[witch.homeLocation];
             if (oldLocation.settlement is SettlementHuman humanSettlement)
             {
@@ -81,6 +82,7 @@ namespace Witching.Rituals
             settlement.fundingActions.Add(new Act_FundHero(witch.location, witch.person));
             settlement.ruler.increasePreference(witch.person.index + 10000);
             settlement.populateLocalActions();
+            witch.GetTruthSpeaker().Target = settlement.ruler;
             RitualComplete();
         }
     }

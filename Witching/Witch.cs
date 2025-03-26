@@ -29,7 +29,7 @@ namespace Witching
             rituals.Add(new Gathering(location));
 
             AddWitchesRitual(new Empower.RitualUpdater(this));
-            AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
+
 
             person.receiveTrait(new TruthSpeaker());
             person.receiveTrait(new WitchesPower(this));
@@ -64,9 +64,8 @@ namespace Witching
             List<Trait> list =
                 new List<Trait>
                 {
-                    new HighPriestess(),
-                    new WitchesChanneler(),
-                    new Soothsayer()
+                    new Soothsayer(),
+                    new BloodWitch(),
                 };
             return list;
         }
@@ -83,7 +82,17 @@ namespace Witching
 
         public WitchesPower GetPower()
         {
-            return person.traits.FirstOrDefault(a => a is WitchesPower) as WitchesPower;
+            return GetTrait<WitchesPower>();
+        }
+
+        public TruthSpeaker GetTruthSpeaker()
+        {
+            return GetTrait<TruthSpeaker>();
+        }
+
+        private T GetTrait<T>() where T : class
+        {
+            return person.traits.FirstOrDefault(a => a is T) as T;
         }
     }
 }
