@@ -125,8 +125,8 @@ namespace Witching.Rituals
             {
                 if (unit is Witch witch && witch.task is Task_PerformChallenge task && task.challenge is Gathering)
                     return;
-                unit.task = null;
             }
+            acolyteUnit.task = null;
         }
 
         public override bool isBusy()

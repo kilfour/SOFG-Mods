@@ -17,7 +17,7 @@ namespace Witching.Traits
         public override string getDesc()
         {
             var msg = "Allows the witch to move to a rulers town and maybe convince him to hire her as a Truth Speaker.";
-            if (Target == null)
+            if (Target != null)
                 msg += " Currently hired by " + Target.getName() + " in " + Target.getLocation() + ".";
             return msg;
         }
