@@ -35,7 +35,7 @@ namespace Witching
             uA.person.stat_lore = getStatLore();
             uA.person.stat_intrigue = getStatIntrigue();
             uA.person.stat_command = getStatCommand();
-            uA.person.skillPoints++;
+            // uA.person.skillPoints++;
             target.units.Add(uA);
             target.map.overmind.agents.Add(uA);
             target.map.units.Add(uA);

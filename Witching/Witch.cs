@@ -28,11 +28,13 @@ namespace Witching
 
             rituals.Add(new Gathering(location));
 
-            AddWitchesRitual(new Empower.RitualUpdater(this));
-
-
             person.receiveTrait(new TruthSpeaker());
+            person.receiveTrait(new Soothsayer());
             person.receiveTrait(new WitchesPower(this));
+
+            AddWitchesRitual(new Empower.RitualUpdater(this));
+            AddWitchesRitual(new TheWitchesHunger.RitualUpdater());
+            AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
         }
 
         public void AddWitchesRitual(ICanUpdateRituals updater)
@@ -56,19 +58,19 @@ namespace Witching
 
         public override bool hasStartingTraits()
         {
-            return true;
+            return false;
         }
 
-        public override List<Trait> getStartingTraits()
-        {
-            List<Trait> list =
-                new List<Trait>
-                {
-                    new Soothsayer(),
-                    new BloodWitch(),
-                };
-            return list;
-        }
+        // public override List<Trait> getStartingTraits()
+        // {
+        //     List<Trait> list =
+        //         new List<Trait>
+        //         {
+        //             new Soothsayer(),
+        //             new BloodWitch(),
+        //         };
+        //     return list;
+        // }
 
         public override Sprite getPortraitForeground()
         {

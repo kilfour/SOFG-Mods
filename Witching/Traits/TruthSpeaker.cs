@@ -18,7 +18,7 @@ namespace Witching.Traits
         {
             var msg = "Allows the witch to move to a rulers town and maybe convince him to hire her as a Truth Speaker.";
             if (Target != null)
-                msg += " Currently hired by " + Target.getName() + " in " + Target.getLocation() + ".";
+                msg += " Currently hired by " + Target.getName() + " in " + Target.getLocation().getName() + ".";
             return msg;
         }
 

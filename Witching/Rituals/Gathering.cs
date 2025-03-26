@@ -1,3 +1,4 @@
+using System;
 using Assets.Code;
 using UnityEngine;
 
@@ -20,27 +21,17 @@ namespace Witching.Rituals
 
         public override string getDesc()
         {
-            return "Call all your acolytes to this location.";
+            return "Gather the coven's acolytes. Once they arrive they will start generating power for the casting witch. Other witches can also join by casting the same ritual in the same location, contributing double the power. The witch that started the gathering will receive one profile and two menace for each power generated. This can be circumvented by gathering in locations with unrest. The unrest will consume the menace and transform it into maddness.";
         }
 
-        public override string getCastFlavour()
+        public override double getProfile()
         {
-            return "The Coven is here.";
+            return 1;
         }
 
-        public override double getComplexity()
+        public override double getMenace()
         {
-            return 0;
-        }
-
-        public override int getCompletionMenace()
-        {
-            return 0;
-        }
-
-        public override int getCompletionProfile()
-        {
-            return 0;
+            return 1;
         }
 
         public override bool isIndefinite()
@@ -53,7 +44,6 @@ namespace Witching.Rituals
             var witch = witchUnit as Witch;
             foreach (var unit in witch.location.units)
             {
-
                 if (unit is Witch otherWitch
                     && witch != otherWitch
                     && otherWitch.task is Task_PerformChallenge task
@@ -71,13 +61,14 @@ namespace Witching.Rituals
             base.turnTick(witchUnit);
             witchUnit.midchallengeTimer = 0;
             var witch = witchUnit as Witch;
+            var covenPower = 0.0;
             foreach (Unit unit in map.units)
             {
                 if ((unit is UAA acolyte) && acolyte.order == witch.society)
                 {
                     if (unit.task != null && unit.task is GeneratePower)
                     {
-                        witch.GetPower().Charges += 1;
+                        covenPower++;
                     }
                     else if (unit.location == location)
                         unit.task = new GeneratePower(witch.location);
@@ -88,48 +79,42 @@ namespace Witching.Rituals
                 {
                     if (unit.task != null && unit.task is GeneratePower)
                     {
-                        witch.GetPower().Charges += 1;
+                        covenPower += 2;
                     }
                 }
             }
-        }
 
-        public override bool ignoreInterruptionWarning()
-        {
-            return true;
-        }
-    }
-
-    public class GeneratePower : Task
-    {
-        public Location target;
-
-        public GeneratePower(Location loc)
-        {
-            target = loc;
-        }
-
-        public override string getShort()
-        {
-            return "Generating Power";
-        }
-
-        public override string getLong()
-        {
-            return getShort();
-        }
-
-        public override void turnTick(Unit acolyteUnit)
-        {
-            foreach (var unit in target.units)
+            var suspicion = covenPower;
+            var unrestRemoved = 0.0;
+            if (witch.location.settlement is SettlementHuman settlementHuman)
             {
-                if (unit is Witch witch && witch.task is Task_PerformChallenge task && task.challenge is Gathering)
-                    return;
+                var unrest = getStandardPropertyLevel(witch.location, Property.standardProperties.UNREST);
+                suspicion = Math.Max(0, covenPower - unrest);
+                unrestRemoved = covenPower - suspicion;
+                Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.UNREST, 0 - unrestRemoved, witch.location);
             }
-            acolyteUnit.task = null;
-        }
+            if (unrestRemoved > 0)
+            {
+                var maddnessToAdd = unrestRemoved * 2;
+                Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.MADNESS, maddnessToAdd, witch.location);
+            }
+            witch.GetPower().Charges += (int)covenPower;
+            witch.addMenace(suspicion);
+            witch.addProfile(suspicion * 2);
 
-        public override bool isBusy()
+        }
+        internal double getStandardPropertyLevel(Location location, Property.standardProperties form)
+        {
+            foreach (Property property in location.properties)
+            {
+                if (property.getPropType() == form)
+                {
+                    return property.charge;
+                }
+            }
+            return 0.0;
+        }
+        public override bool ignoreInterruptionWarning()
         {
             return true;
         }

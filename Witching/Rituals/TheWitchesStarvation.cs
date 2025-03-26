@@ -37,7 +37,7 @@ namespace Witching.Rituals
 
         public override string getDesc()
         {
-            return "Spend a Witches Power in order to increase 'The Hunger' on " + prey.getName() + ", which encourages them to feed.";
+            return "Spend five Witches Power in order to increase 'The Hunger' on " + prey.getName() + ", which encourages them to feed.";
         }
 
         public override string getRestriction()
