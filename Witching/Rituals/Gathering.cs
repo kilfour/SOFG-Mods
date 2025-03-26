@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Assets.Code;
 using UnityEngine;
 
@@ -39,15 +40,11 @@ namespace Witching.Rituals
             return true;
         }
 
-        public override void onImmediateBegin(UA witchUnit)
+        public override void onImmediateBegin(UA witch)
         {
-            var witch = witchUnit as Witch;
             foreach (var unit in witch.location.units)
             {
-                if (unit is Witch otherWitch
-                    && witch != otherWitch
-                    && otherWitch.task is Task_PerformChallenge task
-                    && task.challenge is Gathering)
+                if (OtherWitchHasStartedAGathering(witch as Witch, unit))
                 {
                     witch.task = new GeneratePower(witch.location);
                     return;
@@ -56,62 +53,73 @@ namespace Witching.Rituals
             base.onImmediateBegin(witch);
         }
 
+        private static bool OtherWitchHasStartedAGathering(Witch witch, Unit unit)
+        {
+            return
+                unit is Witch otherWitch
+                && witch != otherWitch
+                && otherWitch.task is Task_PerformChallenge task
+                && task.challenge is Gathering;
+        }
+
         public override void turnTick(UA witchUnit)
         {
             base.turnTick(witchUnit);
             witchUnit.midchallengeTimer = 0;
             var witch = witchUnit as Witch;
-            var covenPower = 0.0;
-            foreach (Unit unit in map.units)
-            {
-                if ((unit is UAA acolyte) && acolyte.order == witch.society)
-                {
-                    if (unit.task != null && unit.task is GeneratePower)
-                    {
-                        covenPower++;
-                    }
-                    else if (unit.location == location)
-                        unit.task = new GeneratePower(witch.location);
-                    else if (!(unit.task is Task_GoToLocation))
-                        unit.task = new Task_GoToLocation(witch.location);
-                }
-                if (unit is Witch otherWitch && witch.location == otherWitch.location)
-                {
-                    if (unit.task != null && unit.task is GeneratePower)
-                    {
-                        covenPower += 2;
-                    }
-                }
-            }
-
-            var suspicion = covenPower;
-            var unrestRemoved = 0.0;
-            if (witch.location.settlement is SettlementHuman settlementHuman)
-            {
-                var unrest = getStandardPropertyLevel(witch.location, Property.standardProperties.UNREST);
-                suspicion = Math.Max(0, covenPower - unrest);
-                unrestRemoved = covenPower - suspicion;
-                Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.UNREST, 0 - unrestRemoved, witch.location);
-            }
-            if (unrestRemoved > 0)
-            {
-                var maddnessToAdd = unrestRemoved * 2;
-                Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.MADNESS, maddnessToAdd, witch.location);
-            }
-            witch.GetPower().Charges += (int)covenPower;
+            var power = MyMath.Sum(from unit in map.units select GetPowerFromUnit(witch, unit));
+            var suspicion = GetSuspicion(witch.location, power);
             witch.addMenace(suspicion);
             witch.addProfile(suspicion * 2);
-
+            witch.GetPower().Charges += (int)power;
         }
+
+        private double GetPowerFromUnit(Witch witch, Unit unit)
+        {
+            return GetPowerFromAcolyte(witch, unit) + GetPowerFromOtherWitch(witch, unit);
+        }
+
+        private static double GetPowerFromOtherWitch(Witch witch, Unit unit)
+        {
+            if (unit is Witch otherWitch && witch.location == otherWitch.location)
+                if (unit.task != null && unit.task is GeneratePower)
+                    return 2;
+            return 0;
+        }
+
+        private double GetPowerFromAcolyte(Witch witch, Unit unit)
+        {
+            if (UnitIsAnAcolyte(witch, unit))
+                if (unit.task == null)
+                    if (unit.location == location)
+                        unit.task = new GeneratePower(witch.location);
+                    else
+                        unit.task = new Task_GoToLocation(witch.location);
+                else if (unit.task is GeneratePower) { return 1; }
+            return 0;
+        }
+
+        private double GetSuspicion(Location location, double covenPower)
+        {
+            var unrest = getStandardPropertyLevel(location, Property.standardProperties.UNREST);
+            var suspicion = Math.Max(0, covenPower - unrest);
+            var unrestRemoved = covenPower - suspicion;
+            Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.UNREST, 0 - unrestRemoved, location);
+            if (unrestRemoved > 0)
+                Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.MADNESS, unrestRemoved * 2, location);
+            return suspicion;
+        }
+
+        private static bool UnitIsAnAcolyte(Witch witch, Unit unit)
+        {
+            return (unit is UAA acolyte) && acolyte.order == witch.society;
+        }
+
         internal double getStandardPropertyLevel(Location location, Property.standardProperties form)
         {
             foreach (Property property in location.properties)
-            {
                 if (property.getPropType() == form)
-                {
                     return property.charge;
-                }
-            }
             return 0.0;
         }
         public override bool ignoreInterruptionWarning()
