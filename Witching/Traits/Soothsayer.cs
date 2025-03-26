@@ -29,7 +29,6 @@ namespace Witching.Traits
             witch.WitchesTitle = "Soothsayer";
             if (person.society is HolyOrder holyOrder)
                 holyOrder.prophet = person.unit as UAE;
-            witch.rituals.Add(new Gathering(witch.location));
         }
     }
 }

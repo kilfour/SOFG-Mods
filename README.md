@@ -16,8 +16,6 @@ Aside from being an agent of the dark, they are also acolytes of their coven and
 * Hp: 3
 * Gold: 40
 
-Witches also get a free crow minion.
-
 ### Witches Power ### 
 
 All witches have this trait, which starts with 0 power and can be charged by completing certain challenges.
