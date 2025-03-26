@@ -31,23 +31,6 @@ namespace Witching.Traits
             witch.UpdateRituals(this, witch.location);
         }
 
-        public override void completeChallenge(Challenge challenge)
-        {
-            base.completeChallenge(challenge);
-            if (challenge is Ch_BlasphemousRituals)
-            {
-                Charges += 3 * ChargesReceivedMultiplier;
-            }
-            if (challenge is Ch_DarkWorshipAtTemple || challenge is Ch_DarkWorship)
-            {
-                Charges += 2 * ChargesReceivedMultiplier;
-            }
-            if (challenge is Ch_H_DarkWorshipAtTemple)
-            {
-                Charges += 1 * ChargesReceivedMultiplier;
-            }
-        }
-
         public override void turnTick(Person person)
         {
             base.turnTick(person);
@@ -67,7 +50,7 @@ namespace Witching.Traits
                 otherWitch.rituals.RemoveAll(a => a.getName() == "Empower " + witch.getName() + ".");
 
             foreach (var otherWitch in GetOtherWitchesAt(destination))
-                otherWitch.rituals.Add(new Empower(destination, witch.GetPower(), witch.person));
+                otherWitch.rituals.Add(new Empower(destination, this, witch.person));
         }
 
         private IEnumerable<Witch> GetOtherWitchesAt(Location location)

@@ -1,7 +1,4 @@
-using System.Linq;
 using Assets.Code;
-using Witching.Traits;
-using Witching.Rituals.Bolts;
 using UnityEngine;
 
 namespace Witching.Rituals
@@ -51,17 +48,57 @@ namespace Witching.Rituals
             return true;
         }
 
-        public override void turnTick(UA witch)
+        public override void turnTick(UA witchUnit)
         {
-            base.turnTick(witch);
+            base.turnTick(witchUnit);
+            var witch = witchUnit as Witch;
             foreach (Unit unit in map.units)
             {
-                if ((unit is UAA acolyte) && acolyte.order == witch.society)
+                if ((unit is UAA acolyte) && acolyte.order == witch.society && !(unit.task is Task_GoToLocation))
                 {
-                    unit.task = new Task_GoToLocation(witch.location);
+                    if (unit.task is GeneratePower)
+                        witch.GetPower().Charges++;
+                    else if (unit.location == location)
+                        unit.task = new GeneratePower(witch.location);
+                    else
+                        unit.task = new Task_GoToLocation(witch.location);
                 }
-
             }
+        }
+    }
+
+    public class GeneratePower : Task
+    {
+        public Location target;
+
+        public GeneratePower(Location loc)
+        {
+            target = loc;
+        }
+
+        public override string getShort()
+        {
+            return "Generating Power";
+        }
+
+        public override string getLong()
+        {
+            return getShort();
+        }
+
+        public override void turnTick(Unit acolyteUnit)
+        {
+            foreach (var unit in target.units)
+            {
+                if (unit is Witch witch && witch.task is Task_PerformChallenge task && task.challenge is Gathering)
+                    continue;
+                unit.task = null;
+            }
+        }
+
+        public override bool isBusy()
+        {
+            return true;
         }
     }
 }

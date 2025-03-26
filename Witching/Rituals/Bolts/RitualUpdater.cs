@@ -38,10 +38,10 @@ namespace Witching.Rituals.Bolts
                 select ritual;
         }
 
-        private void MaybeAddRitualToUnits(UAE caster, WitchesPower witchesPower, Location newLocation)
+        private void MaybeAddRitualToUnits(UAE caster, WitchesPower witchesPower, Location location)
         {
-            foreach (var unit in newLocation.units)
-                MaybeAddRitualToUnit(caster, witchesPower, newLocation, unit);
+            foreach (var unit in location.units)
+                MaybeAddRitualToUnit(caster, witchesPower, location, unit);
         }
 
         protected void MaybeAddRitualToUnit(UAE caster, WitchesPower witchesPower, Location newLocation, Unit unit)
