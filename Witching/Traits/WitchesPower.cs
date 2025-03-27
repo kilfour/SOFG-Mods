@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Code;
+using Witching.Bolts;
 using Witching.Rituals;
 
 namespace Witching.Traits
@@ -9,7 +10,7 @@ namespace Witching.Traits
     {
         public Witch witch;
 
-        public int Charges = 0;
+        public int Charges = Constants.StartingPower;
 
         public int ChargesReceivedMultiplier = 1;
 

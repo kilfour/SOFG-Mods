@@ -4,33 +4,41 @@ using UnityEngine;
 using Witching.Traits;
 using Witching.Rituals;
 using System.Linq;
+using Witching.Bolts;
 
 namespace Witching
 {
     public class Witch : UAE
     {
+
+        public int ImageIndex;
+
         public List<ICanUpdateRituals> updaters =
             new List<ICanUpdateRituals>();
 
         public string WitchesTitle = "Witch";
 
-        public Witch(Location location, Society society)
+        public Witch(Location location, Society society, int imageIndex)
             : base(location, society)
         {
-            person.stat_might = 1;
-            person.stat_lore = 4;
-            person.stat_intrigue = 1;
-            person.stat_command = 1;
+            ImageIndex = imageIndex;
+
+            person.stat_might = Constants.Might;
+            person.stat_lore = Constants.Lore;
+            person.stat_intrigue = Constants.Intrigue;
+            person.stat_command = Constants.Command;
             person.isMale = false;
             person.age = 42;
             person.hasSoul = true;
-            person.gold = 40;
+            person.gold = Constants.Gold;
 
-            rituals.Add(new Gathering(location));
-
+            var power = new WitchesPower(this);
             person.receiveTrait(new TruthSpeaker());
             person.receiveTrait(new Soothsayer());
-            person.receiveTrait(new WitchesPower(this));
+            person.receiveTrait(power);
+
+            rituals.Add(new Gathering(location));
+            rituals.Add(new WitchesStories(location, power));
 
             AddWitchesRitual(new Empower.RitualUpdater(this));
             AddWitchesRitual(new TheWitchesHunger.RitualUpdater());
@@ -61,20 +69,9 @@ namespace Witching
             return false;
         }
 
-        // public override List<Trait> getStartingTraits()
-        // {
-        //     List<Trait> list =
-        //         new List<Trait>
-        //         {
-        //             new Soothsayer(),
-        //             new BloodWitch(),
-        //         };
-        //     return list;
-        // }
-
         public override Sprite getPortraitForeground()
         {
-            return EventManager.getImg("witching.witch.png");
+            return EventManager.getImg("witching.witch-" + ImageIndex.ToString() + ".png");
         }
 
         public void UpdateRituals(WitchesPower witchesPower, Location newLocation)

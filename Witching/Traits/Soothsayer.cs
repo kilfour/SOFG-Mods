@@ -1,5 +1,4 @@
 using Assets.Code;
-using Witching.Rituals;
 
 namespace Witching.Traits
 {
@@ -14,7 +13,7 @@ namespace Witching.Traits
 
         public override string getDesc()
         {
-            return "Any newly hired Soothsayer immediately becomes the prophet of their coven and gains three progress per turn when performing challenges relating to Religion.";
+            return "Gains three progress per turn when performing challenges relating to Religion.";
         }
 
         public override int[] getTags()
@@ -22,13 +21,13 @@ namespace Witching.Traits
             return new int[1] { Tags.RELIGION };
         }
 
-        public override void onAcquire(Person person)
-        {
-            base.onAcquire(person);
-            // var witch = person.unit as Witch;
-            // witch.WitchesTitle = "Soothsayer";
-            if (person.society is HolyOrder holyOrder)
-                holyOrder.prophet = person.unit as UAE;
-        }
+        // public override void onAcquire(Person person)
+        // {
+        //     base.onAcquire(person);
+        //     // var witch = person.unit as Witch;
+        //     // witch.WitchesTitle = "Soothsayer";
+        //     if (person.society is HolyOrder holyOrder)
+        //         holyOrder.prophet = person.unit as UAE;
+        // }
     }
 }

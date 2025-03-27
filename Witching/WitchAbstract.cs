@@ -1,6 +1,7 @@
 using System.Linq;
 using Assets.Code;
 using UnityEngine;
+using Witching.Bolts;
 
 
 namespace Witching
@@ -28,7 +29,13 @@ namespace Witching
                 target.settlement.subs
                     .Select(a => a as Sub_Temple)
                     .First(a => a != null).order;
-            var uA = new Witch(target, society);
+            var allreadyUsed = target.map.units.Where(a => a is Witch).Select(a => (a as Witch).ImageIndex);
+            var all = Enumerable.Range(1, 5);
+            var available = all.Where(a => !allreadyUsed.Contains(a)).ToList();
+            if (available.Count == 0)
+                available = all.ToList();
+            var index = Eleven.random.Next(available.Count);
+            var uA = new Witch(target, society, available[index]);
             uA.maxHp = 3;
             uA.hp = 3;
             uA.person.stat_might = getStatMight();
@@ -55,7 +62,7 @@ namespace Witching
 
         public override Sprite getForeground()
         {
-            return EventManager.getImg("witching.witch.png");
+            return EventManager.getImg("witching.witch-1.png");
         }
 
         public override string getName()
@@ -80,22 +87,22 @@ namespace Witching
 
         public override int getStatMight()
         {
-            return 1;
+            return Constants.Might;
         }
 
         public override int getStatLore()
         {
-            return 4;
+            return Constants.Lore;
         }
 
         public override int getStatIntrigue()
         {
-            return 1;
+            return Constants.Intrigue;
         }
 
         public override int getStatCommand()
         {
-            return 1;
+            return Constants.Command;
         }
     }
 

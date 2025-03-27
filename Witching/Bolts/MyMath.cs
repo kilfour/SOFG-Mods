@@ -1,15 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace Witching.Rituals
+namespace Witching.Bolts
 {
     public static class MyMath
     {
         public static double Sum(this IEnumerable<double> doubles)
         {
-            return doubles.Sum();
+            return Enumerable.Sum(doubles);
         }
     }
 }

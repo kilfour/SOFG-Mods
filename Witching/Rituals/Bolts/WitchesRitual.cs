@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Assets.Code;
 using UnityEngine;
+using Witching.Bolts;
 using Witching.Traits;
 
 namespace Witching.Rituals.Bolts
@@ -13,8 +14,6 @@ namespace Witching.Rituals.Bolts
         public Person prey;
 
         protected abstract int RequiredCharges { get; }
-
-        private const int onlyPerformedByDarkEmpire = -1;
 
         public WitchesRitual(Location location, WitchesPower witchesPower, Person prey)
             : base(location)
@@ -41,7 +40,7 @@ namespace Witching.Rituals.Bolts
 
         public override int isGoodTernary()
         {
-            return onlyPerformedByDarkEmpire;
+            return Constants.OnlyPerformedByDarkEmpire;
         }
 
         public override bool valid()
