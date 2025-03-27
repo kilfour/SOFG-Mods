@@ -6,9 +6,7 @@ It contains one generic agent: "A Witch".
 They can only be recruited on a location with a Witches Coven.  
 Aside from being an agent of the dark, they are also acolytes of their coven and thus can perform holy challenges.
 
-## Common Witches Traits and Rituals ##
-
-### Starting Stats ### 
+## Starting Stats ##
 * Might: 1
 * Lore: 4
 * Intrigue: 1
@@ -16,61 +14,44 @@ Aside from being an agent of the dark, they are also acolytes of their coven and
 * Hp: 3
 * Gold: 40
 
+##  Traits ##
+
 ### Witches Power ### 
 
-All witches have this trait, which starts with 0 power and can be charged by completing certain challenges.
+All witches have this trait, which starts with 0 power and can be charged by leading a coven's gathering (see below).  
+All of the Witch's ritual consume some of this power.
 
-* Holy Dark Worship: one charge
-* Dark Worship: two charges 
-* Blasmephous Rituals: three charges 
+### Soothsayer ###
 
-All witches rituals need to be powered by these charges.
-
-### The Empower Ritual ###
-Whenever two or more witches share the same location, they get access to this ritual which allows one witch to transfer all of it's power to another one.
+The witch gains three extra progress per turn when performing challenges relating to Religion.
 
 ### Truth Speaker ###
 This trait gives access to a ritual which shows up when in a human settlement, and allows the witch to change it's home location (but not it's society) to the current one, and adds a funding action to the list of local settlement action.  
 It also improves the relation with the settlement's ruler.  
 Can not be performed if a funding action for this witch already  exists and if done a second time in another location, the first funding action will dissapear.  
 
-Costs one charge.
+The ritual costs 1 power.
 
-### The Witches Starvation ###
+## Rituals ##
+
+### Coven's Gathering ###
+
+Gather the coven's acolytes. Once they arrive they will start generating power for the casting witch. Other witches can also join by casting the same ritual in the same location, contributing double the power. Unrest will be consumed and transformed into maddness. The ritual ends when there is no more unrest.
+
+### Empower ###
+Whenever two or more witches share the same location, they get access to this ritual which allows one witch to transfer all of it's power to another one.
+
+### The Witch's Hunger ###
+This ritual allows the witch to inflict the Hunger on Heroes and Rulers.
+In contrast to the similar blood magic ritual it can not be cast on a person already infected with the hunger.  
+
+Costs 25 power.
+
+### The Witch's Starvation ###
 This ritual can only be cast on a hero or ruler inlicted with The Hunger. It will increase the hunger counter by a thousand, ensuring that the victim will feed at the earliest opportunity.  
 
-Costs one charge.
+Costs 1 power.
 
-## Choosable Starting Traits ##
+### The Witch's Stories ###
 
-
-### The High Priestess ###
-The High Priestess gets access to the Witches Hunger, a ritual which allows her to inflict the Hunger on Heroes and Rulers.
-In contrast to the similar blood magic ritual it can not be cast on a person already  infected with the hunger.  
-
-Costs five charges.
-
-### The Witches Channeler ###
-A regular witch except for the fact that she gets doubles the charges obtained by completing the eligible rituals.
-
-### The Soothsayer ###
-Any newly hired Soothsayer immediately becomes the prophet of their coven and gains three progress per turn when performing challenges relating to Religion.
-
-## Idea for this mod 
-The high priestess is clearly the most powerfull witch, with the ability to inflict the hunger. However charging up the power burns through covens and desecrated temple due to the fact that rulers will send out armies to destroy these locations.  
-The other witches allows the player to circumvent this problem.
-* The Channeler doubles the power output, so that two dark worship rituals and then empowering your priestess can allready give you access to The Witches Hunger ritual.
-- The Soothsayer can, if enough money is available, quite quickly, erect temples accross the map, which in turn gives you access to more power. Other witches can do this too ofcourse, but their command stat of one makes this quite slow.
-
-## Closing thoughts
-
-The mod is currently reasonably tested. I think I've caught all obvious bugs, but haven't tested interaction with other mods.  
-Also it is likely terribly unbalanced and exploit strategies undoubtedly exist. I can think of one or two myself, but haven't tried them out yet.  
-And yeah, I'm not a great artist, so I was a bit limited in what I can do without having to produce art and it also means the witch's portrait isn't the best looking one in town.
-
-### Future balance ideas ###
-* Make the hunger rituals more expensive.
-* Dissallow infecting a ruler.
-* ...
-
-
+When in a human settlement disperse all your power to spread nightmare's to the population, raising madness by twice your power.
