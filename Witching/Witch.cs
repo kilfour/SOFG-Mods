@@ -11,7 +11,6 @@ namespace Witching
 {
     public class Witch : UAE
     {
-
         public int ImageIndex;
 
         public List<ICanUpdateRituals> updaters =
