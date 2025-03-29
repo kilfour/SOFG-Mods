@@ -74,6 +74,18 @@ namespace Witching.Rituals
                 .Select(a => a as Sub_Temple)//Sub_HolyOrderCapital
                 .Where(a => a != null)
                 .First().order.prophet = unit;
+
+            // ------------------------------------------------------------
+            // // Maybe add witch to society, could conflict with gathering
+            // --
+            // var order =
+            //     unit.location.settlement.subs
+            //         .Select(a => a as Sub_Temple)//Sub_HolyOrderCapital
+            //         .Where(a => a != null)
+            //         .First().order;
+            // order.prophet = unit;
+            // unit.person.society = order;
+            // order.people.Add(unit.person.index);
         }
     }
 }
