@@ -26,11 +26,10 @@ All of the Witch's ritual consume some of this power.
 The witch gains three extra progress per turn when performing challenges relating to Religion.
 
 ### Truth Speaker ###
-This trait gives access to a ritual which shows up when in a human settlement, and allows the witch to change it's home location (but not it's society) to the current one, and adds a funding action to the list of local settlement action.  
+This trait allows the witch to change it's home location (but not it's society) to the current one, and adds a funding action to the list of local settlement action.  
 It also improves the relation with the settlement's ruler.  
 Can not be performed if a funding action for this witch already  exists and if done a second time in another location, the first funding action will dissapear.  
 
-The ritual costs 1 power.
 
 ## Rituals ##
 

@@ -25,14 +25,12 @@ namespace Witching.Rituals
 
             protected override Ritual GetRitual(Location location, WitchesPower witchesPower, Person prey)
             {
-                return new RaiseFunds(location, witchesPower, prey);
+                return new RaiseFunds(location, prey);
             }
         }
 
-        protected override int RequiredCharges => 1;
-
-        public RaiseFunds(Location location, WitchesPower witchesPowerTrait, Person prey)
-            : base(location, witchesPowerTrait, prey) { }
+        public RaiseFunds(Location location, Person prey)
+            : base(location, prey) { }
 
         public override string getName()
         {
@@ -41,12 +39,12 @@ namespace Witching.Rituals
 
         public override string getDesc()
         {
-            return "Spend a Witches Power in order to motivate " + prey.getName() + " to hire you as a Truth Speaker.";
+            return "Motivate " + prey.getName() + " to hire you as a Truth Speaker.";
         }
 
         public override string getRestriction()
         {
-            return "Requires one Witches Power, and ruler is not already  funding you.";
+            return "Ruler can not be already funding you.";
         }
 
         public override string getCastFlavour()
@@ -83,7 +81,6 @@ namespace Witching.Rituals
             settlement.ruler.increasePreference(witch.person.index + 10000);
             settlement.populateLocalActions();
             witch.GetTruthSpeaker().Target = settlement.ruler;
-            RitualComplete();
         }
     }
 }

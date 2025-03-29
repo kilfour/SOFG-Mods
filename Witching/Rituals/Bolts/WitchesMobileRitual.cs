@@ -3,7 +3,7 @@ using Witching.Traits;
 
 namespace Witching.Rituals.Bolts
 {
-    public abstract class WitchesMobileRitual : WitchesRitual
+    public abstract class WitchesMobileRitual : WitchesPoweredRitual
     {
         public WitchesMobileRitual(Location location, WitchesPower witchesPower, Person prey)
             : base(location, witchesPower, prey) { }

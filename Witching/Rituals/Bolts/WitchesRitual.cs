@@ -3,22 +3,16 @@ using System.Collections.Generic;
 using Assets.Code;
 using UnityEngine;
 using Witching.Bolts;
-using Witching.Traits;
 
 namespace Witching.Rituals.Bolts
 {
     public abstract class WitchesRitual : Ritual
     {
-        public WitchesPower witchesPower;
-
         public Person prey;
 
-        protected abstract int RequiredCharges { get; }
-
-        public WitchesRitual(Location location, WitchesPower witchesPower, Person prey)
+        public WitchesRitual(Location location, Person prey)
             : base(location)
         {
-            this.witchesPower = witchesPower;
             this.prey = prey;
         }
 
@@ -41,17 +35,6 @@ namespace Witching.Rituals.Bolts
         public override int isGoodTernary()
         {
             return Constants.OnlyPerformedByDarkEmpire;
-        }
-
-        public override bool valid()
-        {
-            if (witchesPower.Charges < RequiredCharges) return false;
-            return true;
-        }
-
-        protected virtual void RitualComplete()
-        {
-            witchesPower.Charges -= RequiredCharges;
         }
     }
 }
