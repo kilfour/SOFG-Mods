@@ -54,6 +54,12 @@ namespace Witching.Rituals
 
         public override bool validFor(UA unit)
         {
+            // ----------------------------------------------------
+            //Being very careful ;-)
+            if (unit.location == null) return false;
+            if (unit.location.settlement == null) return false;
+            if (unit.location.settlement.subs == null) return false;
+            // --
             var temple =
                 unit.location.settlement.subs
                     .Select(a => a as Sub_Temple)//Sub_HolyOrderCapital
