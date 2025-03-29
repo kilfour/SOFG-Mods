@@ -2,11 +2,12 @@ using System.Linq;
 using Assets.Code;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
+using Witching.Rituals.Bolts.Nuts;
 using UnityEngine;
 
 namespace Witching.Rituals
 {
-    public class RaiseFunds : WitchesRitual
+    public class RaiseFunds : WitchesRitualWithPrey
     {
         public class RitualUpdater : RitualUpdater<RaiseFunds>
         {
@@ -35,12 +36,12 @@ namespace Witching.Rituals
 
         public override string getName()
         {
-            return "Speak to " + prey.getName() + ".";
+            return "Speak to " + Prey.Person.getName() + ".";
         }
 
         public override string getDesc()
         {
-            return "Motivate " + prey.getName() + " to hire you as a Truth Speaker.";
+            return "Motivate " + Prey.Person.getName() + " to hire you as a Truth Speaker.";
         }
 
         public override string getRestriction()
@@ -50,7 +51,7 @@ namespace Witching.Rituals
 
         public override string getCastFlavour()
         {
-            return "You have endeared yourself to " + prey.getName() + " and the ruler might decide to give you some gold in the future.";
+            return "You have endeared yourself to " + Prey.Person.getName() + " and the ruler might decide to give you some gold in the future.";
         }
 
         public override Sprite getSprite()

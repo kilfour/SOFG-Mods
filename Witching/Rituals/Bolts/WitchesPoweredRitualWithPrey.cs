@@ -1,17 +1,21 @@
 using Assets.Code;
+using UnityEngine;
 using Witching.Rituals.Bolts.Nuts;
 using Witching.Traits;
 
 namespace Witching.Rituals.Bolts
 {
-    public class WitchesPoweredRitual : WitchesRitual
+    public class WitchesPoweredRitualWithPrey : WitchesRitual
     {
         public PowerComponent Power;
 
-        public WitchesPoweredRitual(Location location, WitchesPower powerSource, int requiredCharges)
+        public PreyComponent Prey;
+
+        public WitchesPoweredRitualWithPrey(Location location, WitchesPower powerSource, int requiredCharges, Person prey)
             : base(location)
         {
             Power = new PowerComponent(powerSource, requiredCharges);
+            Prey = new PreyComponent(prey);
         }
 
         public override bool valid()
@@ -22,6 +26,11 @@ namespace Witching.Rituals.Bolts
         protected void RitualComplete()
         {
             Power.ConsumeCharges();
+        }
+
+        public override Sprite getSprite()
+        {
+            return Prey.GetSprite();
         }
     }
 }

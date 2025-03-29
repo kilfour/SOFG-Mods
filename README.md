@@ -28,7 +28,7 @@ The witch gains three extra progress per turn when performing challenges relatin
 ### Truth Speaker ###
 This trait allows the witch to change it's home location (but not it's society) to the current one, and adds a funding action to the list of local settlement action.  
 It also improves the relation with the settlement's ruler.  
-Can not be performed if a funding action for this witch already  exists and if done a second time in another location, the first funding action will dissapear.  
+Can not be performed if a funding action for this witch already exists and if done a second time in another location, the first funding action will dissapear.  
 
 
 ## Rituals ##
@@ -54,3 +54,8 @@ Costs 1 power.
 ### The Witch's Stories ###
 
 When in a human settlement disperse all your power to spread nightmare's to the population, raising madness by twice your power.
+
+### Words Not Her Own ###
+
+Petition the order, in order to become it's vessel, it's prophet.  
+Requires 10 Witches Power. The ritual needs to be started at a coven or temple and the witch can not already be a prophet.

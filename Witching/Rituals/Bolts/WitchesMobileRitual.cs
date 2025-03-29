@@ -3,15 +3,15 @@ using Witching.Traits;
 
 namespace Witching.Rituals.Bolts
 {
-    public abstract class WitchesMobileRitual : WitchesPoweredRitual
+    public abstract class WitchesMobileRitual : WitchesPoweredRitualWithPrey
     {
-        public WitchesMobileRitual(Location location, WitchesPower witchesPower, Person prey)
-            : base(location, witchesPower, prey) { }
+        public WitchesMobileRitual(Location location, WitchesPower witchesPower, int requiredPower, Person prey)
+            : base(location, witchesPower, requiredPower, prey) { }
 
         public override void turnTick(UA caster)
         {
             base.turnTick(caster);
-            Follow(caster, prey, map);
+            Follow(caster, Prey.Person, map);
         }
 
         private static void Follow(UA stalker, Person target, Map map)

@@ -13,7 +13,7 @@ namespace Witching.Rituals
 
         public override Sprite getSprite()
         {
-            return EventManager.getImg("witching.witches-gathering.png");
+            return EventManager.getImg("witching.circle-of-candles.png");
         }
 
         public override string getName()
@@ -50,8 +50,7 @@ namespace Witching.Rituals
         {
             if (unit.task is Task_PerformChallenge task && task.challenge is Gathering)
                 return true;
-            var unrest = getStandardPropertyLevel(location, Property.standardProperties.UNREST);
-            return unrest > 50;
+            return Utils.GetUnrest(location) > 50;
         }
 
         public override void onImmediateBegin(UA witch)
@@ -82,10 +81,10 @@ namespace Witching.Rituals
             witchUnit.midchallengeTimer = 0;
             var witch = witchUnit as Witch;
             var power = MyMath.Sum(from unit in map.units select GetPowerFromUnit(witch, unit));
-            var unrest = getStandardPropertyLevel(location, Property.standardProperties.UNREST);
-            var result = new UnrestCalculation(unrest, power);
-            Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.UNREST, 0 - result.UnrestToRemove, location);
-            Property.addToProperty("Ritual: Coven Gathering", Property.standardProperties.MADNESS, result.UnrestToRemove / 2, location);
+            var result = new UnrestCalculation(Utils.GetUnrest(location), power);
+            var reason = "Ritual: Coven Gathering";
+            Utils.RemoveUnrest(reason, result.UnrestToRemove, location);
+            Utils.AddMadness(reason, result.UnrestToRemove, location);
             witch.addMenace(0.25 * result.PowerToAdd);
             witch.addProfile(0.5 * result.PowerToAdd);
             witch.GetPower().Charges += Convert.ToInt32(result.PowerToAdd);
@@ -139,13 +138,6 @@ namespace Witching.Rituals
             return (unit is UAA acolyte) && acolyte.order == witch.society;
         }
 
-        internal double getStandardPropertyLevel(Location location, Property.standardProperties form)
-        {
-            foreach (Property property in location.properties)
-                if (property.getPropType() == form)
-                    return property.charge;
-            return 0.0;
-        }
         public override bool ignoreInterruptionWarning()
         {
             return true;

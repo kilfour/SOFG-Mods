@@ -5,6 +5,7 @@ using Witching.Traits;
 using Witching.Rituals;
 using System.Linq;
 using Witching.Bolts;
+using Witching.Rituals.Bolts.Nuts;
 
 namespace Witching
 {
@@ -39,6 +40,7 @@ namespace Witching
 
             rituals.Add(new Gathering(location));
             rituals.Add(new WitchesStories(location, power));
+            rituals.Add(new WordsNotHerOwn(location, power));
 
             AddWitchesRitual(new Empower.RitualUpdater(this));
             AddWitchesRitual(new TheWitchesHunger.RitualUpdater());

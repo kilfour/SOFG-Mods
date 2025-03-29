@@ -2,26 +2,20 @@ using System;
 using System.Collections.Generic;
 using Assets.Code;
 using UnityEngine;
-using Witching.Bolts;
 using Witching.Traits;
-
+using Witching.Rituals.Bolts;
+using Witching.Rituals.Bolts.Nuts;
 namespace Witching.Rituals
 {
-    public class WitchesStories : Ritual
+    public class WitchesStories : WitchesPoweredRitual
     {
-        public WitchesPower WitchesPower;
 
         public WitchesStories(Location location, WitchesPower witchesPower)
-            : base(location) { WitchesPower = witchesPower; }
+            : base(location, witchesPower, 1) { }
 
         public override Sprite getSprite()
         {
-            return map.world.iconStore.madness;
-        }
-
-        public override int isGoodTernary()
-        {
-            return Constants.OnlyPerformedByDarkEmpire;
+            return EventManager.getImg("witching.book-of-madness.png");
         }
 
         public override string getName()
@@ -41,7 +35,7 @@ namespace Witching.Rituals
 
         public override bool validFor(UA unit)
         {
-            if (WitchesPower.Charges <= 0)
+            if (Power.NotEnoughCharges())
                 return false;
             if (!(unit.location.settlement is SettlementHuman))
                 return false;
@@ -55,12 +49,12 @@ namespace Witching.Rituals
 
         public override int getCompletionMenace()
         {
-            return WitchesPower.Charges / 2;
+            return Power.GetCharges() / 2;
         }
 
         public override int getCompletionProfile()
         {
-            return WitchesPower.Charges;
+            return Power.GetCharges();
         }
 
         public override challengeStat getChallengeType()
@@ -76,8 +70,8 @@ namespace Witching.Rituals
 
         public override void complete(UA unit)
         {
-            Property.addToPropertySingleShot("The Witch's Stories",
-                Property.standardProperties.MADNESS, WitchesPower.Charges * 2, unit.location);
+            Property.addToPropertySingleShot("The Witch's Stories", Property.standardProperties.MADNESS, Power.GetCharges() * 2, unit.location);
+            Power.DrainAllCharges();
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Linq;
 using Assets.Code;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
+using Witching.Rituals.Bolts.Nuts;
 
 namespace Witching.Rituals
 {
@@ -25,19 +26,17 @@ namespace Witching.Rituals
             }
         }
 
-        protected override int RequiredCharges => 5;
-
         public TheWitchesStarvation(Location location, WitchesPower witchesPower, Person prey)
-            : base(location, witchesPower, prey) { }
+            : base(location, witchesPower, 5, prey) { }
 
         public override string getName()
         {
-            return "Starve " + prey.getName();
+            return "Starve " + Prey.Person.getName();
         }
 
         public override string getDesc()
         {
-            return "Spend five Witches Power in order to increase 'The Hunger' on " + prey.getName() + ", which encourages them to feed.";
+            return "Spend five Witches Power in order to increase 'The Hunger' on " + Prey.Person.getName() + ", which encourages them to feed.";
         }
 
         public override string getRestriction()
@@ -67,7 +66,7 @@ namespace Witching.Rituals
 
         public override void complete(UA u)
         {
-            if (prey.traits.FirstOrDefault(a => a is T_TheHunger) is T_TheHunger hunger)
+            if (Prey.Person.traits.FirstOrDefault(a => a is T_TheHunger) is T_TheHunger hunger)
                 hunger.strength = 1000;
             RitualComplete();
         }

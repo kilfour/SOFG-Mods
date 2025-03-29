@@ -1,6 +1,8 @@
 0.1 : initial release
 0.2 : total rework of original idea
-current :
-    - Coven's Gathering now interupts acolytes task and they go to witch immediately
+0.2.1 :
+    - Coven's Gathering now interupts acolytes task and they go to the witch immediately.
     - Thruth Speaker no longer requires Witches Power.
-    
+    - Added some more atmospheric images.
+    - Added Words Not Her Own, for 10 power become the prophet of a holy order at one of their temples/covens.
+  

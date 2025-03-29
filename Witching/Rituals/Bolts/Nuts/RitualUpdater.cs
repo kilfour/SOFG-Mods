@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using Assets.Code;
 using System.Linq;
 using Witching.Traits;
+using Witching.Rituals.Bolts.Nuts;
 
-namespace Witching.Rituals.Bolts
+namespace Witching.Rituals.Bolts.Nuts
 {
     public abstract class RitualUpdater<TRitual> : ICanUpdateRituals where TRitual : Ritual
     {
