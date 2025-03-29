@@ -1,0 +1,5 @@
+0.1 : initial release
+0.2 : total rework of original idea
+current :
+    - Coven's Gathering now interupts acolytes task and they go to witch immediately
+    

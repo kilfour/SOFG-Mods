@@ -23,7 +23,7 @@ namespace Witching.Rituals
 
         public override string getDesc()
         {
-            return @"Gather the coven's acolytes. Once they arrive they will start generating power for the casting witch. Other witches can also join by casting the same ritual in the same location, contributing double the power. Unrest will be consumed and transformed into maddness. The ritual ends when there is no more unrest.";
+            return "Gather the coven's acolytes. Once they arrive they will start generating power for the casting witch. Other witches can also join by casting the same ritual in the same location, contributing double the power. Unrest will be consumed and transformed into maddness. The ritual ends when there is no more unrest.";
         }
 
         public override string getRestriction()
@@ -123,12 +123,14 @@ namespace Witching.Rituals
         private double GetPowerFromAcolyte(Witch witch, Unit unit)
         {
             if (UnitIsAnAcolyte(witch, unit))
-                if (unit.task == null)
-                    if (unit.location == location)
-                        unit.task = new GeneratePower(location);
-                    else
-                        unit.task = new Task_GoToLocation(location);
-                else if (unit.task is GeneratePower) { return 1; }
+                if (unit.task != null)
+                    if (unit.task is GeneratePower) { return 1; }
+                    else if (unit.task is Task_GoToLocation) { return 0; }
+                    else unit.task = new Task_GoToLocation(location);
+                else if (unit.location == location)
+                    unit.task = new GeneratePower(location);
+                else
+                    unit.task = new Task_GoToLocation(location);
             return 0;
         }
 
