@@ -68,11 +68,6 @@ namespace Witching.Rituals
             return true;
         }
 
-        public override bool valid()
-        {
-            return true;
-        }
-
         public override void complete(UA unit)
         {
             unit.location.settlement.subs
