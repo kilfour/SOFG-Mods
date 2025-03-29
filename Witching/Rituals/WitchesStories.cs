@@ -49,12 +49,12 @@ namespace Witching.Rituals
 
         public override int getCompletionMenace()
         {
-            return Power.GetCharges() / 2;
+            return 10;
         }
 
         public override int getCompletionProfile()
         {
-            return Power.GetCharges();
+            return 10;
         }
 
         public override challengeStat getChallengeType()
