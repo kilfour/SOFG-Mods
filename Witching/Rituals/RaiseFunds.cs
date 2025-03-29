@@ -2,6 +2,7 @@ using System.Linq;
 using Assets.Code;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
+using UnityEngine;
 
 namespace Witching.Rituals
 {
@@ -50,6 +51,11 @@ namespace Witching.Rituals
         public override string getCastFlavour()
         {
             return "You have endeared yourself to " + prey.getName() + " and the ruler might decide to give you some gold in the future.";
+        }
+
+        public override Sprite getSprite()
+        {
+            return EventManager.getImg("witching.mirror-face.png");
         }
 
         public override double getComplexity()
