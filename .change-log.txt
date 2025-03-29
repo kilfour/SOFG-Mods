@@ -5,4 +5,5 @@
     - Thruth Speaker no longer requires Witches Power.
     - Added some more atmospheric images.
     - Added Words Not Her Own, for 10 power become the prophet of a holy order at one of their temples/covens.
+    - Witches stories porfile/menace now has fixed cost of 10/5
   

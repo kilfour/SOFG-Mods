@@ -49,7 +49,7 @@ namespace Witching.Rituals
 
         public override int getCompletionMenace()
         {
-            return 10;
+            return 5;
         }
 
         public override int getCompletionProfile()
