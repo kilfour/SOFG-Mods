@@ -5,12 +5,12 @@ namespace Witching.Rituals.Bolts.Nuts
 {
     public abstract class LocationRitualUpdater<TRitual> : ICanUpdateRituals where TRitual : Ritual
     {
-        protected abstract Ritual GetRitual(Location newLocation, WitchesPower witchesPower);
+        protected abstract Ritual GetRitual(Location location, WitchesPower witchesPower);
 
-        public void UpdateRituals(UAE caster, WitchesPower witchesPower, Location newLocation)
+        public void UpdateRituals(UAE caster, WitchesPower witchesPower, Location location)
         {
             RemoveRituals<TRitual>.From(caster);
-            MaybeAddRitualToLocation(caster, witchesPower, newLocation);
+            MaybeAddRitualToLocation(caster, witchesPower, location);
         }
 
         protected virtual bool CanBeCastOnLocation(Location location) { return false; }
