@@ -31,7 +31,7 @@ namespace Witching.Rituals
         }
 
         public RepurposeTheDead(Witch witch, Location location, WitchesPower witchesPower)
-            : base(location, witchesPower, 1) { this.witch = witch; }
+            : base(location, witchesPower, 50) { this.witch = witch; }
 
         public override Sprite getSprite()
         {
@@ -50,7 +50,7 @@ namespace Witching.Rituals
 
         public override string getRestriction()
         {
-            return "Must have atleast one Witches Power. Only available in a location with a human soul.";
+            return "Costs 50 Power. Only available in a location with a human soul.";
         }
 
         public override double getComplexity()
