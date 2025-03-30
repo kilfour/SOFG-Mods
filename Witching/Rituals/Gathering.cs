@@ -50,7 +50,7 @@ namespace Witching.Rituals
         {
             if (unit.task is Task_PerformChallenge task && task.challenge is Gathering)
                 return true;
-            return location.GetUnrest() > 50;
+            return unit.location.GetUnrest() > 50;
         }
 
         public override void onImmediateBegin(UA witch)
@@ -81,9 +81,10 @@ namespace Witching.Rituals
             witchUnit.midchallengeTimer = 0;
             var witch = witchUnit as Witch;
             var power = MyMath.Sum(from unit in map.units select GetPowerFromUnit(witch, unit));
-            var result = new UnrestCalculation(location.GetUnrest(), power);
-            Because.Of("Ritual: Coven Gathering").Remove(result.UnrestToRemove).Unrest(location);
-            Because.Of("Ritual: Coven Gathering").Add(result.UnrestToRemove).Madness(location);
+            var result = new UnrestCalculation(witch.location.GetUnrest(), power);
+            Because.Of("Ritual: Coven Gathering")
+                .Transform(result.UnrestToRemove)
+                .UnrestIntoMadness(witch.location);
             witch.addMenace(0.25 * result.PowerToAdd);
             witch.addProfile(0.5 * result.PowerToAdd);
             witch.GetPower().Charges += Convert.ToInt32(result.PowerToAdd);
@@ -107,12 +108,12 @@ namespace Witching.Rituals
 
         private double GetPowerFromUnit(Witch witch, Unit unit)
         {
-            return GetPowerFromAcolyte(witch, unit) + GetPowerFromOtherWitch(unit);
+            return GetPowerFromAcolyte(witch, unit) + GetPowerFromOtherWitch(witch, unit);
         }
 
-        private double GetPowerFromOtherWitch(Unit unit)
+        private double GetPowerFromOtherWitch(Witch witch, Unit unit)
         {
-            if (unit is Witch otherWitch && location == otherWitch.location)
+            if (unit is Witch otherWitch && witch.location == otherWitch.location)
                 if (unit.task != null && unit.task is GeneratePower)
                     return 2;
             return 0;
@@ -124,11 +125,11 @@ namespace Witching.Rituals
                 if (unit.task != null)
                     if (unit.task is GeneratePower) { return 1; }
                     else if (unit.task is Task_GoToLocation) { return 0; }
-                    else unit.task = new Task_GoToLocation(location);
-                else if (unit.location == location)
-                    unit.task = new GeneratePower(location);
+                    else unit.task = new Task_GoToLocation(witch.location);
+                else if (unit.location == witch.location)
+                    unit.task = new GeneratePower(witch.location);
                 else
-                    unit.task = new Task_GoToLocation(location);
+                    unit.task = new Task_GoToLocation(witch.location);
             return 0;
         }
 

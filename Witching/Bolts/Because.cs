@@ -42,15 +42,34 @@ namespace Witching.Bolts
                 }
             }
 
-            public abstract class ExecutingBuilder
+            public TransformBuilder Transform(double amount) => new TransformBuilder(reason, amount);
+
+            public class TransformBuilder : EXEBuilder
+            {
+                public TransformBuilder(string reason, double amount)
+                    : base(reason, amount) { }
+
+                public void UnrestIntoMadness(Location location)
+                {
+                    RemoveFromProperty(reason, Property.standardProperties.UNREST, amount, location);
+                    AddToProperty(reason, Property.standardProperties.MADNESS, amount, location);
+                }
+            }
+
+            public abstract class EXEBuilder
             {
                 protected string reason;
                 protected double amount;
-                public ExecutingBuilder(string reason, double amount)
+                public EXEBuilder(string reason, double amount)
                 {
                     this.reason = reason;
                     this.amount = amount;
                 }
+            }
+            public abstract class ExecutingBuilder : EXEBuilder
+            {
+                protected ExecutingBuilder(string reason, double amount)
+                : base(reason, amount) { }
 
                 public void Madness(Location location)
                 {
