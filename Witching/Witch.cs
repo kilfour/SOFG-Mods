@@ -21,7 +21,6 @@ namespace Witching
             : base(location, society)
         {
             ImageIndex = imageIndex;
-
             person.stat_might = Constants.Might;
             person.stat_lore = Constants.Lore;
             person.stat_intrigue = Constants.Intrigue;
@@ -30,18 +29,16 @@ namespace Witching
             person.age = 42;
             person.hasSoul = true;
             person.gold = Constants.Gold;
-
             var power = new WitchesPower(this);
             person.receiveTrait(new TruthSpeaker());
             person.receiveTrait(new Soothsayer());
             person.receiveTrait(power);
-
             rituals.Add(new Gathering(location));
             rituals.Add(new WitchesStories(location, power));
-
             AddWitchesRitual(new Empower.RitualUpdater(this));
             AddWitchesRitual(new RepurposeTheDead.RitualUpdater(this));
             AddWitchesRitual(new WordsNotHerOwn.RitualUpdater());
+            AddWitchesRitual(new StartDeepCult.RitualUpdater());
             AddWitchesRitual(new TheWitchesHunger.RitualUpdater());
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
         }

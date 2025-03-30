@@ -5,8 +5,9 @@
     - Thruth Speaker no longer requires Witches Power.
     - Added some more atmospheric images.
     - Added Words Not Her Own, for 10 power become the prophet of a holy order at one of their temples/covens.
-        - Only shows up when at a temple/coven. 
-    - Witches stories porfile/menace now has fixed cost of 10/5
-    - todo : allow witch to join gathering even if unrest < 50
-    - todo : with generating power when main witch leaves coven => start gathering
+    - Witches Stories profile/menace now has fixed cost of 10/5
+    - Added Repurpose the Dead : Consume a soul for a recruitement point
+    - Witches can start Deep One Cults
+    - Almost all rituals only show up when at a valid location.
+
   

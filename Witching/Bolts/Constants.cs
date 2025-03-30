@@ -7,7 +7,7 @@ namespace Witching.Bolts
         public const int Intrigue = 1;
         public const int Command = 1;
         public const int Gold = 40;
-        public const int StartingPower = 50;
+        public const int StartingPower = 0;
         public const int OnlyPerformedByDarkEmpire = -1;
     }
 }

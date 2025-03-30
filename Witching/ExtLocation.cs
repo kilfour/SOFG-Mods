@@ -24,11 +24,21 @@ namespace Witching
             return location.properties.FirstOrDefault(a => a is T) as T;
         }
 
+        public static bool HasProperty<T>(this Location location) where T : Property
+        {
+            return location.properties.FirstOrDefault(a => a is T) != null;
+        }
+
         public static bool PropertyIs<T>(this Location location, Func<T, bool> predicate) where T : Property
         {
             var property = GetPropertyOrNull<T>(location);
             if (property == null) return false;
             return predicate(property);
+        }
+
+        public static void AddProperty(this Location location, Property property)
+        {
+            location.properties.Add(property);
         }
 
         public static void RemoveProperty<T>(this Location location) where T : Property

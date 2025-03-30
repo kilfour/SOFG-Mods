@@ -35,7 +35,7 @@ Can not be performed if a funding action for this witch already exists and if do
 
 ### Coven's Gathering ###
 
-Gather the coven's acolytes. Once they arrive they will start generating power for the casting witch. Other witches can also join by casting the same ritual in the same location, contributing double the power. Unrest will be consumed and transformed into maddness. The ritual ends when there is no more unrest.
+Gather the coven's acolytes. Once they arrive they will start generating power for the casting witch. Other witches can also join by casting the same ritual in the same location, contributing double the power. Unrest will be consumed and transformed into maddness. The ritual ends when there is no more unrest.  
 
 ### Empower ###
 Whenever two or more witches share the same location, they get access to this ritual which allows one witch to transfer all of it's power to another one.
@@ -59,3 +59,8 @@ When in a human settlement disperse all your power to spread nightmare's to the 
 
 Petition the order, in order to become it's vessel, it's prophet.  
 Requires 10 Witches Power. The ritual needs to be started at a coven or temple and the witch can not already be a prophet.
+
+### Repurpose the Dead ###
+
+Claim a fallen soul for your own. Increases you recruitement points by 1.
+Costs 50 Power. Only available in a location with a human soul.

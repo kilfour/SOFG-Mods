@@ -21,7 +21,7 @@ namespace Witching.Rituals
 
             protected override bool CanBeCastOnLocation(Location location)
             {
-                return location.settlement is SettlementHuman;
+                return location.PropertyIs<Pr_FallenHuman>(a => a.charge > 0.0);
             }
 
             protected override Ritual GetRitual(Location location, WitchesPower witchesPower)
@@ -45,7 +45,7 @@ namespace Witching.Rituals
 
         public override string getDesc()
         {
-            return @"Claim a fallen soul for your own.";
+            return @"Claim a fallen soul for your own. Increases you recruitement points by 1.";
         }
 
         public override string getRestriction()
@@ -71,13 +71,13 @@ namespace Witching.Rituals
         public override void complete(UA u)
         {
             witch.location.RemoveProperty<Pr_FallenHuman>();
+            map.overmind.availableEnthrallments++;
             RitualComplete();
         }
 
         public override bool valid()
         {
             if (!base.valid()) return false;
-            map.overmind.availableEnthrallments++;
             return witch.location.PropertyIs<Pr_FallenHuman>(a => a.charge > 0.0);
         }
     }
