@@ -38,10 +38,10 @@ namespace Witching
 
             rituals.Add(new Gathering(location));
             rituals.Add(new WitchesStories(location, power));
-            rituals.Add(new WordsNotHerOwn(location, power));
 
             AddWitchesRitual(new Empower.RitualUpdater(this));
             AddWitchesRitual(new RepurposeTheDead.RitualUpdater(this));
+            AddWitchesRitual(new WordsNotHerOwn.RitualUpdater());
             AddWitchesRitual(new TheWitchesHunger.RitualUpdater());
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
         }
