@@ -1,6 +1,5 @@
 using Assets.Code;
 using UnityEngine;
-using Witching.Bolts;
 using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
 using Witching.Traits;
