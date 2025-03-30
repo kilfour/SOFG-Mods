@@ -1,9 +1,7 @@
-using System.Linq;
 using Assets.Code;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
-using UnityEngine;
 
 namespace Witching.Rituals
 {
@@ -76,7 +74,7 @@ namespace Witching.Rituals
 
         public override void complete(UA _)
         {
-            var preyPower = Prey.Person.traits.FirstOrDefault(a => a is WitchesPower) as WitchesPower;
+            var preyPower = Prey.Person.GetTrait<WitchesPower>();
             preyPower.Charges += Power.GetCharges();
             Power.DrainAllCharges();
         }

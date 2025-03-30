@@ -1,14 +1,25 @@
-using System;
-using System.Collections.Generic;
 using Assets.Code;
 using UnityEngine;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
+using Witching.Bolts;
 namespace Witching.Rituals
 {
     public class WitchesStories : WitchesPoweredRitual
     {
+        public class RitualUpdater : LocationRitualUpdater<WitchesStories>
+        {
+            protected override bool CanBeCastOnLocation(Location location)
+            {
+                return location.settlement is SettlementHuman;
+            }
+
+            protected override Ritual GetRitual(Location location, WitchesPower witchesPower)
+            {
+                return new WitchesStories(location, witchesPower);
+            }
+        }
 
         public WitchesStories(Location location, WitchesPower witchesPower)
             : base(location, witchesPower, 1) { }
@@ -33,15 +44,6 @@ namespace Witching.Rituals
             return "Must have atleast one Witches Power. Only available in a human settlement.";
         }
 
-        public override bool validFor(UA unit)
-        {
-            if (Power.NotEnoughCharges())
-                return false;
-            if (!(unit.location.settlement is SettlementHuman))
-                return false;
-            return true;
-        }
-
         public override double getComplexity()
         {
             return 30;
@@ -57,21 +59,10 @@ namespace Witching.Rituals
             return 10;
         }
 
-        public override challengeStat getChallengeType()
-        {
-            return challengeStat.LORE;
-        }
-
-        public override double getProgressPerTurnInner(UA unit, List<ReasonMsg> msgs)
-        {
-            msgs?.Add(new ReasonMsg("Stat: Lore", unit.getStatLore()));
-            return Math.Max(1, unit.getStatLore());
-        }
-
         public override void complete(UA unit)
         {
-            Property.addToPropertySingleShot("The Witch's Stories", Property.standardProperties.MADNESS, Power.GetCharges() * 2, unit.location);
-            Power.DrainAllCharges();
+            Because.Of("The Witch's Stories").Add(Power.GetCharges() * 2).Madness(unit.location);
+            FullPowerRitualComplete();
         }
     }
 }

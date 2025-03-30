@@ -23,5 +23,10 @@ namespace Witching.Rituals.Bolts
         {
             Power.ConsumeCharges();
         }
+
+        protected void FullPowerRitualComplete()
+        {
+            Power.DrainAllCharges();
+        }
     }
 }

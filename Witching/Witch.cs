@@ -3,7 +3,6 @@ using Assets.Code;
 using UnityEngine;
 using Witching.Traits;
 using Witching.Rituals;
-using System.Linq;
 using Witching.Bolts;
 using Witching.Rituals.Bolts.Nuts;
 
@@ -42,6 +41,7 @@ namespace Witching
             rituals.Add(new WordsNotHerOwn(location, power));
 
             AddWitchesRitual(new Empower.RitualUpdater(this));
+            AddWitchesRitual(new RepurposeTheDead.RitualUpdater(this));
             AddWitchesRitual(new TheWitchesHunger.RitualUpdater());
             AddWitchesRitual(new TheWitchesStarvation.RitualUpdater());
         }
@@ -82,17 +82,12 @@ namespace Witching
 
         public WitchesPower GetPower()
         {
-            return GetTrait<WitchesPower>();
+            return person.GetTrait<WitchesPower>();
         }
 
         public TruthSpeaker GetTruthSpeaker()
         {
-            return GetTrait<TruthSpeaker>();
-        }
-
-        private T GetTrait<T>() where T : class
-        {
-            return person.traits.FirstOrDefault(a => a is T) as T;
+            return person.GetTrait<TruthSpeaker>();
         }
     }
 }

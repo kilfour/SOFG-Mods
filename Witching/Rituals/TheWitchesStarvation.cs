@@ -12,7 +12,7 @@ namespace Witching.Rituals
         {
             protected override bool CanBeCastOnHero(Person person)
             {
-                return person.traits.Any(a => a is T_TheHunger);
+                return person.HasTrait<T_TheHunger>();
             }
 
             protected override bool CanBeCastOnRuler(SettlementHuman humanSettlement)
@@ -66,8 +66,7 @@ namespace Witching.Rituals
 
         public override void complete(UA u)
         {
-            if (Prey.Person.traits.FirstOrDefault(a => a is T_TheHunger) is T_TheHunger hunger)
-                hunger.strength = 1000;
+            Prey.Person.GetTrait<T_TheHunger>().strength = 1000;
             RitualComplete();
         }
     }

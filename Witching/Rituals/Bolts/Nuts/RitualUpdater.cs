@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using Assets.Code;
-using System.Linq;
 using Witching.Traits;
-using Witching.Rituals.Bolts.Nuts;
 
 namespace Witching.Rituals.Bolts.Nuts
 {
@@ -20,22 +17,9 @@ namespace Witching.Rituals.Bolts.Nuts
 
         public void UpdateRituals(UAE caster, WitchesPower witchesPower, Location newLocation)
         {
-            RemoveRituals(caster, GetRitualsToRemove(caster).ToList());
+            RemoveRituals<TRitual>.From(caster);
             MaybeAddRitualToUnits(caster, witchesPower, newLocation);
             MaybeAddRitualToRuler(caster, witchesPower, newLocation);
-        }
-
-        private static void RemoveRituals(UAE caster, List<Challenge> toRemove)
-        {
-            foreach (var item in toRemove) caster.rituals.Remove(item);
-        }
-
-        private static IEnumerable<Challenge> GetRitualsToRemove(UAE caster)
-        {
-            return
-                from ritual in caster.rituals
-                where ritual is TRitual
-                select ritual;
         }
 
         private void MaybeAddRitualToUnits(UAE caster, WitchesPower witchesPower, Location location)

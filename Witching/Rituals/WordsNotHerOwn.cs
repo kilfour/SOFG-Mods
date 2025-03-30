@@ -1,6 +1,6 @@
-using System.Linq;
 using Assets.Code;
 using UnityEngine;
+using Witching.Bolts;
 using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
 using Witching.Traits;
@@ -9,6 +9,19 @@ namespace Witching.Rituals
 {
     public class WordsNotHerOwn : WitchesPoweredRitual
     {
+        public class RitualUpdater : LocationRitualUpdater<WordsNotHerOwn>
+        {
+            protected override bool CanBeCastOnLocation(Location location)
+            {
+                return location.HasTemple();
+            }
+
+            protected override Ritual GetRitual(Location location, WitchesPower witchesPower)
+            {
+                return new WordsNotHerOwn(location, witchesPower);
+            }
+        }
+
         public WordsNotHerOwn(Location location, WitchesPower witchesPower)
             : base(location, witchesPower, 10) { }
 
@@ -54,44 +67,12 @@ namespace Witching.Rituals
 
         public override bool validFor(UA unit)
         {
-            // ----------------------------------------------------
-            //Being very careful ;-)
-            if (unit.location == null) return false;
-            if (unit.location.settlement == null) return false;
-            if (unit.location.settlement.subs == null) return false;
-            // --
-            var temple =
-                unit.location.settlement.subs
-                    .Select(a => a as Sub_Temple)//Sub_HolyOrderCapital
-                    .Where(a => a != null)
-                    .FirstOrDefault();
-            if (temple == null) return false;
-            foreach (SocialGroup socialGroup in map.socialGroups)
-            {
-                if (socialGroup is HolyOrder order)
-                    if (order.prophet == unit) return false;
-            }
-            return true;
+            return !unit.IsAProphet();
         }
 
         public override void complete(UA unit)
         {
-            unit.location.settlement.subs
-                .Select(a => a as Sub_Temple)//Sub_HolyOrderCapital
-                .Where(a => a != null)
-                .First().order.prophet = unit;
-
-            // ------------------------------------------------------------
-            // // Maybe add witch to society, could conflict with gathering
-            // --
-            // var order =
-            //     unit.location.settlement.subs
-            //         .Select(a => a as Sub_Temple)//Sub_HolyOrderCapital
-            //         .Where(a => a != null)
-            //         .First().order;
-            // order.prophet = unit;
-            // unit.person.society = order;
-            // order.people.Add(unit.person.index);
+            unit.location.GetHolyOrderOrNull().prophet = unit;
         }
     }
 }

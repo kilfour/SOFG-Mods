@@ -12,7 +12,7 @@ namespace Witching.Rituals
         {
             protected override bool CanBeCastOnHero(Person person)
             {
-                return !person.traits.Any(a => a is T_TheHunger);
+                return !person.HasTrait<T_TheHunger>();
             }
 
             protected override bool CanBeCastOnRuler(SettlementHuman humanSettlement)

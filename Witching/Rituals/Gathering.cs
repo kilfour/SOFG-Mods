@@ -50,7 +50,7 @@ namespace Witching.Rituals
         {
             if (unit.task is Task_PerformChallenge task && task.challenge is Gathering)
                 return true;
-            return Utils.GetUnrest(location) > 50;
+            return location.GetUnrest() > 50;
         }
 
         public override void onImmediateBegin(UA witch)
@@ -81,10 +81,9 @@ namespace Witching.Rituals
             witchUnit.midchallengeTimer = 0;
             var witch = witchUnit as Witch;
             var power = MyMath.Sum(from unit in map.units select GetPowerFromUnit(witch, unit));
-            var result = new UnrestCalculation(Utils.GetUnrest(location), power);
-            var reason = "Ritual: Coven Gathering";
-            Utils.RemoveUnrest(reason, result.UnrestToRemove, location);
-            Utils.AddMadness(reason, result.UnrestToRemove, location);
+            var result = new UnrestCalculation(location.GetUnrest(), power);
+            Because.Of("Ritual: Coven Gathering").Remove(result.UnrestToRemove).Unrest(location);
+            Because.Of("Ritual: Coven Gathering").Add(result.UnrestToRemove).Madness(location);
             witch.addMenace(0.25 * result.PowerToAdd);
             witch.addProfile(0.5 * result.PowerToAdd);
             witch.GetPower().Charges += Convert.ToInt32(result.PowerToAdd);
