@@ -3,7 +3,8 @@ using UnityEngine;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
-using Witching.Bolts;
+using Common;
+
 namespace Witching.Rituals
 {
     public class WitchesStories : WitchesPoweredRitual

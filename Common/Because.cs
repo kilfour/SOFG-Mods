@@ -1,6 +1,6 @@
 using Assets.Code;
 
-namespace Witching.Bolts
+namespace Common
 {
     public static class Because
     {

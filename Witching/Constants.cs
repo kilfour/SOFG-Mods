@@ -1,4 +1,4 @@
-namespace Witching.Bolts
+namespace Witching
 {
     public static class Constants
     {

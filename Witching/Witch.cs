@@ -3,7 +3,6 @@ using Assets.Code;
 using UnityEngine;
 using Witching.Traits;
 using Witching.Rituals;
-using Witching.Bolts;
 using Witching.Rituals.Bolts.Nuts;
 
 namespace Witching

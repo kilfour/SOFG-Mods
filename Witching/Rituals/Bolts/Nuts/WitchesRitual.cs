@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Assets.Code;
-using Witching.Bolts;
 
 namespace Witching.Rituals.Bolts.Nuts
 {

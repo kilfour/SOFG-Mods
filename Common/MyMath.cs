@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace Witching.Bolts
+namespace Common
 {
     public static class MyMath
     {

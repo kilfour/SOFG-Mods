@@ -9,9 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Witching\Witching.csproj" />
-    <!-- <Reference Include="QuickMGenerate">
-        <HintPath>../Libs/QuickMGenerate.dll</HintPath>
-    </Reference> -->
   </ItemGroup>
   <ItemGroup>
       <Reference Include="Assembly-CSharp">

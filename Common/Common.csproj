@@ -10,7 +10,4 @@
           <HintPath>../Libs/UnityEngine.CoreModule.dll</HintPath>
       </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
-  </ItemGroup>
 </Project>

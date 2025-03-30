@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Assets.Code;
 using UnityEngine;
-using Witching.Bolts;
+using Common;
 
 namespace Witching.Rituals
 {

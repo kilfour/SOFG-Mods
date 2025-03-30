@@ -2,12 +2,11 @@ using System.Linq;
 using Assets.Code;
 using UnityEngine;
 
-
-namespace Witching
+namespace TheBroken
 {
-    public class WitchAbstract : UAE_Abstraction
+    public class FirstAmongTheBrokenAbstract : UAE_Abstraction
     {
-        public WitchAbstract(Map map)
+        public FirstAmongTheBrokenAbstract(Map map)
             : base(map, -1) { }
 
         public override bool validTarget(Location location)
@@ -24,16 +23,9 @@ namespace Witching
 
         public override void createAgent(Location target)
         {
-            var society = target.GetHolyOrderOrNull();
-            var allreadyUsed = target.map.units.Where(a => a is Witch).Select(a => (a as Witch).ImageIndex);
-            var all = Enumerable.Range(1, 5);
-            var available = all.Where(a => !allreadyUsed.Contains(a)).ToList();
-            if (available.Count == 0)
-                available = all.ToList();
-            var index = Eleven.random.Next(available.Count);
-            var uA = new Witch(target, society, available[index]);
-            uA.maxHp = 3;
-            uA.hp = 3;
+            var uA = new FirstAmongTheBroken(target, map.soc_dark);
+            // uA.maxHp = Constants.Hp;
+            // uA.hp = Constants.Hp;
             uA.person.stat_might = getStatMight();
             uA.person.stat_lore = getStatLore();
             uA.person.stat_intrigue = getStatIntrigue();
@@ -52,27 +44,27 @@ namespace Witching
 
         public override Sprite getForeground()
         {
-            return EventManager.getImg("witching.witch-1.png");
+            return EventManager.getImg("the-broken.first-among-the-broken.png");
         }
 
         public override string getName()
         {
-            return "A Witch";
+            return "First Among The Broken";
         }
 
         public override string getDesc()
         {
-            return "Gathering at their Coven the witches seek to bring chaos into this world. They have developed a fascination for, and ways to, manipulate the hunger and madness. They gather at places of unrest in order to obtain their power.";
+            return "A shattered prophet who rises as a dangerous messiah to the downtrodden. They offer twisted salvation to the desperate, and in doing so, unravel civilization from within.";
         }
 
         public override string getFlavour()
         {
-            return "Witches have decent lore, but not much else. Don't take them into combat. Most of their rituals/challenges only show up when in the right location.";
+            return "Todo .";
         }
 
         public override string getRestrictions()
         {
-            return "Requires a Coven.";
+            return "Todo.";
         }
 
         public override int getStatMight()
