@@ -25,11 +25,6 @@ Gets extra skill point upon creation
 ### Shard ###
 Represents the cult's embedded presence in a society.  
 The Shard grows in magnitude over time, granting access to increasingly powerful actions.  
-It evolves over **three stages**, each marked by a new description:
-
-* *"Not all breaks are loud. Some appear like root through stone."*
-* *"The stone forgets it was ever whole."*
-* *"The stone flowers, though none remember planting."*
 
 ---
 
