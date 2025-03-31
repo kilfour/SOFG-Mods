@@ -3,6 +3,8 @@ using UnityEngine;
 using Common;
 using TheBroken.Modifiers;
 using System;
+using System.Collections.Generic;
+using TheBroken.Challenges;
 
 namespace TheBroken
 {
@@ -11,12 +13,19 @@ namespace TheBroken
     {
         private const int threadingCooldownLength = 5;
         public int ThreadingCooldownRemaining;
+        public List<Challenge> challenges = new List<Challenge>();
 
-        public Shard(Location loc)
-            : base(loc)
+        public Shard(Location location)
+            : base(location)
         {
             charge = 1;
             ThreadingCooldownRemaining = threadingCooldownLength;
+            if (!location.HasSubSettlement<Sub_AncientRuins>())
+                challenges.Add(new Ch_LayLowWilderness(location));
+            challenges.Add(new TheFracture(location));
+            challenges.Add(new LiturgyOfYield(location));
+            challenges.Add(new PreachTheKeeping(location));
+            challenges.Add(new Uprising(location));
             GrowTheShard();
         }
 
@@ -27,7 +36,11 @@ namespace TheBroken
 
         public override string getDesc()
         {
-            return "Not all breaks are loud. Some appear like root through stone.";
+            if (charge <= 100)
+                return "Not all breaks are loud. Some appear like root through stone.";
+            if (charge <= 200)
+                return "The stone forgets it was ever whole.";
+            return "What was stone is now hollow, and it sings.";
         }
 
         public override Sprite getSprite(World world)
@@ -42,6 +55,11 @@ namespace TheBroken
         public override standardProperties getPropType()
         {
             return standardProperties.OTHER;
+        }
+
+        public override List<Challenge> getChallenges()
+        {
+            return challenges;
         }
 
         public override void turnTick()
@@ -60,7 +78,7 @@ namespace TheBroken
             }
             if (charge >= 100)
             {
-                influences.Add(new ReasonMsg("One more breaks from the whole.", 2.0));
+                influences.Add(new ReasonMsg("One more breaks from the root.", 2.0));
                 return;
             }
             influences.Add(new ReasonMsg("Another fracture spreads.", 1.0));

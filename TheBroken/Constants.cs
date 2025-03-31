@@ -2,7 +2,6 @@ namespace TheBroken
 {
     public static class Constants
     {
-        public const int Hp = 5;
         public const int Might = 1;
         public const int Lore = 1;
         public const int Intrigue = 3;

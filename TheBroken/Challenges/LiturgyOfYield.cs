@@ -1,41 +1,39 @@
 using System;
 using System.Collections.Generic;
 using Assets.Code;
-
 using Common;
-using TheBroken.Modifiers;
 using UnityEngine;
 
-namespace TheBroken.Rituals
+namespace TheBroken.Challenges
 {
-    public class PreachTheKeeping : Ritual
+    public class LiturgyOfYield : Challenge
     {
-        public PreachTheKeeping(Location location)
+        public LiturgyOfYield(Location location)
             : base(location) { }
 
         public override string getName()
         {
-            return "Preach The Keeping";
+            return "Liturgy of Yield";
         }
 
         public override string getDesc()
         {
-            return "Causes the village to withold food from it's neighbours for 10 turns. Casting it when a Keeping is allready going on adds 10 more turns.";
+            return "Collects 50 gold from your followers.";
         }
 
         public override string getRestriction()
         {
-            return "Needs a farming village with a Shard present with atleast 50 magnitude. Drains 50 magnitude.";
+            return "Needs a Shard to be present with atleast 50 magnitude. Drains 50 magnitude.";
         }
 
         public override string getCastFlavour()
         {
-            return "Let the grain stay where it was sown. Let the mouths beyond go quiet.";
+            return "Not all offerings are of flesh. Some give what they have hoarded. Some give what they cannot afford.";
         }
 
         public override Sprite getSprite()
         {
-            return EventManager.getImg("the-broken.wheat-basket.png");
+            return EventManager.getImg("the-broken.tithe.png");
         }
 
         public override int isGoodTernary()
@@ -56,17 +54,17 @@ namespace TheBroken.Rituals
 
         public override double getComplexity()
         {
-            return 30;
+            return 20;
         }
 
         public override int getCompletionMenace()
         {
-            return 3;
+            return 1;
         }
 
         public override int getCompletionProfile()
         {
-            return 10;
+            return 5;
         }
         public override bool validFor(UA unit)
         {
@@ -79,11 +77,7 @@ namespace TheBroken.Rituals
         public override void complete(UA unit)
         {
             unit.location.GetPropertyOrNull<Shard>().charge -= 50;
-            var keeping = unit.location.GetPropertyOrNull<TheKeeping>();
-            if (keeping == null)
-                unit.location.AddProperty(new TheKeeping(unit.location));
-            else
-                keeping.charge += 10;
+            unit.person.gold += 50;
         }
     }
 }

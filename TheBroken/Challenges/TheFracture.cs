@@ -4,36 +4,36 @@ using Assets.Code;
 using Common;
 using UnityEngine;
 
-namespace TheBroken.Rituals
+namespace TheBroken.Challenges
 {
-    public class PreachUprising : Ritual
+    public class TheFracture : Challenge
     {
-        public PreachUprising(Location location)
+        public TheFracture(Location location)
             : base(location) { }
 
         public override string getName()
         {
-            return "Preach Uprising";
+            return "The Fracture";
         }
 
         public override string getDesc()
         {
-            return "Encourage this Shard to extend the influence of The Broken.";
+            return "Increases the magnitude of the Shard by 50.";
         }
 
         public override string getRestriction()
         {
-            return "Needs a Shard to be present with atleast 100 magnitude, drains 100 magnitude.";
+            return "Needs a Shard to be present. Can't raise magnitude above 300.";
         }
 
         public override string getCastFlavour()
         {
-            return "From the quiet comes the spark. One rises, not to speak, but to spread.";
+            return "A village doesn't fall in a day. First comes the fracture. Then the rot. Then the worship.";
         }
 
         public override Sprite getSprite()
         {
-            return EventManager.getImg("the-broken.uprising.png");
+            return EventManager.getImg("the-broken.preach-the-fracture.png");
         }
 
         public override int isGoodTernary()
@@ -48,14 +48,13 @@ namespace TheBroken.Rituals
 
         public override double getProgressPerTurnInner(UA unit, List<ReasonMsg> msgs)
         {
-            msgs?.Add(new ReasonMsg("Stat: Command", Math.Max(1, unit.getStatCommand())));
-            msgs?.Add(new ReasonMsg("Stat: Intrigue", Math.Max(1, unit.getStatIntrigue() / 2)));
-            return Math.Max(1, unit.getStatCommand() + (unit.getStatIntrigue() / 2));
+            msgs?.Add(new ReasonMsg("Stat: Command", unit.getStatCommand()));
+            return Math.Max(1, unit.getStatCommand());
         }
 
         public override double getComplexity()
         {
-            return 75;
+            return 50;
         }
 
         public override int getCompletionMenace()
@@ -71,18 +70,16 @@ namespace TheBroken.Rituals
         {
             var shard = unit.location.GetPropertyOrNull<Shard>();
             if (shard == null) return false;
-            if (shard.charge < 100) return false;
+            if (shard.charge >= 300) return false;
             return true;
         }
 
         public override void complete(UA unit)
         {
             var shard = unit.location.GetPropertyOrNull<Shard>();
-            shard.charge -= 100;
-            Person p = new Person(map.soc_dark);
-            var broken = new Broken(unit.location, map.soc_dark, p);
-            broken.location.units.Add(broken);
-            map.units.Add(broken);
+            shard.charge += 50;
+            if (shard.charge > 300)
+                shard.charge = 300;
         }
     }
 }

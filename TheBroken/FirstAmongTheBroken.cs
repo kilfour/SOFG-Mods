@@ -1,7 +1,7 @@
 using Assets.Code;
 using UnityEngine;
 using Common;
-using TheBroken.Rituals;
+using TheBroken.Challenges;
 
 namespace TheBroken
 {
@@ -18,11 +18,7 @@ namespace TheBroken
             person.age = 42;
             person.hasSoul = true;
             person.gold = Constants.Gold;
-            location.AddProperty(new Shard(location));
-            rituals.Add(new PreachTheFracture(location));
-            rituals.Add(new LiturgyOfYield(location));
-            rituals.Add(new PreachTheKeeping(location));
-            rituals.Add(new PreachUprising(location));
+            location.AddProperty(new Shard(location) { charge = 100 });
         }
 
         public override string getName()

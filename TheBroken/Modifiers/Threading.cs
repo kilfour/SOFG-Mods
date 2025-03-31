@@ -9,7 +9,7 @@ namespace TheBroken.Modifiers
     public class Threading : Property
     {
         public Threading(Location loc)
-            : base(loc) { charge = 1; }
+            : base(loc) { charge = 10; }
 
         public override string getName()
         {
@@ -18,7 +18,7 @@ namespace TheBroken.Modifiers
 
         public override string getDesc()
         {
-            return "One needle. One thread. One village at a time. At full power when Shard magnitude is greater than 150.";
+            return "One needle. One thread. One village at a time.";
         }
 
         public override Sprite getSprite(World world)
@@ -39,7 +39,7 @@ namespace TheBroken.Modifiers
                 return;
             }
             var shard = location.GetPropertyOrNull<Shard>();
-            var chargeToAdd = Math.Max(10, shard.charge / 30);
+            var chargeToAdd = Math.Min(10, shard.charge / 30);
             influences.Add(new ReasonMsg("The needle moves.", chargeToAdd));
             if (charge >= 100.0)
             {
@@ -48,6 +48,7 @@ namespace TheBroken.Modifiers
                         .FirstOrDefault(a => a.canBeInfiltrated() && !a.infiltrated);
                 if (subSettlement != null) subSettlement.infiltrated = true;
                 charge = 0;
+                map.addUnifiedMessage(this, location, "The Broken", "They welcomed the silence. The Shard does not knock twice.", "The Threading", force: true);
             }
         }
     }

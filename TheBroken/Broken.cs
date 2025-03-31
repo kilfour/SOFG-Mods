@@ -29,7 +29,7 @@ namespace TheBroken
                 locationForNewShard = FindLocationForNewShard();
                 if (locationForNewShard == null)
                 {
-                    map.addUnifiedMessage(this, person, "The Broken", getName() + " could not find a valid location to found a new Shard and has returned to his village.", "Uprising", force: true);
+                    map.addUnifiedMessage(this, person.unit.location, "The Broken", getName() + " could not find a valid location to found a new Shard and has returned to his village.", "Uprising", force: true);
                     disband(map, "Could not found a new Shard.");
                 }
             }
@@ -37,7 +37,7 @@ namespace TheBroken
             if (location == locationForNewShard)
             {
                 location.AddProperty(new Shard(location));
-                map.addUnifiedMessage(this, person, "The Broken", getName() + " has founded a new Shard.", "Uprising", force: true);
+                map.addUnifiedMessage(this, person.unit.location, "The Broken", getName() + " has founded a new Shard.", "Uprising", force: true);
                 disband(map, "Founded a new Shard.");
                 return;
             }
@@ -52,7 +52,7 @@ namespace TheBroken
                 where IsPotentialLocation(mapLocation)
                 let distance = map.getStepDist(location, mapLocation)
                 let isInfiltrated = mapLocation.IsFullyInfiltrated()
-                orderby distance, isInfiltrated
+                orderby isInfiltrated, distance
                 select new { location = mapLocation, distance, isInfiltrated };
             return result.FirstOrDefault()?.location;
         }

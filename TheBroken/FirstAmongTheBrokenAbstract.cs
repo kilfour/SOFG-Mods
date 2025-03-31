@@ -23,21 +23,20 @@ namespace TheBroken
 
         public override void createAgent(Location target)
         {
-            var uA = new FirstAmongTheBroken(target, map.soc_dark);
-            // uA.maxHp = Constants.Hp;
-            // uA.hp = Constants.Hp;
-            uA.person.stat_might = getStatMight();
-            uA.person.stat_lore = getStatLore();
-            uA.person.stat_intrigue = getStatIntrigue();
-            uA.person.stat_command = getStatCommand();
-            target.units.Add(uA);
-            target.map.overmind.agents.Add(uA);
-            target.map.units.Add(uA);
-            uA.person.shadow = 1.0;
-            uA.person.clearAllPreferences();
+            var firstAmongTheBroken = new FirstAmongTheBroken(target, map.soc_dark);
+            firstAmongTheBroken.person.stat_might = getStatMight();
+            firstAmongTheBroken.person.stat_lore = getStatLore();
+            firstAmongTheBroken.person.stat_intrigue = getStatIntrigue();
+            firstAmongTheBroken.person.stat_command = getStatCommand();
+            target.units.Add(firstAmongTheBroken);
+            target.map.overmind.agents.Add(firstAmongTheBroken);
+            target.map.units.Add(firstAmongTheBroken);
+            firstAmongTheBroken.person.shadow = 1.0;
+            firstAmongTheBroken.person.clearAllPreferences();
             target.map.overmind.availableEnthrallments--;
             target.map.overmind.agentsUnique.Remove(this);
-            GraphicalMap.selectedUnit = uA;
+            GraphicalMap.selectedUnit = firstAmongTheBroken;
+            firstAmongTheBroken.person.skillPoints++;
             map.world.ui.checkData();
         }
 
