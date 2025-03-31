@@ -26,6 +26,8 @@ Gets extra skill point upon creation
 Represents the cult's embedded presence in a society.  
 The Shard grows in magnitude over time, granting access to increasingly powerful actions.  
 
+Any village containing a Shard gives your agent an opportunity to perform a Lay Low challenge.  
+
 ---
 
 ### The Keeping ###

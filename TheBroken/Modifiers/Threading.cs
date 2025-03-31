@@ -48,7 +48,7 @@ namespace TheBroken.Modifiers
                         .FirstOrDefault(a => a.canBeInfiltrated() && !a.infiltrated);
                 if (subSettlement != null) subSettlement.infiltrated = true;
                 charge = 0;
-                map.addUnifiedMessage(this, location, "The Broken", "They welcomed the silence. The Shard does not knock twice.", "The Threading", force: true);
+                map.addUnifiedMessage(location, location.map.soc_dark, "The Broken", "They welcomed the silence. The Shard does not knock twice.", "The Threading", force: true);
             }
         }
     }

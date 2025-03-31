@@ -43,7 +43,7 @@ namespace Common
 
         public static bool IsFullyInfiltrated(this Location location)
         {
-            return location.settlement.subs.All(a => a.canBeInfiltrated() && a.infiltrated);
+            return location.settlement.subs.All(a => !a.canBeInfiltrated() || a.infiltrated);
         }
 
         public static bool IsNotFullyInfiltrated(this Location location)
