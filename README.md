@@ -6,6 +6,10 @@ It contains one generic agent: "A Witch".
 They can only be recruited on a location with a Witches Coven.  
 Aside from being an agent of the dark, they are also acolytes of their coven and thus can perform holy challenges.
 
+## Latest Release ##
+
+![Witching v0.2.1](https://img.shields.io/badge/version-v0.2.1-blue)
+
 ## Starting Stats ##
 * Might: 1
 * Lore: 4
@@ -69,3 +73,5 @@ Costs 50 Power. Only available in a location with a human soul.
 
 Same as the one for corrupted heroes.
 Costs 30 Power. Only available in a location with a Malign catch.
+
+

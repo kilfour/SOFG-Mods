@@ -43,5 +43,10 @@ namespace TheBroken
         {
             return standardProperties.OTHER;
         }
+
+        public override bool deleteOnZero()
+        {
+            return false;
+        }
     }
 }
