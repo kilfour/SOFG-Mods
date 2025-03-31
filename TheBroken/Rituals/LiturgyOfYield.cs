@@ -70,7 +70,7 @@ namespace TheBroken.Rituals
         {
             var shard = unit.location.GetPropertyOrNull<Shard>();
             if (shard == null) return false;
-            if (shard.charge >= 50) return false;
+            if (shard.charge < 50) return false;
             return true;
         }
 
