@@ -1,2 +1,2 @@
-dotnet msbuild witching/witching.csproj
-dotnet msbuild thebroken/thebroken.csproj
+dotnet msbuild Witching/Witching.csproj
+dotnet msbuild TheBroken/TheBroken.csproj

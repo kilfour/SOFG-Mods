@@ -9,11 +9,16 @@ namespace TheBroken
 
     public class Shard : Property
     {
-        private const int cooldownLength = 5;
-        public int CooldownRemaining;
+        private const int threadingCooldownLength = 5;
+        public int ThreadingCooldownRemaining;
 
         public Shard(Location loc)
-            : base(loc) { charge = 1; CooldownRemaining = cooldownLength; }
+            : base(loc)
+        {
+            charge = 1;
+            ThreadingCooldownRemaining = threadingCooldownLength;
+            GrowTheShard();
+        }
 
         public override string getName()
         {
@@ -48,6 +53,16 @@ namespace TheBroken
         private void GrowTheShard()
         {
             if (charge >= 300) return;
+            if (charge >= 200)
+            {
+                influences.Add(new ReasonMsg("Faith takes root in the fissure.", 3.0));
+                return;
+            }
+            if (charge >= 100)
+            {
+                influences.Add(new ReasonMsg("One more breaks from the whole.", 2.0));
+                return;
+            }
             influences.Add(new ReasonMsg("Another fracture spreads.", 1.0));
             if (charge >= 300) charge = 300;
         }
@@ -57,11 +72,11 @@ namespace TheBroken
             if (charge < 50) return;
             if (location.IsFullyInfiltrated()) return;
             if (location.HasProperty<Threading>()) return;
-            CooldownRemaining--;
-            if (CooldownRemaining <= 0)
+            ThreadingCooldownRemaining--;
+            if (ThreadingCooldownRemaining <= 0)
             {
                 location.AddProperty(new Threading(location));
-                CooldownRemaining = cooldownLength;
+                ThreadingCooldownRemaining = threadingCooldownLength;
             }
 
         }

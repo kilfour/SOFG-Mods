@@ -9,7 +9,7 @@ namespace TheBroken.Modifiers
     public class Threading : Property
     {
         public Threading(Location loc)
-            : base(loc) { charge = 0; }
+            : base(loc) { charge = 1; }
 
         public override string getName()
         {
@@ -23,7 +23,7 @@ namespace TheBroken.Modifiers
 
         public override Sprite getSprite(World world)
         {
-            return EventManager.getImg("threading.png");
+            return EventManager.getImg("the-broken.threading.png");
         }
 
         public override standardProperties getPropType()

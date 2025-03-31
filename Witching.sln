@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Witching.Tests", "Witching.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TheBroken", "TheBroken", "{E45741D9-11BF-13B7-17FD-1E03CA225053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theBroken", "TheBroken\theBroken.csproj", "{0888DF19-613E-4431-8DE5-A196A5776F1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theBroken", "TheBroken\TheBroken.csproj", "{0888DF19-613E-4431-8DE5-A196A5776F1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{1FDF2DB8-EA76-4D7C-8A12-60C06FDF8956}"
 EndProject

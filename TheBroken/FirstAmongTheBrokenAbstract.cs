@@ -1,5 +1,6 @@
 using System.Linq;
 using Assets.Code;
+using Common;
 using UnityEngine;
 
 namespace TheBroken
@@ -12,9 +13,7 @@ namespace TheBroken
         public override bool validTarget(Location location)
         {
             if (AgentCapReached()) return false;
-            return true;
-            // if (location.settlement == null) return false;
-            // return location.settlement.subs.Any(sub => sub.getName() == "Coven");
+            return location.HasFarms();
         }
 
         private bool AgentCapReached()
@@ -36,8 +35,10 @@ namespace TheBroken
             target.map.units.Add(uA);
             uA.person.shadow = 1.0;
             uA.person.clearAllPreferences();
-            GraphicalMap.selectedUnit = uA;
             target.map.overmind.availableEnthrallments--;
+            target.map.overmind.agentsUnique.Remove(this);
+            GraphicalMap.selectedUnit = uA;
+            map.world.ui.checkData();
         }
 
         public override Sprite getForeground()
@@ -57,12 +58,12 @@ namespace TheBroken
 
         public override string getFlavour()
         {
-            return "Todo .";
+            return "They were the first to kneel, and the last to be remembered by any true name. Their village vanished not in fire, but in silence — fields left unharvested, doors left open, prayers carved into the walls in ash and blood. When they rose again, they did not speak. They did not need to. Wherever they walk, obedience follows like rot in the root. They are not a leader. They are a fracture given form, the living shape of surrender. To see them is not to fear death. It is to forget resistance ever made sense at all";
         }
 
         public override string getRestrictions()
         {
-            return "Todo.";
+            return "Can only be called upon where there is a Farming Village.";
         }
 
         public override int getStatMight()

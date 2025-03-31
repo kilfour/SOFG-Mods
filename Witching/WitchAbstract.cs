@@ -44,6 +44,7 @@ namespace Witching
             uA.person.shadow = 1.0;
             uA.person.clearAllPreferences();
             target.map.overmind.availableEnthrallments--;
+            map.world.ui.checkData();
         }
 
         public override Sprite getForeground()

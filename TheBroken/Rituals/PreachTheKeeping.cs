@@ -15,7 +15,7 @@ namespace TheBroken.Rituals
 
         public override string getName()
         {
-            return "Preach The Keeping.";
+            return "Preach The Keeping";
         }
 
         public override string getDesc()

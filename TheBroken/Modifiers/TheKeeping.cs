@@ -21,7 +21,7 @@ namespace TheBroken.Modifiers
 
         public override Sprite getSprite(World world)
         {
-            return EventManager.getImg("wheat-and-candle.png");
+            return EventManager.getImg("the-broken.wheat-and-candle.png");
         }
 
         public override standardProperties getPropType()

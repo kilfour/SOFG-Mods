@@ -20,13 +20,18 @@ namespace TheBroken
             person.gold = Constants.Gold;
             location.AddProperty(new Shard(location));
             rituals.Add(new PreachTheFracture(location));
+            rituals.Add(new LiturgyOfYield(location));
             rituals.Add(new PreachTheKeeping(location));
             rituals.Add(new PreachUprising(location));
         }
 
         public override string getName()
         {
-            return "First Among The Broken";
+            if (person.overrideName != null && person.overrideName.Length != 0)
+            {
+                return person.overrideName;
+            }
+            return "First Broken " + person.firstName;
         }
 
         public override bool isCommandable()

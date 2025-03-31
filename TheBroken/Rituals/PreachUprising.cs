@@ -13,7 +13,7 @@ namespace TheBroken.Rituals
 
         public override string getName()
         {
-            return "Preach Uprising.";
+            return "Preach Uprising";
         }
 
         public override string getDesc()
@@ -48,13 +48,14 @@ namespace TheBroken.Rituals
 
         public override double getProgressPerTurnInner(UA unit, List<ReasonMsg> msgs)
         {
-            msgs?.Add(new ReasonMsg("Stat: Command", unit.getStatCommand()));
-            return Math.Max(1, unit.getStatCommand());
+            msgs?.Add(new ReasonMsg("Stat: Command", Math.Max(1, unit.getStatCommand())));
+            msgs?.Add(new ReasonMsg("Stat: Intrigue", Math.Max(1, unit.getStatIntrigue() / 2)));
+            return Math.Max(1, unit.getStatCommand() + (unit.getStatIntrigue() / 2));
         }
 
         public override double getComplexity()
         {
-            return 50;
+            return 75;
         }
 
         public override int getCompletionMenace()

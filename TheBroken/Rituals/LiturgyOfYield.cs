@@ -6,34 +6,34 @@ using UnityEngine;
 
 namespace TheBroken.Rituals
 {
-    public class PreachTheFracture : Ritual
+    public class LiturgyOfYield : Ritual
     {
-        public PreachTheFracture(Location location)
+        public LiturgyOfYield(Location location)
             : base(location) { }
 
         public override string getName()
         {
-            return "Preach The Fracture";
+            return "Liturgy of Yield";
         }
 
         public override string getDesc()
         {
-            return "Increases the magnitude of the Shard by 25.";
+            return "Collects 5O gold from your followers.";
         }
 
         public override string getRestriction()
         {
-            return "Needs a Shard to be present. Can't raise magnitude above 300.";
+            return "Needs a Shard to be present with atleast 50 magnitude. Drains 50 magnitude.";
         }
 
         public override string getCastFlavour()
         {
-            return "A village doesn't fall in a day. First comes the fracture. Then the rot. Then the worship.";
+            return "Not all offerings are of flesh. Some give what they have hoarded. Some give what they cannot afford.";
         }
 
         public override Sprite getSprite()
         {
-            return EventManager.getImg("the-broken.preach-the-fracture.png");
+            return EventManager.getImg("the-broken.tithe.png");
         }
 
         public override int isGoodTernary()
@@ -43,43 +43,41 @@ namespace TheBroken.Rituals
 
         public override challengeStat getChallengeType()
         {
-            return challengeStat.COMMAND;
+            return challengeStat.INTRIGUE;
         }
 
         public override double getProgressPerTurnInner(UA unit, List<ReasonMsg> msgs)
         {
-            msgs?.Add(new ReasonMsg("Stat: Command", unit.getStatCommand()));
-            return Math.Max(1, unit.getStatCommand());
+            msgs?.Add(new ReasonMsg("Stat: Intrigue", unit.getStatIntrigue()));
+            return Math.Max(1, unit.getStatIntrigue());
         }
 
         public override double getComplexity()
         {
-            return 50;
+            return 20;
         }
 
         public override int getCompletionMenace()
         {
-            return 3;
+            return 2;
         }
 
         public override int getCompletionProfile()
         {
-            return 10;
+            return 5;
         }
         public override bool validFor(UA unit)
         {
             var shard = unit.location.GetPropertyOrNull<Shard>();
             if (shard == null) return false;
-            if (shard.charge >= 300) return false;
+            if (shard.charge >= 50) return false;
             return true;
         }
 
         public override void complete(UA unit)
         {
-            var shard = unit.location.GetPropertyOrNull<Shard>();
-            shard.charge += 50;
-            if (shard.charge > 300)
-                shard.charge = 300;
+            unit.location.GetPropertyOrNull<Shard>().charge -= 50;
+            unit.person.gold += 50;
         }
     }
 }
