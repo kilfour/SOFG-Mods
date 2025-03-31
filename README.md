@@ -8,7 +8,9 @@ Aside from being an agent of the dark, they are also acolytes of their coven and
 
 ## Latest Release ##
 
-![Witching v0.2.1](https://img.shields.io/badge/version-v0.2.1-blue)
+![Latest Release](https://img.shields.io/github/v/tag/kilfour/SOFG-Witching-Mod?label=Version&color=purple)
+
+
 
 ## Starting Stats ##
 * Might: 1
