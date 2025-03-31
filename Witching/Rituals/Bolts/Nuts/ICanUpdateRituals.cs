@@ -5,7 +5,7 @@ namespace Witching.Rituals.Bolts.Nuts
 {
     public interface ICanUpdateRituals
     {
-        void UpdateRituals(UAE caster, WitchesPower witchesPower, Location newLocation);
+        void UpdateRituals(UAE caster, WitchesPower witchesPower, Location location);
     }
 }
 

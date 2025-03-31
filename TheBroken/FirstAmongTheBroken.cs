@@ -20,7 +20,7 @@ namespace TheBroken
             person.age = 42;
             person.hasSoul = true;
             person.gold = Constants.Gold;
-            location.AddProperty(new MyProperty(location));
+            location.AddProperty(new Shard(location));
         }
 
         public override string getName()
