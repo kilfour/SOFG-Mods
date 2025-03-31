@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Assets.Code;
 using UnityEngine;
-
+using Common;
 
 namespace TheBroken
 {
@@ -10,6 +10,13 @@ namespace TheBroken
         // public List<ICanUpdateRituals> updaters =
         //     new List<ICanUpdateRituals>();
 
+
+        // food calc : 
+        // base = minpop (12) 
+        // calc 0.1 + Habitability - minHabitabilityForHumans (0.15)  times city_foodPerHabilitability 75.0
+        // base + calc
+
+        //  0.5 - 0.14 * 75
 
         public FirstAmongTheBroken(Location location, Society society)
             : base(location, society)
@@ -22,6 +29,7 @@ namespace TheBroken
             person.age = 42;
             person.hasSoul = true;
             person.gold = Constants.Gold;
+            location.AddProperty(new MyProperty(location));
         }
 
         public override string getName()

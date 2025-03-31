@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using Witching.Bolts;
+using Common;
 
 namespace Witching.Tests
 {

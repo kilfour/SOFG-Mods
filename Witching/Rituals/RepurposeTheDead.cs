@@ -4,6 +4,8 @@ using UnityEngine;
 using Witching.Traits;
 using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
+using Common;
+
 namespace Witching.Rituals
 {
     public class RepurposeTheDead : WitchesPoweredRitual

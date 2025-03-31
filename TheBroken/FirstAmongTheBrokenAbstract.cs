@@ -12,8 +12,9 @@ namespace TheBroken
         public override bool validTarget(Location location)
         {
             if (AgentCapReached()) return false;
-            if (location.settlement == null) return false;
-            return location.settlement.subs.Any(sub => sub.getName() == "Coven");
+            return true;
+            // if (location.settlement == null) return false;
+            // return location.settlement.subs.Any(sub => sub.getName() == "Coven");
         }
 
         private bool AgentCapReached()

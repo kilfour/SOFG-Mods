@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Assets.Code;
 
-namespace Witching
+namespace Common
 {
     public static class ExtLocation
     {

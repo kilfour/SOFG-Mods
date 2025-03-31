@@ -3,6 +3,7 @@ using UnityEngine;
 using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
 using Witching.Traits;
+using Common;
 
 namespace Witching.Rituals
 {
