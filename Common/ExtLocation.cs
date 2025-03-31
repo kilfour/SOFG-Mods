@@ -19,14 +19,14 @@ namespace Common
             return property.charge;
         }
 
-        public static T GetPropertyOrNull<T>(this Location location) where T : Property
-        {
-            return location.properties.FirstOrDefault(a => a is T) as T;
-        }
-
         public static bool HasProperty<T>(this Location location) where T : Property
         {
             return location.properties.FirstOrDefault(a => a is T) != null;
+        }
+
+        public static T GetPropertyOrNull<T>(this Location location) where T : Property
+        {
+            return location.properties.FirstOrDefault(a => a is T) as T;
         }
 
         public static bool PropertyIs<T>(this Location location, Func<T, bool> predicate) where T : Property
@@ -73,6 +73,16 @@ namespace Common
             var temple = GetTempleOrNull(location);
             if (temple == null) return null;
             return temple.order;
+        }
+
+        public static bool IsFullyInfiltrated(this Location location)
+        {
+            return location.settlement.subs.All(a => a.infiltrated);
+        }
+
+        public static bool IsNotFullyInfiltrated(this Location location)
+        {
+            return !IsFullyInfiltrated(location);
         }
     }
 }

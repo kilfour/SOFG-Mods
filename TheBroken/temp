@@ -1,0 +1,11 @@
+private void IncreaseShadow()
+{
+    if (charge > 100.0 && location.settlement != null && location.settlement.shadow < 1.0)
+    {
+        location.settlement.shadow += 0.01 * (charge / 300.0);
+        if (location.settlement.shadow > 1.0)
+        {
+            location.settlement.shadow = 1.0;
+        }
+    }
+}

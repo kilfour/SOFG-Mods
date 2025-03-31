@@ -42,11 +42,7 @@ namespace Witching
             target.map.overmind.agents.Add(uA);
             target.map.units.Add(uA);
             uA.person.shadow = 1.0;
-            uA.person.extremeHates.Clear();
-            uA.person.extremeHates.Clear();
-            uA.person.hates.Clear();
-            uA.person.likes.Clear();
-            GraphicalMap.selectedUnit = uA;
+            uA.person.clearAllPreferences();
             target.map.overmind.availableEnthrallments--;
         }
 

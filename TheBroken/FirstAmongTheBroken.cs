@@ -1,14 +1,12 @@
 using Assets.Code;
 using UnityEngine;
 using Common;
+using TheBroken.Rituals;
 
 namespace TheBroken
 {
     public class FirstAmongTheBroken : UAE
     {
-        // public List<ICanUpdateRituals> updaters =
-        //     new List<ICanUpdateRituals>();
-
         public FirstAmongTheBroken(Location location, Society society)
             : base(location, society)
         {
@@ -21,6 +19,9 @@ namespace TheBroken
             person.hasSoul = true;
             person.gold = Constants.Gold;
             location.AddProperty(new Shard(location));
+            rituals.Add(new PreachTheFracture(location));
+            rituals.Add(new PreachTheKeeping(location));
+            rituals.Add(new PreachUprising(location));
         }
 
         public override string getName()
@@ -42,11 +43,6 @@ namespace TheBroken
         {
             return EventManager.getImg("the-broken.first-among-the-broken.png");
         }
-
-        // public void UpdateRituals(WitchesPower witchesPower, Location newLocation)
-        // {
-        //     updaters.ForEach(a => a.UpdateRituals(this, witchesPower, newLocation));
-        // }
     }
 }
 
