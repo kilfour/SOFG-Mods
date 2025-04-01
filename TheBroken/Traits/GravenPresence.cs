@@ -25,8 +25,7 @@ namespace TheBroken.Traits
                 return;
             shard.AddCharge("Graven Presence", 1);
             person.gold++;
-            location.AddShadow(0.01);
-
+            location.AddShadow(0.005);
         }
     }
 }

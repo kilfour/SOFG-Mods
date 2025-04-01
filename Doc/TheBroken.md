@@ -1,5 +1,3 @@
-# TheBroken
-
 This mod introduces a unique agent of spiritual subversion: **The First Among the Broken**.  
 A figure of reverent menace, they inspire cultic devotion and unravel societies from within using powerful modifiers and insidious challenges.  
 
@@ -38,41 +36,40 @@ Villages under The Keeping deny supplies to outsiders while sustaining their own
 ---
 
 ### Threading ###
-This modifier appears once in a while if there are uninfiltrated POI in the settlement.
+This modifier appears once in a while if there are uninfiltrated POI in the settlement.  
 *“One needle. One thread. One village at a time.”*  
-Threading marks the slow, deliberate conversion of a village.  
-Once complete, the cult's influence becomes irreversible.  
 Upon completion a POI is infiltrated :  
 * *"The last thread knots. What was village is now vessel."*
 
 ---
 
 ## Challenges ##
+These can be done by any agent, needs a Shard to be present ofcourse.
 
 ### Liturgy of Yield ###
 *“A rite of offering. Gold gleams where faith runs deepest.”*  
-Collects **50 gold** from your followers.  
-A key source of wealth through devotion.
+Collects 50 gold from your followers.  
+Shard strength needs to be greater than 50.  
 
 ---
 
 ### Preach the Keeping ###
-Causes the village to withhold food from outsiders.  
-Builds the **The Keeping** modifier and deepens cult loyalty.
+
+Builds the **The Keeping** modifier, which causes the village to withhold food from outsiders.  
+Shard strength needs to be greater than 50.
 
 ---
 
 ### The Fracture ###
-Increases the **magnitude of the Shard** by **50**.  
-Advances its evolution toward total subversion.
+
+Increases the magnitude of the Shard by 50.  
 
 ---
 
 ### Uprising ###
-Encourages the Shard to **extend its influence** into neighboring areas.  
-Used to grow the cult's domain beyond its initial roots.  
-Spawns a Broken which looks for a new village to establish a new Shard. Prefers uninfiltrated, close by locations.
 
+Spawns a Broken which looks for a new village to establish a new Shard. Prefers uninfiltrated, close by locations.  
+Shard strength needs to be greater than 100. Consumes 100 charge.
 ---
 
 ## Unique Trait ##
@@ -80,8 +77,8 @@ Spawns a Broken which looks for a new village to establish a new Shard. Prefers 
 ### Graven Presence ###
 
 A passive ability that when in a village with a shard:
-- Grows the Shard by 3 per turn.
+- Grows the Shard by 1 per turn.
 - Gives the agent 1 gold.
-- Spreads 1 shadow.
+- Spreads 0.5 shadow.
 
 
