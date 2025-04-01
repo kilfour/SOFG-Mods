@@ -36,6 +36,11 @@ namespace TheBroken
 
             if (location == locationForNewShard)
             {
+                if (location.HasProperty<Shard>())
+                {
+                    locationForNewShard = null;
+                    return;
+                }
                 location.AddProperty(new Shard(location));
                 map.addUnifiedMessage(this, person.unit.location, "The Stone Gives Way", getName() + " has founded a new Shard.", "Broken Founds Shard", force: true);
                 disband(map, "Founded a new Shard.");
