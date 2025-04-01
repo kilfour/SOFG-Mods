@@ -29,37 +29,18 @@ Any village containing a Shard gives your agent an opportunity to perform a Lay 
 ---
 
 ### The Keeping ###
-*“What is sown in pain is kept in faith. Let the lord hunger. Let the Broken feast.”*  
-This property symbolizes the cult's grip over local resources, especially food.  
 Villages under The Keeping deny supplies to outsiders while sustaining their own through sacrificial devotion.
 
 ---
 
 ### Threading ###
-This modifier appears once in a while if there are uninfiltrated POI in the settlement.  
-*“One needle. One thread. One village at a time.”*  
-Upon completion a POI is infiltrated :  
-* *"The last thread knots. What was village is now vessel."*
+This modifier appears once in a while if there are uninfiltrated POI in the settlement.    
+Upon completion a POI is infiltrated.
 
 ---
 
 ## Challenges ##
 These can be done by any agent, needs a Shard to be present ofcourse.
-
-### Liturgy of Yield ###
-*“A rite of offering. Gold gleams where faith runs deepest.”*  
-Collects 50 gold from your followers.  
-Shard strength needs to be greater than 50. 
-Based on intrigue, but faster with more Shard magnitude.  
-
----
-
-### Preach the Keeping ###
-
-Builds the **The Keeping** modifier, which causes the village to withhold food from outsiders.  
-Shard strength needs to be greater than 50.
-
----
 
 ### The Fracture ###
 
@@ -67,10 +48,27 @@ Increases the magnitude of the Shard by 50.
 
 ---
 
+### Preach the Keeping ###
+
+Builds the **The Keeping** modifier, which causes the village to withhold food from outsiders.  
+Shard magnitude needs to be greater than 50.
+
+---
+
+### Liturgy of Yield ###
+Collects 50 gold from the Shard.  
+Based on intrigue, but faster with more Shard magnitude.  
+Shard magnitude needs to be greater than 50. 
+Comsumes 50 charge.
+
+---
+
 ### Uprising ###
 
 Spawns a Broken which looks for a new village to establish a new Shard. Prefers uninfiltrated, close by locations.  
-Shard strength needs to be greater than 100. Consumes 100 charge.
+Shard magnitude needs to be greater than 100.   
+Consumes 100 charge.
+
 ---
 
 ## Unique Trait ##

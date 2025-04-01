@@ -1,7 +1,5 @@
 using Xunit;
 using TheBroken.Challenges;
-using Assets.Code;
-using System.Collections.Generic;
 
 namespace Witching.Tests
 {
@@ -54,6 +52,12 @@ namespace Witching.Tests
         {
             var result = LiturgyOfYield.ApplyShardMagnitudeToStat(150, 6);
             Assert.Equal(4.5, result);
+        }
+        [Fact]
+        public void FirstAmongTheBrokenStart()
+        {
+            var result = LiturgyOfYield.ApplyShardMagnitudeToStat(50, 3);
+            Assert.Equal(0.75, result);
         }
 
         [Fact]
