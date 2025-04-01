@@ -7,7 +7,7 @@ namespace TheBroken.Modifiers
     public class TheKeeping : Property
     {
         public TheKeeping(Location loc)
-            : base(loc) { charge = 10; }
+            : base(loc) { charge = 20; }
 
         public override string getName()
         {

@@ -82,7 +82,7 @@ namespace TheBroken.Challenges
             if (keeping == null)
                 unit.location.AddProperty(new TheKeeping(unit.location));
             else
-                keeping.charge += 10;
+                keeping.charge += 20;
         }
     }
 }
