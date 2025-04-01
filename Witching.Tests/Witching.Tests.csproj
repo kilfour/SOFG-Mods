@@ -8,8 +8,8 @@
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Witching\Witching.csproj" />
-    <ProjectReference Include="..\Common\Common.csproj" />
+    <!-- <ProjectReference Include="..\Witching\Witching.csproj" /> -->
+    <ProjectReference Include="..\TheBroken\TheBroken.csproj" />
   </ItemGroup>
   <ItemGroup>
       <Reference Include="Assembly-CSharp">

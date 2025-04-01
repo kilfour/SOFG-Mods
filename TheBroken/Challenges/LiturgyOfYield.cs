@@ -51,7 +51,10 @@ namespace TheBroken.Challenges
             msgs?.Add(new ReasonMsg("Stat: Intrigue", unit.getStatIntrigue()));
             return Math.Max(1, unit.getStatIntrigue());
         }
-
+        public static double ApplyShardMagnitudeToStat(double charge, double stat)
+        {
+            return charge * stat / 200; ;
+        }
         public override double getComplexity()
         {
             return 20;
