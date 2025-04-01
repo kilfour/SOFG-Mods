@@ -50,7 +50,7 @@ These can be done by any agent, needs a Shard to be present ofcourse.
 *“A rite of offering. Gold gleams where faith runs deepest.”*  
 Collects 50 gold from your followers.  
 Shard strength needs to be greater than 50. 
-Based on intrigue, but faster with more Shard magnitude.
+Based on intrigue, but faster with more Shard magnitude.  
 
 ---
 
