@@ -23,9 +23,9 @@ namespace TheBroken.Traits
             var shard = location.GetPropertyOrNull<Shard>();
             if (shard == null)
                 return;
-            shard.AddCharge("Graven Presence", 1);
+            shard.AddCharge("Graven Presence", 2);
             person.gold++;
-            location.AddShadow(0.005);
+            location.AddShadow(0.01);
         }
     }
 }

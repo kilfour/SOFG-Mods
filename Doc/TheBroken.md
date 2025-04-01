@@ -76,8 +76,8 @@ Consumes 100 charge.
 ### Graven Presence ###
 
 A passive ability that when in a village with a shard:
-- Grows the Shard by 1 per turn.
+- Grows the Shard by 2 per turn.
 - Gives the agent 1 gold.
-- Spreads 0.5 shadow.
+- Spreads 1 shadow.
 
 
