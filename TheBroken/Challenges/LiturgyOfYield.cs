@@ -18,7 +18,7 @@ namespace TheBroken.Challenges
 
         public override string getDesc()
         {
-            return "Collects 50 gold from your followers.";
+            return "Collects 50 gold from your followers. Based on intrigue but scaled to Shared magnitude.";
         }
 
         public override string getRestriction()
@@ -48,7 +48,7 @@ namespace TheBroken.Challenges
 
         public override double getProgressPerTurnInner(UA unit, List<ReasonMsg> msgs)
         {
-            msgs?.Add(new ReasonMsg("Stat: Intrigue, scaled to Shared magnitude", unit.getStatIntrigue()));
+            msgs?.Add(new ReasonMsg("Stat: Intrigue", unit.getStatIntrigue()));
             return Math.Max(1, unit.getStatIntrigue());
         }
         public static double ApplyShardMagnitudeToStat(double charge, double stat)
