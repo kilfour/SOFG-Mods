@@ -29,7 +29,7 @@ namespace TheBroken
                 locationForNewShard = FindLocationForNewShard();
                 if (locationForNewShard == null)
                 {
-                    map.addUnifiedMessage(this, person.unit.location, "The Broken", getName() + " could not find a valid location to found a new Shard and has returned to his village.", "Uprising", force: true);
+                    map.addUnifiedMessage(this, person.unit.location, "The Stone Holds Firm", getName() + " could not find a valid location to found a new Shard and has returned to his village.", "Broken Disbands", force: true);
                     disband(map, "Could not found a new Shard.");
                 }
             }
@@ -37,7 +37,7 @@ namespace TheBroken
             if (location == locationForNewShard)
             {
                 location.AddProperty(new Shard(location));
-                map.addUnifiedMessage(this, person.unit.location, "The Broken", getName() + " has founded a new Shard.", "Uprising", force: true);
+                map.addUnifiedMessage(this, person.unit.location, "The Stone Gives Way", getName() + " has founded a new Shard.", "Broken Founds Shard", force: true);
                 disband(map, "Founded a new Shard.");
                 return;
             }
