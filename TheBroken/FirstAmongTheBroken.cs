@@ -2,6 +2,7 @@ using Assets.Code;
 using UnityEngine;
 using Common;
 using TheBroken.Challenges;
+using TheBroken.Traits;
 
 namespace TheBroken
 {
@@ -18,6 +19,7 @@ namespace TheBroken
             person.age = 42;
             person.hasSoul = true;
             person.gold = Constants.Gold;
+            person.receiveTrait(new GravenPresence());
             location.AddProperty(new Shard(location) { charge = 100 });
         }
 

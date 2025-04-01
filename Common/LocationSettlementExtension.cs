@@ -1,10 +1,18 @@
+using System;
 using System.Linq;
 using Assets.Code;
 
 namespace Common
 {
-    public static class ExtLocationSettlement
+    public static class LocationSettlementExtension
     {
+        // private T GetSubsOrDefault<T>(Location location, T defaultValue, Func<T> func)
+        // {
+        //     if (location == null) return defaultValue;
+        //     if (location.settlement == null) return defaultValue;
+        //     if (location.settlement.subs == null) return defaultValue;
+        // }
+
         public static T GetSubSettlementOrNull<T>(this Location location) where T : Subsettlement
         {
             // ----------------------------------------------------
@@ -19,6 +27,7 @@ namespace Common
                     .Where(a => a != null)
                     .FirstOrDefault();
         }
+
         public static bool HasSubSettlement<T>(this Location location) where T : Subsettlement
         {
             return GetSubSettlementOrNull<T>(location) != null;
@@ -43,12 +52,20 @@ namespace Common
 
         public static bool IsFullyInfiltrated(this Location location)
         {
+            if (location == null) return true;
+            if (location.settlement == null) return true;
             return location.settlement.subs.All(a => !a.canBeInfiltrated() || a.infiltrated);
         }
 
         public static bool IsNotFullyInfiltrated(this Location location)
         {
             return !IsFullyInfiltrated(location);
+        }
+
+        public static void AddShadow(this Location location, double shadow)
+        {
+            if (location.settlement.shadow < 1.0)
+                location.settlement.shadow = Math.Min(1.0, location.settlement.shadow + shadow);
         }
     }
 }

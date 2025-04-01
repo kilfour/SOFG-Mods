@@ -73,4 +73,15 @@ Encourages the Shard to **extend its influence** into neighboring areas.
 Used to grow the cult's domain beyond its initial roots.  
 Spawns a Broken which looks for a new village to establish a new Shard. Prefers uninfiltrated, close by locations.
 
+---
+
+## Unique Trait ##
+
+### Graven Presence ###
+
+A passive ability that when in a village with a shard:
+- Grows the Shard by 3 per turn.
+- Gives the agent 1 gold.
+- Spreads 1 shadow.
+
 

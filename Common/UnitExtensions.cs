@@ -3,7 +3,7 @@ using Assets.Code;
 
 namespace Common
 {
-    public static class ExtUA
+    public static class UnitExtensions
     {
         public static bool IsAProphet(this UA unit)
         {

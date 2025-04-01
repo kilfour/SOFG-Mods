@@ -18,7 +18,7 @@ namespace TheBroken
         public Shard(Location location)
             : base(location)
         {
-            charge = 1;
+            charge = 10;
             ThreadingCooldownRemaining = threadingCooldownLength;
             if (!location.HasSubSettlement<Sub_AncientRuins>())
                 challenges.Add(new Ch_LayLowWilderness(location));
@@ -70,18 +70,18 @@ namespace TheBroken
 
         private void GrowTheShard()
         {
-            if (charge >= 300) return;
-            if (charge >= 200)
-            {
-                influences.Add(new ReasonMsg("Faith takes root in the fissure.", 3.0));
-                return;
-            }
+            AddCharge("Another fracture spreads.", 1);
             if (charge >= 100)
-            {
-                influences.Add(new ReasonMsg("One more breaks from the root.", 2.0));
-                return;
-            }
-            influences.Add(new ReasonMsg("Another fracture spreads.", 1.0));
+                AddCharge("One more breaks from the root.", 1);
+            if (charge >= 200)
+                AddCharge("Faith takes root in the fissure.", 1);
+            if (charge >= 300) charge = 300;
+        }
+
+        public void AddCharge(string reason, double chargeToAdd)
+        {
+            if (charge >= 300) return;
+            influences.Add(new ReasonMsg(reason, chargeToAdd));
             if (charge >= 300) charge = 300;
         }
 
@@ -96,7 +96,6 @@ namespace TheBroken
                 location.AddProperty(new Threading(location));
                 ThreadingCooldownRemaining = threadingCooldownLength;
             }
-
         }
     }
 }

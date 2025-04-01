@@ -1,0 +1,29 @@
+Whisper of Doubt
+----------------
+Very short challenge (2–3 turns) with no big effect but helps:
+Spread shadow
+
+Flavor: “A word here. A doubt there. The stone hears.”
+
+Minor Passive Effect from the Agent
+
+Passive Effect while present in a location with a shard 
+
+Spread shadow
+Generate +1 gold per turn (early drip).
+Gain +1 progress toward The Threading automatically.
+
+
+private void IncreaseShadow()
+{
+    if (charge > 100.0 && location.settlement != null && location.settlement.shadow < 1.0)
+    {
+        location.settlement.shadow += 0.01 * (charge / 300.0);
+        if (location.settlement.shadow > 1.0)
+        {
+            location.settlement.shadow = 1.0;
+        }
+    }
+}
+
+what does getChallengeUtility do on UA

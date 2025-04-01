@@ -3,7 +3,7 @@ using Assets.Code;
 
 namespace Common
 {
-    public static class ExtPerson
+    public static class PersonExtensions
     {
         public static T GetTrait<T>(this Person person) where T : class
         {

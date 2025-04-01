@@ -4,7 +4,7 @@ using Assets.Code;
 
 namespace Common
 {
-    public static class ExtLocationProperties
+    public static class LocationPropertiesExtensions
     {
         private static Property GetStandardPropertyOrNull(Location location, Property.standardProperties form)
         {
@@ -22,6 +22,11 @@ namespace Common
         public static bool HasProperty<T>(this Location location) where T : Property
         {
             return location.properties.FirstOrDefault(a => a is T) != null;
+        }
+
+        public static bool LacksProperty<T>(this Location location) where T : Property
+        {
+            return !HasProperty<T>(location);
         }
 
         public static T GetPropertyOrNull<T>(this Location location) where T : Property
