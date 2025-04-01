@@ -20,7 +20,7 @@ namespace TheBroken
             person.hasSoul = true;
             person.gold = Constants.Gold;
             person.receiveTrait(new GravenPresence());
-            location.AddProperty(new Shard(location) { charge = 100 });
+            location.AddProperty(new Shard(location) { charge = 50 });
         }
 
         public override string getName()
