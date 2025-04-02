@@ -13,15 +13,15 @@ namespace Common
 
         public static double GetUnrest(this Location location)
         {
-            var property = GetStandardPropertyOrNull(location, Property.standardProperties.UNREST);
-            if (property == null)
-                return 0;
-            return property.charge;
+            return
+                GetStandardPropertyOrNull(location, Property.standardProperties.UNREST)
+                    .MaybeSelect(a => a.charge)
+                    .WithDefault(0);
         }
 
         public static bool HasProperty<T>(this Location location) where T : Property
         {
-            return location.properties.FirstOrDefault(a => a is T) != null;
+            return location.properties.HasAny<T>();
         }
 
         public static bool LacksProperty<T>(this Location location) where T : Property
@@ -31,14 +31,15 @@ namespace Common
 
         public static T GetPropertyOrNull<T>(this Location location) where T : Property
         {
-            return location.properties.FirstOrDefault(a => a is T) as T;
+            return location.properties.OfType<T>().FirstOrDefault();
         }
 
         public static bool PropertyIs<T>(this Location location, Func<T, bool> predicate) where T : Property
         {
-            var property = GetPropertyOrNull<T>(location);
-            if (property == null) return false;
-            return predicate(property);
+            return
+                GetPropertyOrNull<T>(location)
+                    .MaybeSelect(a => predicate(a))
+                    .WithDefault(false);
         }
 
         public static void AddProperty(this Location location, Property property)

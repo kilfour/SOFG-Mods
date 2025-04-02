@@ -6,26 +6,9 @@ namespace Common
 {
     public static class LocationSettlementExtension
     {
-        // private T GetSubsOrDefault<T>(Location location, T defaultValue, Func<T> func)
-        // {
-        //     if (location == null) return defaultValue;
-        //     if (location.settlement == null) return defaultValue;
-        //     if (location.settlement.subs == null) return defaultValue;
-        // }
-
         public static T GetSubSettlementOrNull<T>(this Location location) where T : Subsettlement
         {
-            // ----------------------------------------------------
-            //Being very careful ;-)
-            if (location == null) return null;
-            if (location.settlement == null) return null;
-            if (location.settlement.subs == null) return null;
-            // --
-            return
-                location.settlement.subs
-                    .Select(a => a as T)
-                    .Where(a => a != null)
-                    .FirstOrDefault();
+            return location?.settlement?.subs?.OfType<T>().FirstOrDefault();
         }
 
         public static bool HasSubSettlement<T>(this Location location) where T : Subsettlement

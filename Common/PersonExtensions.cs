@@ -7,7 +7,7 @@ namespace Common
     {
         public static T GetTrait<T>(this Person person) where T : class
         {
-            return person.traits.FirstOrDefault(a => a is T) as T;
+            return person.traits.OfType<T>().FirstOrDefault();
         }
 
         public static bool HasTrait<T>(this Person person) where T : class

@@ -51,8 +51,9 @@ namespace TheBroken.Challenges
             var charge = unit.location.GetPropertyOrNull<Shard>().charge;
             var amount = ApplyShardMagnitudeToStat(charge, unit.getStatIntrigue());
             msgs?.Add(new ReasonMsg("Stat: Intrigue", amount));
-            return Math.Max(1, unit.getStatIntrigue());
+            return Math.Max(1, amount);
         }
+
         public static double ApplyShardMagnitudeToStat(double charge, double stat)
         {
             return charge * stat / 200; ;

@@ -1,7 +1,6 @@
 using Assets.Code;
 using UnityEngine;
 using Common;
-using TheBroken.Challenges;
 using TheBroken.Traits;
 
 namespace TheBroken
