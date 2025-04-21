@@ -26,6 +26,16 @@ namespace Common
             return HasSubSettlement<Sub_Farms>(location);
         }
 
+        public static bool HasCity(this Location location)
+        {
+            return HasSubSettlement<Sub_City>(location);
+        }
+
+        public static bool HasCoven(this Location location)
+        {
+            return HasSubSettlement<Sub_WitchCoven>(location);
+        }
+
         public static HolyOrder GetHolyOrderOrNull(this Location location)
         {
             var temple = GetSubSettlementOrNull<Sub_Temple>(location);

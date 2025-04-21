@@ -9,5 +9,10 @@ namespace Witching
         {
             map.overmind.agentsGeneric.Add(new WitchAbstract(map));
         }
+        public override void onModsInitiallyLoaded()
+        {
+            base.onModsInitiallyLoaded();
+            //Tags.setupTags(); // 
+        }
     }
 }

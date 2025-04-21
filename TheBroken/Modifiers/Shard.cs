@@ -1,18 +1,22 @@
 using Assets.Code;
 using UnityEngine;
 using Common;
-using TheBroken.Modifiers;
-using System;
 using System.Collections.Generic;
 using TheBroken.Challenges;
+using System.Linq;
 
-namespace TheBroken
+namespace TheBroken.Modifiers
 {
 
     public class Shard : Property
     {
         private const int threadingCooldownLength = 5;
         public int ThreadingCooldownRemaining;
+
+        private const int brokenSpawningCooldownLength = 5;
+        public int BrokenSpawningCooldownRemaining;
+        private const int maxNumberOfWanderingBroken = 5;
+
         public List<Challenge> challenges = new List<Challenge>();
 
         public Shard(Location location)
@@ -20,12 +24,12 @@ namespace TheBroken
         {
             charge = 10;
             ThreadingCooldownRemaining = threadingCooldownLength;
+            BrokenSpawningCooldownRemaining = 0;
             if (!location.HasSubSettlement<Sub_AncientRuins>())
                 challenges.Add(new Ch_LayLowWilderness(location));
             challenges.Add(new TheFracture(location));
             challenges.Add(new LiturgyOfYield(location));
             challenges.Add(new PreachTheKeeping(location));
-            challenges.Add(new Uprising(location));
             GrowTheShard();
         }
 
@@ -66,6 +70,7 @@ namespace TheBroken
         {
             GrowTheShard();
             ThreadTheNeedle();
+            SpawnWanderingBroken();
         }
 
         private void GrowTheShard()
@@ -90,12 +95,61 @@ namespace TheBroken
             if (charge < 50) return;
             if (location.IsFullyInfiltrated()) return;
             if (location.HasProperty<Threading>()) return;
-            ThreadingCooldownRemaining--;
-            if (ThreadingCooldownRemaining <= 0)
-            {
-                location.AddProperty(new Threading(location));
-                ThreadingCooldownRemaining = threadingCooldownLength;
-            }
+            location.AddProperty(new Threading(location));
+        }
+        private void SpawnWanderingBroken()
+        {
+            if (charge < 250) return;
+            BrokenSpawningCooldownRemaining--;
+            if (BrokenSpawningCooldownRemaining > 0) return;
+            BrokenSpawningCooldownRemaining = brokenSpawningCooldownLength;
+            var currentNumberOfWanderingBroken =
+                (from unit in map.units where unit is Broken select unit).Count();
+            if (currentNumberOfWanderingBroken >= maxNumberOfWanderingBroken) return;
+
+            var targetLocation = FindTargetLocation(location);
+            if (targetLocation == null) return;
+
+            charge -= 150;
+            Person p = new Person(map.soc_dark);
+            var broken = new Broken(location, map.soc_dark, p);
+            broken.location.units.Add(broken);
+            map.units.Add(broken);
+            broken.targetLocation = targetLocation;
+            broken.task = new Task_GoToLocation(targetLocation);
+
+        }
+
+        public static Location FindTargetLocation(Location location)
+        {
+            var splinterSearch =
+                from mapLocation in location.map.locations
+                where mapLocation.HasProperty<Splinter>()
+                let distance = location.map.getStepDist(location, mapLocation)
+                orderby distance
+                select new { location = mapLocation, distance };
+
+            var splinter = splinterSearch.FirstOrDefault();
+            if (splinter != null)
+                return splinter.location;
+
+            var result =
+                from mapLocation in location.map.locations
+                where IsPotentialShardLocation(mapLocation)
+                let distance = location.map.getStepDist(location, mapLocation)
+                let isInfiltrated = mapLocation.IsFullyInfiltrated()
+                orderby isInfiltrated, distance
+                select new { location = mapLocation, distance, isInfiltrated };
+            return result.FirstOrDefault()?.location;
+        }
+
+        private static bool IsPotentialShardLocation(Location potentialLocation)
+        {
+            if (!potentialLocation.HasFarms())
+                return false;
+            if (potentialLocation.HasProperty<Shard>())
+                return false;
+            return true;
         }
     }
 }

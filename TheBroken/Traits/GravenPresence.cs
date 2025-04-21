@@ -1,6 +1,6 @@
-using System;
 using Assets.Code;
 using Common;
+using TheBroken.Modifiers;
 
 namespace TheBroken.Traits
 {

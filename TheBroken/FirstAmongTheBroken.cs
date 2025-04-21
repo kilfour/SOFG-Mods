@@ -2,6 +2,8 @@ using Assets.Code;
 using UnityEngine;
 using Common;
 using TheBroken.Traits;
+using TheBroken.Modifiers;
+using TheBroken.Rituals;
 
 namespace TheBroken
 {
@@ -20,6 +22,7 @@ namespace TheBroken
             person.gold = Constants.Gold;
             person.receiveTrait(new GravenPresence());
             location.AddProperty(new Shard(location) { charge = 50 });
+            rituals.Add(new Uprising(location));
         }
 
         public override string getName()

@@ -1,13 +1,13 @@
-using System.Linq;
 using Assets.Code;
 using Common;
+using TheBroken.Modifiers;
 using UnityEngine;
 
 namespace TheBroken
 {
     public class Broken : UAEN
     {
-        public Location locationForNewShard;
+        public Location targetLocation;
 
         public Broken(Location location, Society society, Person person)
             : base(location, society, person)
@@ -24,21 +24,29 @@ namespace TheBroken
 
         public override void turnTickAI()
         {
-            if (locationForNewShard == null)
+            if (location.HasProperty<Splinter>())
+                return;
+
+            if (targetLocation == null)
             {
-                locationForNewShard = FindLocationForNewShard();
-                if (locationForNewShard == null)
+                targetLocation = Shard.FindTargetLocation(location);
+                if (targetLocation == null)
                 {
                     map.addUnifiedMessage(this, person.unit.location, "The Stone Holds Firm", getName() + " could not find a valid location to found a new Shard and has returned to his village.", "Broken Disbands", force: true);
                     disband(map, "Could not found a new Shard.");
                 }
             }
 
-            if (location == locationForNewShard)
+            if (location == targetLocation)
             {
                 if (location.HasProperty<Shard>())
                 {
-                    locationForNewShard = null;
+                    targetLocation = null;
+                    return;
+                }
+                if (!location.HasFarms())
+                {
+                    targetLocation = null;
                     return;
                 }
                 location.AddProperty(new Shard(location));
@@ -46,29 +54,8 @@ namespace TheBroken
                 disband(map, "Founded a new Shard.");
                 return;
             }
-            if (task == null && locationForNewShard != null)
-                task = new Task_GoToLocation(locationForNewShard);
-        }
-
-        private Location FindLocationForNewShard()
-        {
-            var result =
-                from mapLocation in map.locations
-                where IsPotentialLocation(mapLocation)
-                let distance = map.getStepDist(location, mapLocation)
-                let isInfiltrated = mapLocation.IsFullyInfiltrated()
-                orderby isInfiltrated, distance
-                select new { location = mapLocation, distance, isInfiltrated };
-            return result.FirstOrDefault()?.location;
-        }
-
-        private bool IsPotentialLocation(Location potentialLocation)
-        {
-            if (!potentialLocation.HasFarms())
-                return false;
-            if (potentialLocation.HasProperty<Shard>())
-                return false;
-            return true;
+            if (task == null && targetLocation != null)
+                task = new Task_GoToLocation(targetLocation);
         }
 
         public override bool definesName()

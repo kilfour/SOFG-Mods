@@ -66,7 +66,7 @@ namespace Witching.Rituals
             base.onImmediateBegin(witch);
         }
 
-        private static bool OtherWitchHasStartedAGathering(Witch witch, Unit unit)
+        private static bool OtherWitchHasStartedAGathering(Witch witch, Assets.Code.Unit unit)
         {
             return
                 unit is Witch otherWitch
@@ -106,12 +106,12 @@ namespace Witching.Rituals
             }
         }
 
-        private double GetPowerFromUnit(Witch witch, Unit unit)
+        private double GetPowerFromUnit(Witch witch, Assets.Code.Unit unit)
         {
             return GetPowerFromAcolyte(witch, unit) + GetPowerFromOtherWitch(witch, unit);
         }
 
-        private double GetPowerFromOtherWitch(Witch witch, Unit unit)
+        private double GetPowerFromOtherWitch(Witch witch, Assets.Code.Unit unit)
         {
             if (unit is Witch otherWitch && witch.location == otherWitch.location)
                 if (unit.task != null && unit.task is GeneratePower)
@@ -119,7 +119,7 @@ namespace Witching.Rituals
             return 0;
         }
 
-        private double GetPowerFromAcolyte(Witch witch, Unit unit)
+        private double GetPowerFromAcolyte(Witch witch, Assets.Code.Unit unit)
         {
             if (UnitIsAnAcolyte(witch, unit))
                 if (unit.task != null)
@@ -133,7 +133,7 @@ namespace Witching.Rituals
             return 0;
         }
 
-        private static bool UnitIsAnAcolyte(Witch witch, Unit unit)
+        private static bool UnitIsAnAcolyte(Witch witch, Assets.Code.Unit unit)
         {
             return (unit is UAA acolyte) && acolyte.order == witch.society;
         }

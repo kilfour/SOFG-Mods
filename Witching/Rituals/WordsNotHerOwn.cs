@@ -4,6 +4,7 @@ using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
 using Witching.Traits;
 using Common;
+using System.Linq;
 
 namespace Witching.Rituals
 {
@@ -73,6 +74,7 @@ namespace Witching.Rituals
         public override void complete(UA unit)
         {
             unit.location.GetHolyOrderOrNull().prophet = unit;
+            RitualComplete();
         }
     }
 }

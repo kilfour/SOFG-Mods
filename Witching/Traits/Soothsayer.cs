@@ -4,7 +4,10 @@ namespace Witching.Traits
 {
     public class Soothsayer : T_ChallengeBooster
     {
-        public Soothsayer() : base(Tags.RELIGION) { }
+        // int in ctor needed to avoid NRE during deserializing
+        // empty ctor gets called when loading and crashes further up the chain,
+        // because Tags.names is possibly not yet initialized
+        public Soothsayer(int irrelevant) : base(Tags.RELIGION) { }
 
         public override string getName()
         {

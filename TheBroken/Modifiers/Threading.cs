@@ -47,8 +47,9 @@ namespace TheBroken.Modifiers
                     location.settlement.subs
                         .FirstOrDefault(a => a.canBeInfiltrated() && !a.infiltrated);
                 if (subSettlement != null) subSettlement.infiltrated = true;
-                charge = 0;
-                map.addUnifiedMessage(location, location.map.soc_dark, "Stitched into the Whole", "They welcomed the silence. The Shard does not knock twice.", "The Threading Concludes", force: true);
+                //charge = 0;
+                location.RemoveProperty<Threading>();
+                map.addUnifiedMessage(location, null, "Stitched into the Whole", "They welcomed the silence. The Shard does not knock twice.", "The Threading Concludes", force: true);
             }
         }
     }

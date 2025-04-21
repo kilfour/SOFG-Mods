@@ -1,41 +1,40 @@
 using System;
 using System.Collections.Generic;
 using Assets.Code;
-
 using Common;
 using TheBroken.Modifiers;
 using UnityEngine;
 
-namespace TheBroken.Challenges
+namespace TheBroken.Rituals
 {
-    public class PreachTheKeeping : Challenge
+    public class Uprising : Ritual
     {
-        public PreachTheKeeping(Location location)
+        public Uprising(Location location)
             : base(location) { }
 
         public override string getName()
         {
-            return "The Keeping";
+            return "Uprising";
         }
 
         public override string getDesc()
         {
-            return "Causes the village to withold food from it's neighbours for 20 turns. Casting it when a Keeping is allready going on adds 20 more turns.";
+            return "Encourage The Broken to break down the cities walls. Only one Splinter per map.";
         }
 
         public override string getRestriction()
         {
-            return "Needs a farming village with a Shard present with atleast 50 magnitude.";
+            return "Can only be performed in a human city. Cast again to remove Splinter.";
         }
 
         public override string getCastFlavour()
         {
-            return "Let the grain stay where it was sown. Let the mouths beyond go quiet.";
+            return "From the quiet comes the spark. One rises, not to speak, but to spread.";
         }
 
         public override Sprite getSprite()
         {
-            return EventManager.getImg("the-broken.wheat-basket.png");
+            return EventManager.getImg("the-broken.uprising.png");
         }
 
         public override int isGoodTernary()
@@ -45,18 +44,18 @@ namespace TheBroken.Challenges
 
         public override challengeStat getChallengeType()
         {
-            return challengeStat.INTRIGUE;
+            return challengeStat.COMMAND;
         }
 
         public override double getProgressPerTurnInner(UA unit, List<ReasonMsg> msgs)
         {
-            msgs?.Add(new ReasonMsg("Stat: Intrigue", unit.getStatIntrigue()));
-            return Math.Max(1, unit.getStatIntrigue());
+            msgs?.Add(new ReasonMsg("Stat: Command", unit.getStatCommand()));
+            return Math.Max(1, unit.getStatCommand());
         }
 
         public override double getComplexity()
         {
-            return 30;
+            return 10;
         }
 
         public override int getCompletionMenace()
@@ -70,19 +69,22 @@ namespace TheBroken.Challenges
         }
         public override bool validFor(UA unit)
         {
-            var shard = unit.location.GetPropertyOrNull<Shard>();
-            if (shard == null) return false;
-            if (shard.charge < 50) return false;
+            if (!unit.location.HasCity()) return false;
             return true;
         }
 
         public override void complete(UA unit)
         {
-            var keeping = unit.location.GetPropertyOrNull<TheKeeping>();
-            if (keeping == null)
-                unit.location.AddProperty(new TheKeeping(unit.location));
-            else
-                keeping.charge += 20;
+            if (unit.location.HasProperty<Splinter>())
+            {
+                unit.location.RemoveProperty<Splinter>();
+                return;
+            }
+            foreach (var loc in unit.map.locations)
+            {
+                loc.RemoveProperty<Splinter>();
+            }
+            unit.location.AddProperty(new Splinter(unit.location));
         }
     }
 }

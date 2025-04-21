@@ -9,5 +9,8 @@
     - Added Repurpose the Dead : Consume a soul for a recruitement point
     - Witches can start Deep One Cults
     - Almost all rituals only show up when at a valid location.
+0.2.2
+    - Bug fix when loading from fresh app/game start.
+    - Bug fix : WordsNotHerOwn, power was not used up.
 
   

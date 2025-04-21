@@ -17,7 +17,7 @@ namespace Witching.Rituals
                 this.witch = witch;
             }
 
-            protected override bool UnitIsRightTypeOfTarget(Unit unit)
+            protected override bool UnitIsRightTypeOfTarget(Assets.Code.Unit unit)
             {
                 return unit is Witch;
             }

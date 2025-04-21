@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Assets.Code;
 using Common;
+using TheBroken.Modifiers;
 using UnityEngine;
 
 namespace TheBroken.Challenges
@@ -18,7 +19,7 @@ namespace TheBroken.Challenges
 
         public override string getDesc()
         {
-            return "Increases the magnitude of the Shard by 50.";
+            return "Increases the magnitude of the Shard by 75.";
         }
 
         public override string getRestriction()
@@ -64,7 +65,7 @@ namespace TheBroken.Challenges
 
         public override int getCompletionProfile()
         {
-            return 10;
+            return 5;
         }
         public override bool validFor(UA unit)
         {
@@ -77,7 +78,7 @@ namespace TheBroken.Challenges
         public override void complete(UA unit)
         {
             var shard = unit.location.GetPropertyOrNull<Shard>();
-            shard.charge += 50;
+            shard.charge += 75;
             if (shard.charge > 300)
                 shard.charge = 300;
         }

@@ -31,7 +31,7 @@ namespace Witching
             person.gold = Constants.Gold;
             var power = new WitchesPower(this);
             person.receiveTrait(new TruthSpeaker());
-            person.receiveTrait(new Soothsayer());
+            person.receiveTrait(new Soothsayer(0));
             person.receiveTrait(power);
             rituals.Add(new Gathering(location));
             rituals.Add(new WitchesStories(location, power));
