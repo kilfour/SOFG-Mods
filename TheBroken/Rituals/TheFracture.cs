@@ -1,40 +1,42 @@
 using System;
 using System.Collections.Generic;
 using Assets.Code;
-using Common;
-using TheBroken.Modifiers;
 using UnityEngine;
 
-namespace TheBroken.Challenges
+namespace TheBroken.Rituals
 {
-    public class Uprising : Challenge
+    public class TheFracture : Challenge
     {
-        public Uprising(Location location)
-            : base(location) { }
+        public FirstAmongTheBroken theFirst;
+        public TheFracture(FirstAmongTheBroken theFirst, Location location)
+            : base(location)
+        {
+            this.theFirst = theFirst;
+        }
 
         public override string getName()
         {
-            return "Uprising";
+            return "The Fracture";
         }
 
         public override string getDesc()
         {
-            return "Encourage this Shard to extend the influence of The Broken.";
+            return "Switches the broken from settlers to followers.";
         }
 
         public override string getRestriction()
         {
-            return "Needs a Shard to be present with atleast 100 magnitude, drains 100 magnitude.";
+            return "Can be performed anywhere, anytime.";
         }
 
         public override string getCastFlavour()
         {
-            return "From the quiet comes the spark. One rises, not to speak, but to spread.";
+            return "A village doesn't fall in a day. First comes the fracture. Then the rot. Then the worship.";
         }
 
         public override Sprite getSprite()
         {
-            return EventManager.getImg("the-broken.uprising.png");
+            return EventManager.getImg("the-broken.preach-the-fracture.png");
         }
 
         public override int isGoodTernary()
@@ -55,36 +57,26 @@ namespace TheBroken.Challenges
 
         public override double getComplexity()
         {
-            return 75;
+            return 10;
         }
 
         public override int getCompletionMenace()
         {
-            return 3;
+            return 0;
         }
 
         public override int getCompletionProfile()
         {
-            return 10;
+            return 3;
         }
         public override bool validFor(UA unit)
         {
-            var shard = unit.location.GetPropertyOrNull<Shard>();
-            if (shard == null) return false;
-            if (shard.charge < 100) return false;
             return true;
         }
 
         public override void complete(UA unit)
         {
-            var shard = unit.location.GetPropertyOrNull<Shard>();
-            shard.charge -= 100;
-            Person p = new Person(map.soc_dark);
-            var broken = new Broken(unit.location, map.soc_dark, p);
-            broken.location.units.Add(broken);
-            broken.targetLocation = Broken.FindTargetLocation(location);
-            broken.task = new Task_GoToLocation(broken.targetLocation);
-            map.units.Add(broken);
+            theFirst.LeadingFlock = !theFirst.LeadingFlock;
         }
     }
 }

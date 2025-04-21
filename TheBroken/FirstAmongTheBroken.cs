@@ -3,12 +3,17 @@ using UnityEngine;
 using Common;
 using TheBroken.Traits;
 using TheBroken.Modifiers;
+using System.Linq;
 using TheBroken.Rituals;
 
 namespace TheBroken
 {
     public class FirstAmongTheBroken : UAE
     {
+
+        public bool LeadingFlock;
+
+
         public FirstAmongTheBroken(Location location, Society society)
             : base(location, society)
         {
@@ -21,8 +26,9 @@ namespace TheBroken
             person.hasSoul = true;
             person.gold = Constants.Gold;
             person.receiveTrait(new GravenPresence());
-            location.AddProperty(new Shard(location) { charge = 50 });
-            rituals.Add(new Uprising(location));
+            location.AddProperty(new Shard(location) { charge = 150 });
+            rituals.Add(new TheFracture(this, location));
+            LeadingFlock = false;
         }
 
         public override string getName()
@@ -47,6 +53,15 @@ namespace TheBroken
         public override Sprite getPortraitForeground()
         {
             return EventManager.getImg("the-broken.first-among-the-broken.png");
+        }
+
+        public static FirstAmongTheBroken GetInstance(Map map)
+        {
+            return
+                (from unit in map.units
+                 where unit is FirstAmongTheBroken
+                 select unit as FirstAmongTheBroken)
+                    .FirstOrDefault();
         }
     }
 }

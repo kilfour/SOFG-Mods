@@ -31,11 +31,27 @@ namespace Common
             return HasSubSettlement<Sub_City>(location);
         }
 
+        public static bool HasLibrary(this Location location)
+        {
+            return HasSubSettlement<Sub_Library>(location);
+        }
+
+        public static bool HasMarket(this Location location)
+        {
+            return HasSubSettlement<Sub_Market>(location);
+        }
+
         public static bool HasCoven(this Location location)
         {
             return HasSubSettlement<Sub_WitchCoven>(location);
         }
-
+        public static Person GetRuler(this Location location)
+        {
+            if (location == null) return null;
+            var humanSettlement = location.settlement as SettlementHuman;
+            if (humanSettlement == null) return null;
+            return humanSettlement.ruler;
+        }
         public static HolyOrder GetHolyOrderOrNull(this Location location)
         {
             var temple = GetSubSettlementOrNull<Sub_Temple>(location);

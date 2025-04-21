@@ -22,12 +22,11 @@ namespace TheBroken.Modifiers
         public Shard(Location location)
             : base(location)
         {
-            charge = 10;
+            charge = 50;
             ThreadingCooldownRemaining = threadingCooldownLength;
             BrokenSpawningCooldownRemaining = 0;
             if (!location.HasSubSettlement<Sub_AncientRuins>())
                 challenges.Add(new Ch_LayLowWilderness(location));
-            challenges.Add(new TheFracture(location));
             challenges.Add(new LiturgyOfYield(location));
             challenges.Add(new PreachTheKeeping(location));
             GrowTheShard();
@@ -92,12 +91,12 @@ namespace TheBroken.Modifiers
 
         private void ThreadTheNeedle()
         {
-            if (charge < 50) return;
             if (location.IsFullyInfiltrated()) return;
             if (location.HasProperty<Threading>()) return;
             location.AddProperty(new Threading(location));
         }
-        private void SpawnWanderingBroken()
+
+        public void SpawnWanderingBroken()
         {
             if (charge < 250) return;
             BrokenSpawningCooldownRemaining--;
@@ -107,49 +106,19 @@ namespace TheBroken.Modifiers
                 (from unit in map.units where unit is Broken select unit).Count();
             if (currentNumberOfWanderingBroken >= maxNumberOfWanderingBroken) return;
 
-            var targetLocation = FindTargetLocation(location);
+
+            var targetLocation = Broken.FindTargetLocation(location);
             if (targetLocation == null) return;
 
-            charge -= 150;
             Person p = new Person(map.soc_dark);
             var broken = new Broken(location, map.soc_dark, p);
-            broken.location.units.Add(broken);
+            location.units.Add(broken);
             map.units.Add(broken);
             broken.targetLocation = targetLocation;
             broken.task = new Task_GoToLocation(targetLocation);
 
-        }
+            charge -= 100;
 
-        public static Location FindTargetLocation(Location location)
-        {
-            var splinterSearch =
-                from mapLocation in location.map.locations
-                where mapLocation.HasProperty<Splinter>()
-                let distance = location.map.getStepDist(location, mapLocation)
-                orderby distance
-                select new { location = mapLocation, distance };
-
-            var splinter = splinterSearch.FirstOrDefault();
-            if (splinter != null)
-                return splinter.location;
-
-            var result =
-                from mapLocation in location.map.locations
-                where IsPotentialShardLocation(mapLocation)
-                let distance = location.map.getStepDist(location, mapLocation)
-                let isInfiltrated = mapLocation.IsFullyInfiltrated()
-                orderby isInfiltrated, distance
-                select new { location = mapLocation, distance, isInfiltrated };
-            return result.FirstOrDefault()?.location;
-        }
-
-        private static bool IsPotentialShardLocation(Location potentialLocation)
-        {
-            if (!potentialLocation.HasFarms())
-                return false;
-            if (potentialLocation.HasProperty<Shard>())
-                return false;
-            return true;
         }
     }
 }

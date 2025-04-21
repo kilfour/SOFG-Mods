@@ -1,3 +1,4 @@
+using System.Linq;
 using Assets.Code;
 using Common;
 using TheBroken.Modifiers;
@@ -8,10 +9,15 @@ namespace TheBroken
     public class Broken : UAEN
     {
         public Location targetLocation;
+        public FirstAmongTheBroken theFirst;
 
-        public Broken(Location location, Society society, Person person)
+        public Broken(
+            Location location,
+            Society society,
+            Person person)
             : base(location, society, person)
         {
+            theFirst = FirstAmongTheBroken.GetInstance(location.map);
             person.shadow = 1.0;
             person.alert_aware = true;
             person.alert_halfShadow = true;
@@ -24,16 +30,21 @@ namespace TheBroken
 
         public override void turnTickAI()
         {
-            if (location.HasProperty<Splinter>())
+            if (theFirst.LeadingFlock)
+            {
+                FollowTheFirst();
                 return;
+            }
 
             if (targetLocation == null)
             {
-                targetLocation = Shard.FindTargetLocation(location);
+                targetLocation = FindTargetLocation(location);
                 if (targetLocation == null)
                 {
-                    map.addUnifiedMessage(this, person.unit.location, "The Stone Holds Firm", getName() + " could not find a valid location to found a new Shard and has returned to his village.", "Broken Disbands", force: true);
-                    disband(map, "Could not found a new Shard.");
+                    FollowTheFirst();
+                    return;
+                    // map.addUnifiedMessage(this, person.unit.location, "The Stone Holds Firm", getName() + " could not find a valid location to found a new Shard and has returned to his village.", "Broken Disbands", force: true);
+                    // disband(map, "Could not found a new Shard.");
                 }
             }
 
@@ -58,6 +69,12 @@ namespace TheBroken
                 task = new Task_GoToLocation(targetLocation);
         }
 
+        private void FollowTheFirst()
+        {
+            if (location == theFirst.location)
+                return;
+            task = new Task_GoToLocation(theFirst.location);
+        }
         public override bool definesName()
         {
             return true;
@@ -71,6 +88,27 @@ namespace TheBroken
         public override Sprite getPortraitForeground()
         {
             return EventManager.getImg("the-broken.cultist-1.png");
+        }
+
+        public static Location FindTargetLocation(Location location)
+        {
+            var result =
+                from mapLocation in location.map.locations
+                where IsPotentialShardLocation(mapLocation)
+                let distance = location.map.getStepDist(location, mapLocation)
+                let isInfiltrated = mapLocation.IsFullyInfiltrated()
+                orderby isInfiltrated, distance
+                select new { location = mapLocation, distance, isInfiltrated };
+            return result.FirstOrDefault()?.location;
+        }
+
+        private static bool IsPotentialShardLocation(Location potentialLocation)
+        {
+            if (!potentialLocation.HasFarms())
+                return false;
+            if (potentialLocation.HasProperty<Shard>())
+                return false;
+            return true;
         }
     }
 }
