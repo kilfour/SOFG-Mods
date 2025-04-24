@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
@@ -8,7 +9,7 @@
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Witching\Witching.csproj" />
+    <ProjectReference Include="..\ShapeShifter\ShapeShifter.csproj" />
   </ItemGroup>
   <ItemGroup>
       <Reference Include="Assembly-CSharp">
@@ -18,4 +19,5 @@
           <HintPath>../Libs/Augments.dll</HintPath>
       </Reference>
   </ItemGroup>
+
 </Project>

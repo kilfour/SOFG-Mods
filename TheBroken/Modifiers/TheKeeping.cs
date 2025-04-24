@@ -1,9 +1,12 @@
 using System;
 using Assets.Code;
+using Common;
 using UnityEngine;
 
 namespace TheBroken.Modifiers
 {
+    [LegacyDoc(Order = "1.2.2", Caption = "The Keeping", Content =
+@"Villages under The Keeping deny supplies to outsiders while sustaining their own through sacrificial devotion.")]
     public class TheKeeping : Property
     {
         public TheKeeping(Location loc)

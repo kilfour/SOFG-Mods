@@ -1,83 +1,78 @@
-This mod introduces a unique agent of spiritual subversion: **The First Among the Broken**.  
-A figure of reverent menace, they inspire cultic devotion and unravel societies from within using powerful modifiers and insidious challenges.  
+# The Broken
+
+This mod introduces a unique agent: **The First Among the Broken**.  
 
 They can only be recruited on a location with Farms.  
-Upon entering the frey, the set up a 'Shard' at their starting location which shows up as a modifier.
+Upon entering the frey, the set up a 'Shard' at their starting location which shows up as a modifier.  
+The First mainly focusses on automatic infiltration of farming villages and creating unrest.
 
----
 
-## Starting Stats ##
+## Starting Stats
 
 * Might: 1
-* Lore: 1
-* Intrigue: 3
-* Command: 3
-* Gold: 0
+* Lore: 3
+* Intrigue: 2
+* Command: 2
+* Gold: 0  
+  
+Gets extra skill point upon creation.
 
-Gets extra skill point upon creation
+## Modifiers
 
----
+### Shard
 
-## Modifiers ##
-
-### Shard ###
 Represents the cult's embedded presence in a society.  
-The Shard grows in magnitude over time, granting access to increasingly powerful actions.  
-
+Spawns a Broken (which looks for a new village to establish a new Shard). Prefers uninfiltrated, close by locations.  
+If the First's Unique trait is Graven Flock instead of Graven Presence they follow the first around instead.  
+Shard magnitude needs to be greater than 250.  
+Consumes 200 charge.  
 Any village containing a Shard gives your agent an opportunity to perform a Lay Low challenge.  
 
----
+### The Keeping
 
-### The Keeping ###
 Villages under The Keeping deny supplies to outsiders while sustaining their own through sacrificial devotion.
 
----
+### Threading
 
-### Threading ###
-This modifier appears once in a while if there are uninfiltrated POI in the settlement.    
+This modifier appears once in a while if there are uninfiltrated POI in a settlement with a Shard.    
 Upon completion a POI is infiltrated.
 
----
+## Challenges
 
-## Challenges ##
-These can be done by any agent, needs a Shard to be present ofcourse.
+These can be done by any agent, needs a Shard to be present.
 
-### The Fracture ###
+### The Fracture
 
-Increases the magnitude of the Shard by 50.  
+Increases the magnitude of the Shard by 75.  
 
----
-
-### Preach the Keeping ###
+### Preach The Keeping
 
 Builds the **The Keeping** modifier, which causes the village to withhold food from outsiders.  
-Shard magnitude needs to be greater than 50.
-
----
-
-### Liturgy of Yield ###
-Collects 50 gold from the Shard.  
-Based on intrigue, but faster with more Shard magnitude.  
-Shard magnitude needs to be greater than 50. 
+Shard charge needs to be greater than 50.  
 Comsumes 50 charge.
 
----
+### Liturgy Of Yield
 
-### Uprising ###
+Collects 50 gold from the Shard.  
+Based on intrigue, but faster with more Shard magnitude.  
+Shard magnitude needs to be greater than 50.  
+Comsumes 50 charge.
 
-Spawns a Broken which looks for a new village to establish a new Shard. Prefers uninfiltrated, close by locations.  
-Shard magnitude needs to be greater than 100.   
-Consumes 100 charge.
+## Unique Trait
 
----
-
-## Unique Trait ##
-
-### Graven Presence ###
+### Graven Presence/Flock
 
 A passive ability that when in a village with a shard:
 - Grows the Shard by 2 per turn.
 - Gives the agent 1 gold.
-- Spreads 1 shadow.
+- Spreads 1 shadow.  
+Additionally for each Broken follower in the same location as The First: 
+- Spreads an additional 0.25 shadow.
+- When in a City creates unrest equal to the number of followers of The First.
 
+#### Uprising
+
+With this one turn ritual, which functions as a toggle between Graven Presence and Graven Flock, The First can control the Broken.
+When the trait says Graven Presence : The Broken look for new farming villages to infiltrate.  
+When the trait says Graven Flock : The Broken follow The First around.
 

@@ -8,6 +8,13 @@ using TheBroken.Rituals;
 
 namespace TheBroken
 {
+    [LegacyDoc(Order = "1", Caption = "The Broken", Content =
+@"This mod introduces a unique agent: **The First Among the Broken**.  
+
+They can only be recruited on a location with Farms.  
+Upon entering the frey, the set up a 'Shard' at their starting location which shows up as a modifier.  
+The First mainly focusses on automatic infiltration of farming villages and creating unrest.
+")]
     public class FirstAmongTheBroken : UAE
     {
 

@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace TheBroken.Challenges
 {
+    [LegacyDoc(Order = "1.3.1", Caption = "The Fracture", Content =
+@"Increases the magnitude of the Shard by 75.  ")]
     public class TheFracture : Challenge
     {
         public TheFracture(Location location)

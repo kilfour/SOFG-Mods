@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace TheBroken.Modifiers
 {
+    [LegacyDoc(Order = "1.2.3", Caption = "Threading", Content =
+@"This modifier appears once in a while if there are uninfiltrated POI in a settlement with a Shard.    
+Upon completion a POI is infiltrated.")]
     public class Threading : Property
     {
         public Threading(Location loc)

@@ -8,6 +8,10 @@ using UnityEngine;
 
 namespace TheBroken.Challenges
 {
+    [LegacyDoc(Order = "1.3.2", Caption = "Preach The Keeping", Content =
+@"Builds the **The Keeping** modifier, which causes the village to withhold food from outsiders.  
+Shard charge needs to be greater than 50.  
+Comsumes 50 charge.")]
     public class PreachTheKeeping : Challenge
     {
         public PreachTheKeeping(Location location)

@@ -7,6 +7,11 @@ using UnityEngine;
 
 namespace TheBroken.Challenges
 {
+    [LegacyDoc(Order = "1.3.3", Caption = "Liturgy Of Yield", Content =
+@"Collects 50 gold from the Shard.  
+Based on intrigue, but faster with more Shard magnitude.  
+Shard magnitude needs to be greater than 50.  
+Comsumes 50 charge.")]
     public class LiturgyOfYield : Challenge
     {
         public LiturgyOfYield(Location location)

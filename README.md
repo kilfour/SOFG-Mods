@@ -12,4 +12,4 @@ Only one here right now. Working on the next one ;-).
 
 ### [The Broken](https://github.com/kilfour/SOFG-Mods/wiki/TheBroken)  ###
 
-[![Version](https://img.shields.io/badge/Version-v0.1.0-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/TheBrokenv0.1.0)
+[![Version](https://img.shields.io/badge/Version-v0.1.1-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/TheBrokenv0.1.1)

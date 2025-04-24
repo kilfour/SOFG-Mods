@@ -7,7 +7,13 @@ using System.Linq;
 
 namespace TheBroken.Modifiers
 {
-
+    [LegacyDoc(Order = "1.2.1", Caption = "Shard", Content =
+@"Represents the cult's embedded presence in a society.  
+Spawns a Broken (which looks for a new village to establish a new Shard). Prefers uninfiltrated, close by locations.  
+If the First's Unique trait is Graven Flock instead of Graven Presence they follow the first around instead.  
+Shard magnitude needs to be greater than 250.  
+Consumes 200 charge.  
+Any village containing a Shard gives your agent an opportunity to perform a Lay Low challenge.  ")]
     public class Shard : Property
     {
         private const int threadingCooldownLength = 5;

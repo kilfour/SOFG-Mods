@@ -5,6 +5,14 @@ using System.Linq;
 
 namespace TheBroken.Traits
 {
+    [LegacyDoc(Order = "1.4.1", Caption = "Graven Presence/Flock", Content =
+@"A passive ability that when in a village with a shard:
+- Grows the Shard by 2 per turn.
+- Gives the agent 1 gold.
+- Spreads 1 shadow.  
+Additionally for each Broken follower in the same location as The First: 
+- Spreads an additional 0.25 shadow.
+- When in a City creates unrest equal to the number of followers of The First.")]
     public class GravenPresence : Trait
     {
         public FirstAmongTheBroken theFirst;
@@ -31,18 +39,6 @@ namespace TheBroken.Traits
 
             var location = person.unit.location;
             var followers = GetNumberOfFollowers();
-            // GET RULER'S MONEY THROUGH MARKET
-            // if (location.HasMarket())
-            // {
-            //     var ruler = location.GetRuler();
-            //     if (ruler != null)
-            //     {
-            //         var syphoned = Math.Min(1 + (followers * 2), ruler.gold);
-            //         ruler.gold -= syphoned;
-            //         person.gold += syphoned;
-            //     }
-            // }
-            // -- 
 
             // Unrest in Human city
             if (followers > 0 && location.HasCity())

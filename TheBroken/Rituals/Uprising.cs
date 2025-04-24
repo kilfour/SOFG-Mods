@@ -1,9 +1,14 @@
 using System.Collections.Generic;
 using Assets.Code;
+using Common;
 using UnityEngine;
 
 namespace TheBroken.Rituals
 {
+    [LegacyDoc(Order = "1.4.1.1", Caption = "Uprising", Content =
+@"With this one turn ritual, which functions as a toggle between Graven Presence and Graven Flock, The First can control the Broken.
+When the trait says Graven Presence : The Broken look for new farming villages to infiltrate.  
+When the trait says Graven Flock : The Broken follow The First around.")]
     public class Uprising : Ritual
     {
         public FirstAmongTheBroken theFirst;

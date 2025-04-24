@@ -1,13 +1,13 @@
 ﻿using Augments.Reflect;
 using Common;
-using Witching;
 using Xunit;
 using System.Linq;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using TheBroken;
 
-namespace WitchingDoc;
+namespace TheBrokenDoc;
 
 public class DocToFile
 {
@@ -15,19 +15,20 @@ public class DocToFile
     public void Create()
     {
         var typeattributes =
-            FromAssembly.Containing<Witch>()
+            FromAssembly.Containing<FirstAmongTheBroken>()
                 .WhereHasAttribute<LegacyDocAttribute>()
                 .SelectMany(t => t.GetCustomAttributes(typeof(LegacyDocAttribute), false));
 
         var methodattributes =
-            FromAssembly.Containing<Witch>()
+            FromAssembly.Containing<FirstAmongTheBroken>()
                 .MethodsWithAttribute<LegacyDocAttribute>()
                 .SelectMany(t => t.GetCustomAttributes(typeof(LegacyDocAttribute), false));
 
         var additionalAttributes =
             new List<LegacyDocAttribute>
-                { new() { Order = "1.2", Caption = "Traits" }
-                , new() { Order = "1.3", Caption = "Rituals" } };
+                { new() { Order = "1.2", Caption = "Modifiers" }
+                , new() { Order = "1.3", Caption = "Challenges", Content = "These can be done by any agent, needs a Shard to be present." }
+                , new() { Order = "1.4", Caption = "Unique Trait" } };
 
         var attributes =
             typeattributes
@@ -54,7 +55,7 @@ public class DocToFile
                 sb.AppendLine();
             }
 
-            using (var writer = new StreamWriter("../../../../Doc/Witching.md", false))
+            using (var writer = new StreamWriter("../../../../Doc/TheBroken.md", false))
                 writer.Write(sb.ToString());
         }
     }
