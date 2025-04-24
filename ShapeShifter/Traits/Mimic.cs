@@ -1,4 +1,5 @@
 using Assets.Code;
+using Common;
 using ShapeShifter.Rituals;
 
 namespace ShapeShifter.Traits
@@ -31,7 +32,7 @@ namespace ShapeShifter.Traits
             if (victim != null)
             {
                 shapeShifter.addProfile(1);
-                shapeShifter.addMenace(0.5);
+                shapeShifter.addMenace(2);
                 if (victim.unit.location == shapeShifter.location)
                     victim.sanity--;
             }
@@ -40,7 +41,7 @@ namespace ShapeShifter.Traits
                 shapeShifter.addProfile(-2);
                 shapeShifter.addMenace(-1);
             }
-            UpdateRituals();
+            UpdateRituals(shapeShifter.location);
         }
 
         public override int getMightChange()
@@ -76,26 +77,29 @@ namespace ShapeShifter.Traits
 
         public override void onAcquire(Person person)
         {
-            UpdateRituals();
+            UpdateRituals(shapeShifter.location);
         }
 
         public override void onMove(Location current, Location destination)
         {
             base.onMove(current, destination);
-            UpdateRituals();
+            UpdateRituals(destination);
         }
 
-        public void UpdateRituals()
+        public void UpdateRituals(Location location)
         {
             shapeShifter.rituals.Clear();
-            foreach (var unit in shapeShifter.location.units)
+            foreach (var unit in location.units)
             {
                 MaybeAddRitualToUnit(unit);
             }
             if (victim != null)
-                shapeShifter.rituals.Add(new Revert(shapeShifter.location));
+                shapeShifter.rituals.Add(new Revert(location));
             else
-                shapeShifter.rituals.Add(new ShadowTendrils(shapeShifter.location));
+                shapeShifter.rituals.Add(new ShadowTendrils(location));
+
+            if (location.PropertyIs<Pr_FallenHuman>(a => a.charge > 0.0))
+                shapeShifter.rituals.Add(new RepurposeTheDead(location));
         }
 
         private void MaybeAddRitualToUnit(Unit unit)

@@ -7,6 +7,11 @@ using Common;
 
 namespace Witching.Rituals
 {
+    [LegacyDoc(Order = "1.3.3", Caption = "The Witch's Hunger", Content =
+@"This ritual allows the witch to inflict the Hunger on Heroes and Rulers.
+In contrast to the similar blood magic ritual it can not be cast on a person already infected with the hunger.  
+
+Costs 25 power.")]
     public class TheWitchesHunger : WitchesMobileRitual
     {
         public class RitualUpdater : RitualUpdater<TheWitchesHunger>

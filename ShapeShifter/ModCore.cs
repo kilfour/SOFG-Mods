@@ -7,9 +7,12 @@ namespace ShapeShifter
 {
     public class ModCore : ModKernel
     {
+
         public override void beforeMapGen(Map map)
         {
             map.overmind.agentsGeneric.Add(new ShapeShifterAbstract(map));
+            ShapeShifter.NumberAllowed = 1;
+            ShapeShifter.CurrentNumberOfShapeShifters = 0;
         }
 
         public override void onModsInitiallyLoaded()

@@ -8,6 +8,11 @@ using Common;
 
 namespace Witching.Rituals
 {
+    [LegacyDoc(Order = "1.3.8", Caption = "Start Deep Cult", Content =
+@"Same as the one for corrupted heroes.
+Only available in a location with a Malign catch.  
+  
+Costs 30 Power.")]
     public class StartDeepCult : WitchesPoweredRitual
     {
         public class RitualUpdater : LocationRitualUpdater<StartDeepCult>

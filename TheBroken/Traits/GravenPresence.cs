@@ -2,7 +2,6 @@ using Assets.Code;
 using Common;
 using TheBroken.Modifiers;
 using System.Linq;
-using System;
 
 namespace TheBroken.Traits
 {

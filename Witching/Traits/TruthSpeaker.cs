@@ -1,8 +1,13 @@
 using Assets.Code;
+using Common;
 using Witching.Rituals;
 
 namespace Witching.Traits
 {
+    [LegacyDoc(Order = "1.2.3", Caption = "Truth Speaker", Content =
+@"This trait allows the witch to change it's home location (but not it's society) to the current one, and adds a funding action to the list of local settlement action.  
+It also improves the relation with the settlement's ruler.  
+Can not be performed if a funding action for this witch already exists and if done a second time in another location, the first funding action will dissapear.")]
     public class TruthSpeaker : Trait
     {
         public Person Target;

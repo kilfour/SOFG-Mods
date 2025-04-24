@@ -1,7 +1,5 @@
-using System.Linq;
 using Assets.Code;
 using UnityEngine;
-using Common;
 using Common.ImageSelector;
 
 namespace ShapeShifter
@@ -14,7 +12,7 @@ namespace ShapeShifter
         public override bool validTarget(Location location)
         {
             if (AgentCapReached()) return false;
-            return true;
+            return ShapeShifter.CurrentNumberOfShapeShifters < ShapeShifter.NumberAllowed;
         }
 
         private bool AgentCapReached()
@@ -24,6 +22,7 @@ namespace ShapeShifter
 
         public override void createAgent(Location target)
         {
+            ShapeShifter.CurrentNumberOfShapeShifters++;
             var uA = new ShapeShifter(target, GetRandomImageIndex.For<ShapeShifter>(4, target.map));
             uA.person.stat_might = getStatMight();
             uA.person.stat_lore = getStatLore();
@@ -56,6 +55,11 @@ namespace ShapeShifter
         public override string getFlavour()
         {
             return "It walks in the skin of heroes, wears their glories, commits their crimes.";
+        }
+
+        public override string getRestrictions()
+        {
+            return $"Can have a maximum of {ShapeShifter.NumberAllowed} shifters.";
         }
 
         public override int getStatMight()

@@ -6,6 +6,11 @@ using Common;
 
 namespace Witching.Rituals
 {
+    [LegacyDoc(Order = "1.3.1", Caption = "Coven's Gathering", Content =
+@"Gather the coven's acolytes. Once they arrive they will start generating power for the casting witch. 
+Other witches can also join by casting the same ritual in the same location, contributing double the power. 
+Unrest will be consumed and transformed into maddness. 
+The ritual ends when there is no more unrest.")]
     public class Gathering : Ritual
     {
         public Gathering(Location location)

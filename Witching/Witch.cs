@@ -9,6 +9,10 @@ using Common.ImageSelector;
 
 namespace Witching
 {
+    [LegacyDoc(Order = "1", Caption = "Witching", Content =
+@"This contains one generic agent: 'A Witch'.  
+They can only be recruited on a location with a Witches Coven.  
+Aside from being an agent of the dark, they are also acolytes of their coven and thus can perform holy challenges.")]
     public class Witch : UAE, IHaveMultipleImages
     {
         public int ImageIndex { get; set; }
@@ -37,7 +41,6 @@ namespace Witching
             rituals.Add(new Gathering(location));
             rituals.Add(new WitchesStories(location, power));
             AddWitchesRitual(new Empower.RitualUpdater(this));
-            AddWitchesRitual(new RepurposeTheDead.RitualUpdater(this));
             AddWitchesRitual(new TheWitchesPromise.RitualUpdater(this));
             AddWitchesRitual(new WordsNotHerOwn.RitualUpdater());
             AddWitchesRitual(new StartDeepCult.RitualUpdater());

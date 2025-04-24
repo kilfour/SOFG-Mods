@@ -9,6 +9,8 @@ namespace ShapeShifter
     public class ShapeShifter : UAE, IHaveMultipleImages
     {
         public int ImageIndex { get; set; }
+        public static int NumberAllowed = 1;
+        public static int CurrentNumberOfShapeShifters = 0;
 
         public ShapeShifter(Location location, int imageIndex)
             : base(location, location.map.soc_dark)
@@ -32,7 +34,7 @@ namespace ShapeShifter
             {
                 return person.overrideName;
             }
-            return "Shapeshifter";
+            return "Shape " + person.firstName;
         }
 
         public override bool isCommandable()
@@ -51,6 +53,14 @@ namespace ShapeShifter
             if (mimicTrait.victim == null)
                 return EventManager.getImg("shape-shifter.shape-shifter-" + ImageIndex.ToString() + ".png");
             return mimicTrait.victim.getPortrait();
+        }
+
+        public override void die(Map map, string v, Person killer = null)
+        {
+            CurrentNumberOfShapeShifters--;
+            location.AddShadow(0.25);
+            location.getNeighbours().ForEach(a => a.AddShadow(0.1));
+            base.die(map, v, killer);
         }
     }
 }

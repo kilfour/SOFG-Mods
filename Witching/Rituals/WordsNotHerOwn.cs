@@ -4,10 +4,15 @@ using Witching.Rituals.Bolts;
 using Witching.Rituals.Bolts.Nuts;
 using Witching.Traits;
 using Common;
-using System.Linq;
 
 namespace Witching.Rituals
 {
+    [LegacyDoc(Order = "1.3.7", Caption = "Words Not Her Own", Content =
+@"Petition the order, in order to become it's vessel, it's prophet.  
+The ritual needs to be started at a coven or temple and the witch can not already be a prophet.  
+  
+Costs 10 Power.
+")]
     public class WordsNotHerOwn : WitchesPoweredRitual
     {
         public class RitualUpdater : LocationRitualUpdater<WordsNotHerOwn>

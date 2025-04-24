@@ -1,7 +1,10 @@
 using Assets.Code;
+using Common;
 
 namespace Witching.Traits
 {
+    [LegacyDoc(Order = "1.2.2", Caption = "Soothsayer", Content =
+@"The witch gains three extra progress per turn when performing challenges relating to Religion.")]
     public class Soothsayer : T_ChallengeBooster
     {
         // int in ctor needed to avoid NRE during deserializing

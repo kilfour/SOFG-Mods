@@ -9,6 +9,11 @@ using Witching.Traits;
 
 namespace Witching.Rituals
 {
+    [LegacyDoc(Order = "1.3.4", Caption = "The Witch's Promise", Content =
+@"This ritual is the witch's version of the death mages vampire creation ritual. 
+Requires a soul infected with the Hunger.    
+
+Costs 100 power.")]
     public class TheWitchesPromise : WitchesPoweredRitual
     {
         public Witch witch;

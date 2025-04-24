@@ -7,6 +7,8 @@ using Common;
 
 namespace Witching.Rituals
 {
+    [LegacyDoc(Order = "1.3.6", Caption = "The Witch's Stories", Content =
+@"When in a human settlement disperse all your power to spread nightmare's to the population, raising madness by twice your power.")]
     public class WitchesStories : WitchesPoweredRitual
     {
         public class RitualUpdater : LocationRitualUpdater<WitchesStories>

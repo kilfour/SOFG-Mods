@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Code;
+using Common;
 using Witching.Rituals;
 
 namespace Witching.Traits
 {
+    [LegacyDoc(Order = "1.2.1", Caption = "Witches Power", Content =
+@"All witches have this trait, which starts with 0 power and can be charged by leading a coven's gathering (see below).  
+All of the Witch's ritual consume some of this power.")]
     public class WitchesPower : Trait
     {
         public Witch witch;

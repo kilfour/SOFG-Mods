@@ -6,6 +6,9 @@ using Common;
 
 namespace Witching.Rituals
 {
+    [LegacyDoc(Order = "1.3.2", Caption = "Empower", Content =
+@"Whenever two or more witches share the same location,
+they get access to this ritual which allows one witch to transfer all of it's power to another one.")]
     public class Empower : WitchesMobileRitual
     {
         public class RitualUpdater : RitualUpdater<Empower>
