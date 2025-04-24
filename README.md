@@ -8,7 +8,7 @@ Only one here right now. Working on the next one ;-).
 
 ### [Witching](https://github.com/kilfour/SOFG-Mods/wiki/Witching)  ###
 
-[![Version](https://img.shields.io/badge/Version-v0.2.1-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/v0.2.1)
+[![Version](https://img.shields.io/badge/Version-0.2.2-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/Witching-0.2.1)
 
 ### [The Broken](https://github.com/kilfour/SOFG-Mods/wiki/TheBroken)  ###
 

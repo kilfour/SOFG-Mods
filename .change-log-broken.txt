@@ -1,4 +1,0 @@
-0.1 : initial release
-0.. : Broken spawn automatically, Uprising now places a splinter modifier in a city attracting the broken and raising unrest
-
-  
