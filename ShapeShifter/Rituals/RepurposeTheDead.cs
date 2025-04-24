@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 namespace ShapeShifter.Rituals
 {
+    [LegacyDoc(Order = "1.2.4", Caption = "Repurpose The Dead", Content =
+@"Claim a fallen soul for your own. Increases you recruitement points and number of allowed shapeshifters by 1.")]
     public class RepurposeTheDead : Ritual
     {
         public RepurposeTheDead(Location location)

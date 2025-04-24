@@ -4,6 +4,13 @@ using ShapeShifter.Rituals;
 
 namespace ShapeShifter.Traits
 {
+    [LegacyDoc(Order = "1.3", Caption = "Mimic Trait", Content =
+@"The Shapeshifter's signature trait.  
+If the shifter is in original form, she loses 2 profile and 1 menace per turn.  
+If, however the shifter is mimicking, she:
+- gains 1 profile and 2 menace per turn.
+- when in the same location as the original hero, that hero loses 1 sanity per turn.
+- when in the same location as the original hero's home location, security is reduced by 3.")]
     public class Mimic : Trait
     {
         public ShapeShifter shapeShifter;

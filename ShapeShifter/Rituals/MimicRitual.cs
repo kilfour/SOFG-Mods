@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace ShapeShifter.Rituals
 {
+    [LegacyDoc(Order = "1.2.1", Caption = "Mimic Ritual", Content =
+@"The Shapeshifter's signature ability.  
+Targets an enemy hero and upon completion the shifter adds the hero's stats to it's own.  
+As long as it maintains the shifted form all profile and menace gains from any challenge performed is applied to the originally targeted hero.")]
     public class MimicRitual : Ritual
     {
         public ShapeShifter shapeShifter;

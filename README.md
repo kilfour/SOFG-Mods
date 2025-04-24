@@ -13,3 +13,7 @@ Only one here right now. Working on the next one ;-).
 ### [The Broken](https://github.com/kilfour/SOFG-Mods/wiki/TheBroken)  ###
 
 [![Version](https://img.shields.io/badge/Version-v0.1.1-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/TheBrokenv0.1.1)
+
+### [Shapeshifter](https://github.com/kilfour/SOFG-Mods/wiki/ShapeShifter)  ###
+
+[![Version](https://img.shields.io/badge/Version-v0.0.1-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/ShapeShifterv0.0.1)

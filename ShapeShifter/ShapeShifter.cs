@@ -6,6 +6,13 @@ using UnityEngine;
 
 namespace ShapeShifter
 {
+    [LegacyDoc(Order = "1", Caption = "Shapeshifter", Content =
+@"This contains one generic agent: 'A Shapeshifter'.  
+Mimics a living hero. While in disguise, uses that hero's stats. 
+Profile and Menace from actions are transferred to the real hero. Can revert at will.  
+Initially you can only have one of these, but there are ways to raise this limit.  
+
+Upon death adds 25 shadow to it's location and 10 shadow to the neighbouring locations.")]
     public class ShapeShifter : UAE, IHaveMultipleImages
     {
         public int ImageIndex { get; set; }

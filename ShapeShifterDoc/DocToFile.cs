@@ -25,9 +25,7 @@ public class DocToFile
 
         var additionalAttributes =
             new List<LegacyDocAttribute>
-                { new() { Order = "1.2", Caption = "Modifiers" }
-                , new() { Order = "1.3", Caption = "Challenges", Content = "These can be done by any agent, needs a Shard to be present." }
-                , new() { Order = "1.4", Caption = "Unique Trait" } };
+                { new() { Order = "1.2", Caption = "Rituals" } };
 
         var attributes =
             typeattributes
