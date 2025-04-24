@@ -6,7 +6,7 @@ namespace ShapeShifter.Rituals
 {
     [LegacyDoc(Order = "1.2.3", Caption = "Shadow Tendrils", Content =
 @"Only available when the Shapeshifter is in original form. 
-A continuos ritual that adds 2 shadow per turn to a location without any profile or menace gain.")]
+A continuous ritual that adds 2 shadow per turn to a location without any profile or menace gain.")]
     public class ShadowTendrils : Ritual
     {
         public ShadowTendrils(Location location)

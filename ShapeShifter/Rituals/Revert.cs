@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ShapeShifter.Rituals
 {
     [LegacyDoc(Order = "1.2.2", Caption = "Revert", Content =
-@"Only available when the Shapeshifter is mimicking someone.  Turns her back to her sahdow form.")]
+@"Only available when the Shapeshifter is mimicking someone.  Turns her back to her shadow form.")]
     public class Revert : Ritual
     {
         public Revert(Location location)
