@@ -12,6 +12,6 @@ This is small collection of mods for  [Shadows of Forbidden Gods](https://store.
 
 [![Version](https://img.shields.io/badge/Version-v0.1.1-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/TheBrokenv0.1.1)
 
-### [Shapeshifter](https://github.com/kilfour/SOFG-Mods/wiki/ShapeShifter)  ###
+### [Shapeshifter](https://github.com/kilfour/SOFG-Mods/wiki/Shapeshifter)  ###
 
 [![Version](https://img.shields.io/badge/Version-v0.0.1-purple)](https://github.com/kilfour/SOFG-Witching-Mod/releases/tag/ShapeShifterv0.0.1)
