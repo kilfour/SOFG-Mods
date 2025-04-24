@@ -13,7 +13,6 @@ namespace TheBroken
 
         public bool LeadingFlock;
 
-
         public FirstAmongTheBroken(Location location, Society society)
             : base(location, society)
         {
@@ -21,13 +20,13 @@ namespace TheBroken
             person.stat_lore = Constants.Lore;
             person.stat_intrigue = Constants.Intrigue;
             person.stat_command = Constants.Command;
-            person.isMale = false;
+            person.isMale = true;
             person.age = 42;
             person.hasSoul = true;
             person.gold = Constants.Gold;
-            person.receiveTrait(new GravenPresence());
+            person.receiveTrait(new GravenPresence(this));
             location.AddProperty(new Shard(location) { charge = 150 });
-            rituals.Add(new TheFracture(this, location));
+            rituals.Add(new Uprising(this, location));
             LeadingFlock = false;
         }
 

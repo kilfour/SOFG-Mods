@@ -12,5 +12,6 @@
 0.2.2
     - Bug fix when loading from fresh app/game start.
     - Bug fix : WordsNotHerOwn, power was not used up.
+    - Added the Witches Promise: for a 100 power Raise a Vampire
 
   

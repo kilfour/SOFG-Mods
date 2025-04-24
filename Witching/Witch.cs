@@ -5,12 +5,13 @@ using Witching.Traits;
 using Witching.Rituals;
 using Witching.Rituals.Bolts.Nuts;
 using Common;
+using Common.ImageSelector;
 
 namespace Witching
 {
-    public class Witch : UAE
+    public class Witch : UAE, IHaveMultipleImages
     {
-        public int ImageIndex;
+        public int ImageIndex { get; set; }
 
         public List<ICanUpdateRituals> updaters =
             new List<ICanUpdateRituals>();
@@ -37,6 +38,7 @@ namespace Witching
             rituals.Add(new WitchesStories(location, power));
             AddWitchesRitual(new Empower.RitualUpdater(this));
             AddWitchesRitual(new RepurposeTheDead.RitualUpdater(this));
+            AddWitchesRitual(new TheWitchesPromise.RitualUpdater(this));
             AddWitchesRitual(new WordsNotHerOwn.RitualUpdater());
             AddWitchesRitual(new StartDeepCult.RitualUpdater());
             AddWitchesRitual(new TheWitchesHunger.RitualUpdater());

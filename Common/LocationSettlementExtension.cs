@@ -73,6 +73,7 @@ namespace Common
 
         public static void AddShadow(this Location location, double shadow)
         {
+            if (location.settlement == null) return;
             if (location.settlement.shadow < 1.0)
                 location.settlement.shadow = Math.Min(1.0, location.settlement.shadow + shadow);
         }

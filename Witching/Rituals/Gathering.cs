@@ -48,9 +48,25 @@ namespace Witching.Rituals
 
         public override bool validFor(UA unit)
         {
-            if (unit.task is Task_PerformChallenge task && task.challenge is Gathering)
+            if (UnitIsGathering(unit))
                 return true;
+
+            if (ThereIsAGatheringHere(unit.location))
+                return true;
+
             return unit.location.GetUnrest() > 50;
+        }
+
+        private bool UnitIsGathering(Unit unit)
+        {
+            return unit.task is Task_PerformChallenge task && task.challenge is Gathering;
+        }
+
+        private bool ThereIsAGatheringHere(Location location)
+        {
+            return (from nearbyUnit in location.units
+                    where UnitIsGathering(nearbyUnit)
+                    select nearbyUnit).Any();
         }
 
         public override void onImmediateBegin(UA witch)
@@ -66,7 +82,7 @@ namespace Witching.Rituals
             base.onImmediateBegin(witch);
         }
 
-        private static bool OtherWitchHasStartedAGathering(Witch witch, Assets.Code.Unit unit)
+        private static bool OtherWitchHasStartedAGathering(Witch witch, Unit unit)
         {
             return
                 unit is Witch otherWitch

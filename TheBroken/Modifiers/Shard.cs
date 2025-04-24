@@ -29,6 +29,7 @@ namespace TheBroken.Modifiers
                 challenges.Add(new Ch_LayLowWilderness(location));
             challenges.Add(new LiturgyOfYield(location));
             challenges.Add(new PreachTheKeeping(location));
+            challenges.Add(new TheFracture(location));
             GrowTheShard();
         }
 
@@ -117,7 +118,7 @@ namespace TheBroken.Modifiers
             broken.targetLocation = targetLocation;
             broken.task = new Task_GoToLocation(targetLocation);
 
-            charge -= 100;
+            charge -= 200;
 
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Code;
 
@@ -6,6 +7,11 @@ namespace Common
 {
     public static class LocationPropertiesExtensions
     {
+        public static IEnumerable<T> GetAllPropertiesOf<T>(this Location location) where T : Property
+        {
+            return location.properties.OfType<T>();
+        }
+
         private static Property GetStandardPropertyOrNull(Location location, Property.standardProperties form)
         {
             return location.properties.SingleOrDefault(a => a.getPropType() == form);

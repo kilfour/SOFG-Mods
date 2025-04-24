@@ -8,8 +8,16 @@ namespace TheBroken.Traits
 {
     public class GravenPresence : Trait
     {
+        public FirstAmongTheBroken theFirst;
+
+        public GravenPresence(FirstAmongTheBroken theFirst)
+        {
+            this.theFirst = theFirst;
+        }
         public override string getName()
         {
+            if (theFirst.LeadingFlock)
+                return "Graven Flock";
             return "Graven Presence";
         }
 
@@ -24,17 +32,23 @@ namespace TheBroken.Traits
 
             var location = person.unit.location;
             var followers = GetNumberOfFollowers();
-
             // GET RULER'S MONEY THROUGH MARKET
-            if (location.HasMarket())
+            // if (location.HasMarket())
+            // {
+            //     var ruler = location.GetRuler();
+            //     if (ruler != null)
+            //     {
+            //         var syphoned = Math.Min(1 + (followers * 2), ruler.gold);
+            //         ruler.gold -= syphoned;
+            //         person.gold += syphoned;
+            //     }
+            // }
+            // -- 
+
+            // Unrest in Human city
+            if (followers > 0 && location.HasCity())
             {
-                var ruler = location.GetRuler();
-                if (ruler != null)
-                {
-                    var syphoned = Math.Min(1 + followers, ruler.gold);
-                    ruler.gold -= syphoned;
-                    person.gold += syphoned;
-                }
+                Because.Of("Graven Flock").Add(followers).Unrest(location);
             }
             // -- 
 
@@ -42,10 +56,11 @@ namespace TheBroken.Traits
             var shard = location.GetPropertyOrNull<Shard>();
             if (shard != null)
             {
-                shard.AddCharge("Graven Presence", 3);
+                shard.AddCharge("Graven Presence", 2);
                 shadow += 0.01;
                 person.gold++;
             }
+            shadow += followers * 0.0025;
             location.AddShadow(shadow);
         }
 
@@ -56,13 +71,13 @@ namespace TheBroken.Traits
 
         public override int getIntrigueChange()
         {
-            return GetNumberOfFollowers();
+            return 0;
         }
 
         public override int getLoreChange()
         {
-            if (assignedTo.unit.location.HasLibrary())
-                return GetNumberOfFollowers();
+            // if (assignedTo.unit.location.HasLibrary())
+            //     return GetNumberOfFollowers();
             return 0;
         }
 

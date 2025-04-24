@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+          <HintPath>../Libs/Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+          <HintPath>../Libs/UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\**\*.cs" Exclude="..\Common\obj\**\*;..\Common\bin\**\*" />
+  </ItemGroup>
+</Project>

@@ -4,18 +4,17 @@ using UnityEngine;
 using Common;
 using Common.ImageSelector;
 
-namespace Witching
+namespace ShapeShifter
 {
-    public class WitchAbstract : UAE_Abstraction
+    public class ShapeShifterAbstract : UAE_Abstraction
     {
-        public WitchAbstract(Map map)
+        public ShapeShifterAbstract(Map map)
             : base(map, -1) { }
 
         public override bool validTarget(Location location)
         {
             if (AgentCapReached()) return false;
-            if (location.settlement == null) return false;
-            return location.settlement.subs.Any(sub => sub.getName() == "Coven");
+            return true;
         }
 
         private bool AgentCapReached()
@@ -25,10 +24,7 @@ namespace Witching
 
         public override void createAgent(Location target)
         {
-            var society = target.GetHolyOrderOrNull();
-            var uA = new Witch(target, society, GetRandomImageIndex.For<Witch>(5, target.map));
-            uA.maxHp = 3;
-            uA.hp = 3;
+            var uA = new ShapeShifter(target, GetRandomImageIndex.For<ShapeShifter>(4, target.map));
             uA.person.stat_might = getStatMight();
             uA.person.stat_lore = getStatLore();
             uA.person.stat_intrigue = getStatIntrigue();
@@ -44,27 +40,22 @@ namespace Witching
 
         public override Sprite getForeground()
         {
-            return EventManager.getImg("witching.witch-1.png");
+            return EventManager.getImg("shape-shifter.shape-shifter-1.png");
         }
 
         public override string getName()
         {
-            return "A Witch";
+            return "A Shapeshifter";
         }
 
         public override string getDesc()
         {
-            return "Gathering at their Coven the witches seek to bring chaos into this world. They have developed a fascination for, and ways to, manipulate the hunger and madness. They gather at places of unrest in order to obtain their power.";
+            return "Mimics a living hero. While in disguise, uses that hero's stats. Profile and Menace from actions are transferred to the real hero. Can revert at will.";
         }
 
         public override string getFlavour()
         {
-            return "Witches have decent lore, but not much else. Don't take them into combat. Most of their rituals/challenges only show up when in the right location.";
-        }
-
-        public override string getRestrictions()
-        {
-            return "Requires a Coven.";
+            return "It walks in the skin of heroes, wears their glories, commits their crimes.";
         }
 
         public override int getStatMight()
